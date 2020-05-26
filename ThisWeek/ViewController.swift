@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate {
+    
     
 //    MARK: - Model
     private var thisWeek = ThisWeek(numberOfDays: ThisWeek.Defaults.numberOfDays)
@@ -79,12 +79,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
             headerCell.titleLabel.text = thisWeek.days[section].Date
+            headerCell.delegate = self
             return headerCell
         }else{
             return nil
         }
     }
     
+//      MARK: SectionTableViewCellDelegate
+    
+    func addOneTask(_ sender: SectionTableViewCell) {
+        print("hola")
+    }
     
 }
 

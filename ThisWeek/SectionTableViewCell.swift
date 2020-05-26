@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol SectionTableViewCellDelegate : class {
+    func addOneTask(_ sender : SectionTableViewCell)
+}
+
 class SectionTableViewCell: UITableViewCell {
+    
+//    MARK: - Delegation
+    weak var delegate : SectionTableViewCellDelegate?
     
     var addingTask = false
 
@@ -16,7 +23,9 @@ class SectionTableViewCell: UITableViewCell {
     
 
     @IBAction func addAction(_ sender: UIButton) {
+        print("entre")
         addingTask = true
+        self.delegate?.addOneTask(self)
     }
     
     override func awakeFromNib() {
