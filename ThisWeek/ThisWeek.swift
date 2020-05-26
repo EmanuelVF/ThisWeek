@@ -30,7 +30,7 @@ class ThisWeek {
         for index in stride(from: 0, to: numberOfDays, by: 1){
             days.append(Day())
             if index == numberOfDays-1 {
-                days.last?.Date = "Later"
+                days.last?.Date = Defaults.laterText
             }else{
                 days.last?.Date = formatter.string(from: date)
             }
@@ -44,6 +44,7 @@ extension ThisWeek{
         static let numberOfDays = 8
         static let oneDay = 86400
         static let localeIdentifier = "es_ARG"
+        static let laterText = "Más Tarde"
     }
     
 }

@@ -64,5 +64,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
+            weekTableView.deleteRows(at: [indexPath], with: .fade)
+            weekTableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
+            headerCell.titleLabel.text = thisWeek.days[section].Date
+            return headerCell
+        }else{
+            return nil
+        }
+    }
+    
+    
 }
 
