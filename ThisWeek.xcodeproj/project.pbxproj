@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D27F247D6E5400A45448 /* ThisWeek.swift */; };
+		8838D282247D6F7600A45448 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D281247D6F7600A45448 /* Day.swift */; };
+		8838D284247D704D00A45448 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D283247D704D00A45448 /* Activity.swift */; };
 		8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */; };
 		8874DBCB247D6B9000B51EE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */; };
 		8874DBCD247D6B9000B51EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCC247D6B9000B51EE0 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8838D27F247D6E5400A45448 /* ThisWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeek.swift; sourceTree = "<group>"; };
+		8838D281247D6F7600A45448 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		8838D283247D704D00A45448 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8874DBC5247D6B9000B51EE0 /* ThisWeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThisWeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,9 @@
 			children = (
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
 				8874DBCC247D6B9000B51EE0 /* ViewController.swift */,
+				8838D27F247D6E5400A45448 /* ThisWeek.swift */,
+				8838D281247D6F7600A45448 /* Day.swift */,
+				8838D283247D704D00A45448 /* Activity.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
 				8874DBDC247D6C3600B51EE0 /* SupportingFiles */,
 			);
@@ -147,7 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8874DBCD247D6B9000B51EE0 /* ViewController.swift in Sources */,
+				8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */,
 				8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */,
+				8838D282247D6F7600A45448 /* Day.swift in Sources */,
+				8838D284247D704D00A45448 /* Activity.swift in Sources */,
 				8874DBCB247D6B9000B51EE0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
