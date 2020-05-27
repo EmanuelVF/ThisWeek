@@ -49,24 +49,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return thisWeek.days[section].Date
+        return thisWeek.days[section].getDate()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return thisWeek.days[section].activities.count
+        return thisWeek.days[section].getActivities().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath)
         
         // Configure the cell...
-        if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
-            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].activities[indexPath.item].name, attributes:
+        if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
+            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!, attributes:
                 [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
             
         }else{
 //            cell.textLabel?.text = thisWeek.days[indexPath.section].activities[indexPath.item].name
-            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].activities[indexPath.item].name)
+            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
         }
         
         return cell
@@ -80,7 +80,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+            if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
                 thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
                 weekTableView.deleteRows(at: [indexPath], with: .fade)
                 weekTableView.reloadData()
@@ -90,13 +90,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipe = UIContextualAction(style: .normal, title: "Done"){(action, sourceView, completionHandler) in
-            self.thisWeek.days[indexPath.section].activities[indexPath.item].completed = true
+            self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].complete()
+            self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
             completionHandler(true)
         }
         swipe.backgroundColor = UIColor.green
         
-        if !thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+        if !thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
             let swipeTrailingAction = UISwipeActionsConfiguration(actions: [swipe])
             swipeTrailingAction.performsFirstActionWithFullSwipe = true
             return swipeTrailingAction
@@ -106,13 +107,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipe = UIContextualAction(style: .normal, title: "Undone"){(action, sourceView, completionHandler) in
-            self.thisWeek.days[indexPath.section].activities[indexPath.item].completed = false
+            self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].unComplete()
+            self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
             completionHandler(true)
         }
         swipe.backgroundColor = UIColor.blue
         
-        if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+        if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
             let swipeLeadingAction = UISwipeActionsConfiguration(actions: [swipe])
             swipeLeadingAction.performsFirstActionWithFullSwipe = true
             return swipeLeadingAction
@@ -124,7 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //    MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
-            headerCell.titleLabel.text = thisWeek.days[section].Date
+            headerCell.titleLabel.text = thisWeek.days[section].getDate()!
             headerCell.delegate = self
             return headerCell
         }else{
@@ -143,7 +145,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
-            if thisWeek.days[index].Date == text!{
+            if thisWeek.days[index].getDate()! == text!{
                 thisWeek.addToDo(activity: Activity(name: "New Action", priority: 0,completed: false), at: index)
                 weekTableView.reloadData()
             }

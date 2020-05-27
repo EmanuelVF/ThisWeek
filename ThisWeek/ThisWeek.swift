@@ -10,7 +10,7 @@ import Foundation
 
 class ThisWeek {
     
-     var days = [Day]()
+    var days = [Day]()
     
     func addToDo(activity: Activity ,at day : Int){
         days[day].addActivity(activity: activity)
@@ -30,9 +30,9 @@ class ThisWeek {
         for index in stride(from: 0, to: numberOfDays, by: 1){
             days.append(Day())
             if index == numberOfDays-1 {
-                days.last?.Date = Defaults.laterText
+                days.last?.setDate(with: Defaults.laterText)
             }else{
-                days.last?.Date = formatter.string(from: date)
+                days.last?.setDate(with: formatter.string(from: date))
             }
             date = date.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay) ?? 0)
         }

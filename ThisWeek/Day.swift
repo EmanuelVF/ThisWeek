@@ -9,8 +9,8 @@
 import Foundation
 class Day{
     
-    var Date = ""
-    var activities = [Activity] ()
+    private var Date : String? = ""
+    private var activities = [Activity] ()
     
     func addActivity(activity : Activity){
         activities.append(activity)
@@ -20,6 +20,27 @@ class Day{
         activities.remove(at: index)
     }
     
+    func insertActivity(newElement: Activity, at index: Int){
+        activities.insert(newElement,at: index)
+    }
+    
+    func getActivities()-> [Activity]{
+        return activities
+    }
+    
+    func sortDay(){
+        let completedActivities = activities.filter{$0.isCompleted()!}
+        let unCompletedActivities = activities.filter{!$0.isCompleted()!}
+        activities = unCompletedActivities + completedActivities
+    }
+    
+    func setDate(with newDate: String){
+        self.Date = newDate
+    }
+    
+    func getDate() -> String?{
+        return self.Date
+    }
     
     init(){
         
