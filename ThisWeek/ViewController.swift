@@ -65,7 +65,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
             
         }else{
-//            cell.textLabel?.text = thisWeek.days[indexPath.section].activities[indexPath.item].name
             cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
         }
         
@@ -89,7 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let swipe = UIContextualAction(style: .normal, title: "Done"){(action, sourceView, completionHandler) in
+        let swipe = UIContextualAction(style: .normal, title: ThisWeek.Defaults.doneText){(action, sourceView, completionHandler) in
             self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].complete()
             self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
@@ -106,7 +105,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let swipe = UIContextualAction(style: .normal, title: "Undone"){(action, sourceView, completionHandler) in
+        let swipe = UIContextualAction(style: .normal, title: ThisWeek.Defaults.unDoneText){(action, sourceView, completionHandler) in
             self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].unComplete()
             self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
@@ -135,8 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // TODO: Make this value proportional to total height
-        return 45
+        return view.bounds.height * Defaults.headerSizeFactor
     }
     
 //      MARK: -  SectionTableViewCellDelegate
@@ -146,11 +144,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: "New Action", priority: 0,completed: false), at: index)
+                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, priority: 0,completed: false), at: index)
                 weekTableView.reloadData()
             }
         }
     }
     
+}
+
+extension ViewController {
+    struct Defaults {
+        static let headerSizeFactor = CGFloat(0.05)
+    }
 }
 

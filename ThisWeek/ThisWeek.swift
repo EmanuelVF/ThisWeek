@@ -47,6 +47,9 @@ extension ThisWeek{
         static let oneDay = 86400
         static let localeIdentifier = "es_ARG"
         static let laterText = "Más Tarde"
+        static let doneText = "Hecho"
+        static let unDoneText = "Deshacer"
+        static let newTaskText = "Nueva Tarea"
     }
     
 }
