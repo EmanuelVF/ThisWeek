@@ -16,15 +16,12 @@ class SectionTableViewCell: UITableViewCell {
     
 //    MARK: - Delegation
     weak var delegate : SectionTableViewCellDelegate?
-    
-    var addingTask = false
 
+    //    MARK: - Outlets and Actions
     @IBOutlet weak var titleLabel: UILabel!
     
 
     @IBAction func addAction(_ sender: UIButton) {
-        print("entre")
-        addingTask = true
         self.delegate?.addOneTask(self)
     }
     

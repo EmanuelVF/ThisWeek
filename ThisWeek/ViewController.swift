@@ -21,15 +21,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        thisWeek.addToDo(activity: Activity(name: "Planchar", priority: 0), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", priority: 0), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", priority: 0), at: 1)
-        thisWeek.addToDo(activity: Activity(name: "Salir a correr", priority: 1), at: 2)
-        thisWeek.addToDo(activity: Activity(name: "Leer", priority: 1), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", priority: 0), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", priority: 0), at: 4)
-        thisWeek.addToDo(activity: Activity(name: "Cocinar", priority: 0), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", priority: 0), at: 7)
+        thisWeek.addToDo(activity: Activity(name: "Planchar", priority: 0,completed: false), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", priority: 0,completed: false), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", priority: 0,completed: false), at: 1)
+        thisWeek.addToDo(activity: Activity(name: "Salir a correr", priority: 1,completed: false), at: 2)
+        thisWeek.addToDo(activity: Activity(name: "Leer", priority: 1,completed: false), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", priority: 0,completed: false), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", priority: 0,completed: false), at: 4)
+        thisWeek.addToDo(activity: Activity(name: "Cocinar", priority: 0,completed: false), at: 6)
+        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", priority: 0,completed: false), at: 7)
         
     }
 
@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-//    MARK: - UITableViewDataSource
+//    MARK: - UITableViewDataSource & UITableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return thisWeek.days.count
     }
@@ -60,9 +60,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = thisWeek.days[indexPath.section].activities[indexPath.item].name
+        if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].activities[indexPath.item].name, attributes:
+                [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+            
+        }else{
+//            cell.textLabel?.text = thisWeek.days[indexPath.section].activities[indexPath.item].name
+            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].activities[indexPath.item].name)
+        }
+        
         return cell
     }
+    
+    //    MARK: Custom Deleting
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -70,12 +80,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
-            weekTableView.deleteRows(at: [indexPath], with: .fade)
-            weekTableView.reloadData()
+            if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+                thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
+                weekTableView.deleteRows(at: [indexPath], with: .fade)
+                weekTableView.reloadData()
+            }
         }
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipe = UIContextualAction(style: .normal, title: "Done"){(action, sourceView, completionHandler) in
+            self.thisWeek.days[indexPath.section].activities[indexPath.item].completed = true
+            self.weekTableView.reloadData()
+            completionHandler(true)
+        }
+        swipe.backgroundColor = UIColor.green
+        
+        if !thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+            let swipeTrailingAction = UISwipeActionsConfiguration(actions: [swipe])
+            swipeTrailingAction.performsFirstActionWithFullSwipe = true
+            return swipeTrailingAction
+        }else{
+            return nil
+        }
+    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipe = UIContextualAction(style: .normal, title: "Undone"){(action, sourceView, completionHandler) in
+            self.thisWeek.days[indexPath.section].activities[indexPath.item].completed = false
+            self.weekTableView.reloadData()
+            completionHandler(true)
+        }
+        swipe.backgroundColor = UIColor.blue
+        
+        if thisWeek.days[indexPath.section].activities[indexPath.item].completed {
+            let swipeLeadingAction = UISwipeActionsConfiguration(actions: [swipe])
+            swipeLeadingAction.performsFirstActionWithFullSwipe = true
+            return swipeLeadingAction
+        }else{
+            return nil
+        }
+    }
+    
+    //    MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
             headerCell.titleLabel.text = thisWeek.days[section].Date
@@ -86,10 +132,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-//      MARK: SectionTableViewCellDelegate
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // TODO: Make this value proportional to total height
+        return 45
+    }
+    
+//      MARK: -  SectionTableViewCellDelegate
     
     func addOneTask(_ sender: SectionTableViewCell) {
-        print("hola")
+        
+        let text = sender.titleLabel.text
+        for index in thisWeek.days.indices{
+            if thisWeek.days[index].Date == text!{
+                thisWeek.addToDo(activity: Activity(name: "New Action", priority: 0,completed: false), at: index)
+                weekTableView.reloadData()
+            }
+        }
     }
     
 }

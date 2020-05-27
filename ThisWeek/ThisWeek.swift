@@ -39,6 +39,8 @@ class ThisWeek {
     }
 }
 
+//    MARK: - Defaults values
+
 extension ThisWeek{
     struct Defaults{
         static let numberOfDays = 8

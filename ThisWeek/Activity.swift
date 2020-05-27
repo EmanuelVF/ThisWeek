@@ -11,10 +11,12 @@ class Activity{
     
     var name : String
     var priority : Int
+    var completed : Bool
     
-    init(name: String, priority: Int){
+    init(name: String, priority: Int, completed : Bool){
         self.name = name
         self.priority = priority
+        self.completed = completed
     }
     
 }
