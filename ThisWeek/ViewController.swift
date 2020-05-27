@@ -56,20 +56,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return thisWeek.days[section].getActivities().count
     }
 
+    private func alignLeftAttributedString(_ string: String, fontsize:CGFloat) -> NSAttributedString{
+        var font = UIFont.preferredFont(forTextStyle: .title1).withSize(fontsize)
+        font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: font) // This update the text size with metrics
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, .font: font])
+    }
+
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath)
-        
-        // Configure the cell...
-        if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
+        if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DoneActionCell", for: indexPath)
             cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!, attributes:
                 [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-            
+            return cell
         }else{
-            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UndoneActionCell", for: indexPath) as? UndoneActionTableViewCell
+            cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: 8 )
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startEditing))
+            tapGesture.numberOfTapsRequired = 2
+            cell?.addGestureRecognizer(tapGesture)
+            cell?.resignationHandler = { [weak self, unowned cell] in
+                if let text = cell!.taskTextField.text{
+                    self?.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setName(with: text)
+                }
+                self?.weekTableView.reloadData()
+            }
+            
+//            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
+            return cell!
         }
-        
-        return cell
     }
+    
+    @objc func startEditing( sender: UITapGestureRecognizer){
+        if let cell = sender.view as? UndoneActionTableViewCell{
+            cell.startEditing()
+        }
+    }
+    
     
     //    MARK: Custom Deleting
     
