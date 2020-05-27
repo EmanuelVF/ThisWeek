@@ -56,25 +56,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return thisWeek.days[section].getActivities().count
     }
 
-    private func alignLeftAttributedString(_ string: String, fontsize:CGFloat) -> NSAttributedString{
+    private func alignLeftAttributedString(_ string: String, fontsize:CGFloat, strikethrough : Bool) -> NSAttributedString{
+        print("hola \(fontsize)")
         var font = UIFont.preferredFont(forTextStyle: .title1).withSize(fontsize)
         font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: font) // This update the text size with metrics
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
-        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, .font: font])
+        if strikethrough{
+            return NSAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, .font: font, .strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        }else{
+            return NSAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, .font: font])
+        }
     }
-
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoneActionCell", for: indexPath)
-            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!, attributes:
-                [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+            cell.textLabel?.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor, strikethrough: true)
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "UndoneActionCell", for: indexPath) as? UndoneActionTableViewCell
-            cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: 8 )
+            print(weekTableView.rowHeight)
+            cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startEditing))
             tapGesture.numberOfTapsRequired = 2
             cell?.addGestureRecognizer(tapGesture)
@@ -84,8 +88,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 self?.weekTableView.reloadData()
             }
-            
-//            cell.textLabel?.attributedText = NSAttributedString(string: thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
             return cell!
         }
     }
@@ -94,6 +96,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let cell = sender.view as? UndoneActionTableViewCell{
             cell.startEditing()
         }
+    }
+    
+    private var preferredRowSize = CGFloat(0)
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        preferredRowSize = view.bounds.height * Defaults.rowSizeFactor
+        return preferredRowSize
     }
     
     
@@ -149,9 +158,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //    MARK: Header
+    
+    private func titleAttributedString(_ string: String, fontsize:CGFloat) -> NSAttributedString{
+        print("hola \(fontsize)")
+        var font = UIFont.preferredFont(forTextStyle: .title1).withSize(fontsize)
+        font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: font) // This update the text size with metrics
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        return NSAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, .font: font])
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
-            headerCell.titleLabel.text = thisWeek.days[section].getDate()!
+            headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: preferredHeaderHeight * Defaults.headerTextSizeFactor)
             headerCell.delegate = self
             return headerCell
         }else{
@@ -159,8 +179,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    private var preferredHeaderHeight = CGFloat(0)
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return view.bounds.height * Defaults.headerSizeFactor
+        preferredHeaderHeight = view.bounds.height * Defaults.headerSizeFactor
+        return preferredHeaderHeight
     }
     
 //      MARK: -  SectionTableViewCellDelegate
@@ -178,9 +201,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
+// MARK: - ViewController Extension
+
 extension ViewController {
     struct Defaults {
         static let headerSizeFactor = CGFloat(0.05)
+        static let headerTextSizeFactor = CGFloat(0.5)
+        static let rowSizeFactor = CGFloat(0.05)
+        static let rowTextSizeFactor = CGFloat(0.45)
     }
 }
 
