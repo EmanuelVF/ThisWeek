@@ -22,8 +22,8 @@ class ThisWeek {
     
     init(numberOfDays: Int){
         var date = Date()
-        let template = "EEEEddMMM"
-        let format = DateFormatter.dateFormat(fromTemplate: template, options: 0, locale: NSLocale(localeIdentifier:"es_AR") as Locale )
+        let template = Defaults.dateTemplate
+        let format = DateFormatter.dateFormat(fromTemplate: template, options: 0, locale: NSLocale(localeIdentifier:Defaults.localeIdentifier) as Locale )
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.locale = Locale(identifier: Defaults.localeIdentifier)
@@ -44,6 +44,7 @@ class ThisWeek {
 
 extension ThisWeek{
     struct Defaults{
+        static let dateTemplate = "EEEEddMMM"
         static let numberOfDays = 8
         static let oneDay = 86400
         static let localeIdentifier = "es_AR"

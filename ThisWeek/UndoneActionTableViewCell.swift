@@ -10,6 +10,7 @@ import UIKit
 
 class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+    @IBOutlet weak var addNewReminderButton: UIButton!
     @IBOutlet weak var taskTextField: UITextField!{
         didSet{
             taskTextField.delegate = self

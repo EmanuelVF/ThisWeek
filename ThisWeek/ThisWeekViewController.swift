@@ -30,15 +30,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        thisWeek.addToDo(activity: Activity(name: "Planchar", priority: 0,completed: false), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", priority: 0,completed: false), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", priority: 0,completed: false), at: 1)
-        thisWeek.addToDo(activity: Activity(name: "Salir a correr", priority: 1,completed: false), at: 2)
-        thisWeek.addToDo(activity: Activity(name: "Leer", priority: 1,completed: false), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", priority: 0,completed: false), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", priority: 0,completed: false), at: 4)
-        thisWeek.addToDo(activity: Activity(name: "Cocinar", priority: 0,completed: false), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", priority: 0,completed: false), at: 7)
+        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false), at: 1)
+        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false), at: 2)
+        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false), at: 4)
+        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false), at: 6)
+        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false), at: 7)
         
     }
 
@@ -116,13 +116,25 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self!.taskToRemind = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!
                 self!.dateToRemind = self!.thisWeek.days[indexPath.section].getDate()!
                 self!.sectionToRemind = indexPath.section
+                self!.itemToRemind = indexPath.item
                 self!.performSegue(withIdentifier: "SetTime", sender: self)
             }
+            if indexPath.section == thisWeek.days.count-1{
+                cell?.addNewReminderButton.isHidden = true
+            }else{
+                cell?.addNewReminderButton.isHidden = false
+                if thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!{
+                    cell?.addNewReminderButton.backgroundColor = .yellow
+                }else{
+                    cell?.addNewReminderButton.backgroundColor = .clear
+                }
+            }
+            
             
             return cell!
         }
     }
-    
+    private var itemToRemind = 0
     private var sectionToRemind = 0
     private var taskToRemind = ""
     private var dateToRemind = ""
@@ -138,7 +150,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     //  MARK: Gestures selectors
     @objc func disableEditingTable(sender : UITapGestureRecognizer){
         if weekTableView.isEditing == true {
-            print("Quiero tiempo")
             weekTableView.isEditing = false
         }
     }
@@ -267,7 +278,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, priority: 0,completed: false), at: index)
+                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false,completed: false), at: index)
                 thisWeek.days[index].sortDay()
                 weekTableView.reloadData()
             }
@@ -299,6 +310,11 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 } catch {
                     return
                 }
+                self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
+                DispatchQueue.main.async {
+                    self.weekTableView.reloadData()
+                }
+                
             }
         })
     }

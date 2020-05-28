@@ -10,12 +10,12 @@ import Foundation
 class Activity{
     
     private var name : String?
-    private var priority : Int?
+    private var hasAReminder : Bool?
     private var completed : Bool?
     
-    init(name: String, priority: Int, completed : Bool){
+    init(name: String, hasAReminder: Bool, completed : Bool){
         self.name = name
-        self.priority = priority
+        self.hasAReminder = hasAReminder
         self.completed = completed
     }
     
@@ -27,12 +27,12 @@ class Activity{
         return self.name
     }
     
-    func setPriority(with newPriority: Int?){
-        self.priority = newPriority
+    func setHasAReminder(with reminder : Bool?){
+        self.hasAReminder = reminder
     }
     
-    func getPriority() -> Int?{
-        return self.priority
+    func hasItAReminder() -> Bool?{
+        return self.hasAReminder
     }
     
     func complete(){

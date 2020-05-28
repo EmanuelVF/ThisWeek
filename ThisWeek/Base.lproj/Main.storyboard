@@ -53,7 +53,7 @@
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-io-ICU">
                                                     <rect key="frame" x="348" y="7" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="⏲"/>
                                                     <connections>
                                                         <action selector="addReminderButton:" destination="EP2-eQ-eew" eventType="touchUpInside" id="u1z-5K-JUs"/>
                                                     </connections>
@@ -68,6 +68,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addNewReminderButton" destination="6Lc-io-ICU" id="r7d-zn-Yio"/>
                                             <outlet property="taskTextField" destination="9wf-n6-2oh" id="fQH-F3-OdT"/>
                                         </connections>
                                     </tableViewCell>
