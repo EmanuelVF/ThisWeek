@@ -16,6 +16,13 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
             taskTextField.isUserInteractionEnabled = false
         }
     }
+   
+    var addReminderButtonHandler : (()->Void)?
+    
+    @IBAction func addReminderButton(_ sender: UIButton) {
+        addReminderButtonHandler?()
+    }
+    
     
     func startEditing(){
         taskTextField.isUserInteractionEnabled = true
@@ -42,7 +49,6 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

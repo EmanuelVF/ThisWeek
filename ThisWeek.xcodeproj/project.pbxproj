@@ -11,9 +11,10 @@
 		8838D282247D6F7600A45448 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D281247D6F7600A45448 /* Day.swift */; };
 		8838D284247D704D00A45448 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D283247D704D00A45448 /* Activity.swift */; };
 		8838D286247DBADB00A45448 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D285247DBADB00A45448 /* SectionTableViewCell.swift */; };
+		884E2CEB248047E200B8EDC4 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */; };
 		8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */; };
 		8874DBCB247D6B9000B51EE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */; };
-		8874DBCD247D6B9000B51EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCC247D6B9000B51EE0 /* ViewController.swift */; };
+		8874DBCD247D6B9000B51EE0 /* ThisWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */; };
 		8874DBD0247D6B9000B51EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBCE247D6B9000B51EE0 /* Main.storyboard */; };
 		8874DBD2247D6B9300B51EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBD1247D6B9300B51EE0 /* Assets.xcassets */; };
 		8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBD3247D6B9300B51EE0 /* LaunchScreen.storyboard */; };
@@ -25,10 +26,11 @@
 		8838D281247D6F7600A45448 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8838D283247D704D00A45448 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8838D285247DBADB00A45448 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
+		884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReminderViewController.swift; sourceTree = "<group>"; };
 		8874DBC5247D6B9000B51EE0 /* ThisWeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThisWeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8874DBCC247D6B9000B51EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekViewController.swift; sourceTree = "<group>"; };
 		8874DBCF247D6B9000B51EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8874DBD1247D6B9300B51EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8874DBD4247D6B9300B51EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,7 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
-				8874DBCC247D6B9000B51EE0 /* ViewController.swift */,
+				8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */,
+				884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */,
 				887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */,
 				8838D285247DBADB00A45448 /* SectionTableViewCell.swift */,
 				8838D27F247D6E5400A45448 /* ThisWeek.swift */,
@@ -161,7 +164,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8874DBCD247D6B9000B51EE0 /* ViewController.swift in Sources */,
+				8874DBCD247D6B9000B51EE0 /* ThisWeekViewController.swift in Sources */,
+				884E2CEB248047E200B8EDC4 /* SetReminderViewController.swift in Sources */,
 				8838D286247DBADB00A45448 /* SectionTableViewCell.swift in Sources */,
 				8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */,
 				8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */,

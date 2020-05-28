@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, UINavigationControllerDelegate {
+class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate {
 //    MARK: - App Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -112,9 +112,21 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 self?.weekTableView.reloadData()
             }
+            cell?.addReminderButtonHandler = { [weak self] in
+                self!.taskToRemind = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!
+                self!.dateToRemind = self!.thisWeek.days[indexPath.section].getDate()!
+                self!.sectionToRemind = indexPath.section
+                self!.performSegue(withIdentifier: "SetTime", sender: self)
+            }
+            
             return cell!
         }
     }
+    
+    private var sectionToRemind = 0
+    private var taskToRemind = ""
+    private var dateToRemind = ""
+    
     
     private var preferredRowSize = CGFloat(0)
     
@@ -127,7 +139,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func disableEditingTable(sender : UITapGestureRecognizer){
         if weekTableView.isEditing == true {
             print("Quiero tiempo")
-            AddReminder()
             weekTableView.isEditing = false
         }
     }
@@ -263,47 +274,44 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+//    MARK: - SetReminderViewControllerDelegate
+    
     var eventStore : EKEventStore!
     
-    func AddReminder() {
-        print("hola")
-        
-    eventStore = EKEventStore()
-    eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-      granted, error in
-      if (granted) && (error == nil) {
-        print("granted \(granted)")
-
-
-        let reminder:EKReminder = EKReminder(eventStore: self.eventStore)
-        reminder.title = "Must do this!"
-        reminder.priority = 2
-
-        //  How to show completed
-        //reminder.completionDate = Date()
-
-        reminder.notes = "...this is a note"
-
-
-        let alarmTime = Date().addingTimeInterval(10)
-        let alarm = EKAlarm(absoluteDate: alarmTime)
-        reminder.addAlarm(alarm)
-
-        reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-
-
-        do {
-          try self.eventStore.save(reminder, commit: true)
-        } catch {
-          print("Cannot save")
-          return
-        }
-        print("Reminder saved")
-      }
-     })
-
+    func addReminder(_ sender: SetReminderViewController) {
+        eventStore = EKEventStore()
+        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+            granted, error in
+            if (granted) && (error == nil) {
+                let reminder : EKReminder = EKReminder(eventStore: self.eventStore)
+                reminder.title = self.taskToRemind
+                
+                let chosenTime = sender.reminderDay
+                let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
+                //            let alarmTime = Date().addingTimeInterval(10)
+                let alarm = EKAlarm(absoluteDate: alarmTime)
+                reminder.addAlarm(alarm)
+                
+                reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
+                
+                do {
+                    try self.eventStore.save(reminder, commit: true)
+                } catch {
+                    return
+                }
+            }
+        })
     }
     
+//  MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SetTime"{
+            if let destination = segue.destination as? SetReminderViewController{
+                destination.delegate = self
+                destination.reminderTitle = "lala"
+            }
+        }
+    }
 }
 
 // MARK: - ViewController Extension
