@@ -16,15 +16,16 @@ class ThisWeek {
         days[day].addActivity(activity: activity)
     }
     
-    func removeToDo(at day : Int, position: Int){
-        days[day].removeActivity(at: position)
+    func removeToDo(at day : Int, position: Int) -> Activity{
+        return days[day].removeActivity(at: position)
     }
     
     init(numberOfDays: Int){
         var date = Date()
+        let template = "EEEEddMMM"
+        let format = DateFormatter.dateFormat(fromTemplate: template, options: 0, locale: NSLocale(localeIdentifier:"es_AR") as Locale )
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .none
+        formatter.dateFormat = format
         formatter.locale = Locale(identifier: Defaults.localeIdentifier)
         
         for index in stride(from: 0, to: numberOfDays, by: 1){
@@ -45,7 +46,7 @@ extension ThisWeek{
     struct Defaults{
         static let numberOfDays = 8
         static let oneDay = 86400
-        static let localeIdentifier = "es_ARG"
+        static let localeIdentifier = "es_AR"
         static let laterText = "Más Tarde"
         static let doneText = "Hecho"
         static let unDoneText = "Deshacer"

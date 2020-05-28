@@ -39,6 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         didSet{
             weekTableView.dataSource = self
             weekTableView.delegate = self
+            weekTableView.isEditing = false
         }
     }
     
@@ -57,7 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     private func alignLeftAttributedString(_ string: String, fontsize:CGFloat, strikethrough : Bool) -> NSAttributedString{
-        print("hola \(fontsize)")
         var font = UIFont.preferredFont(forTextStyle: .title1).withSize(fontsize)
         font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: font) // This update the text size with metrics
         let paragraphStyle = NSMutableParagraphStyle()
@@ -74,14 +74,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoneActionCell", for: indexPath)
             cell.textLabel?.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor, strikethrough: true)
+            // Single tap to stop reordering rows
+            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
+            singleTapGesture.numberOfTapsRequired = 1
+            cell.addGestureRecognizer(singleTapGesture)
+            // Long press to start reordering rows
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(enableEditingTable))
+            cell.addGestureRecognizer(longPress)
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "UndoneActionCell", for: indexPath) as? UndoneActionTableViewCell
-            print(weekTableView.rowHeight)
             cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startEditing))
+            // Single tap to stop reordering rows
+            let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
+            singleTapGesture.numberOfTapsRequired = 1
+            cell?.addGestureRecognizer(singleTapGesture)
+            // Two taps to start editing row text
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startEditingTextField))
             tapGesture.numberOfTapsRequired = 2
             cell?.addGestureRecognizer(tapGesture)
+            // Long press to start reordering rows
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(enableEditingTable))
+            cell?.addGestureRecognizer(longPress)
+            //Resignation handler to execute when the textfield is done
             cell?.resignationHandler = { [weak self, unowned cell] in
                 if let text = cell!.taskTextField.text{
                     self?.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setName(with: text)
@@ -92,12 +107,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @objc func startEditing( sender: UITapGestureRecognizer){
-        if let cell = sender.view as? UndoneActionTableViewCell{
-            cell.startEditing()
-        }
-    }
-    
     private var preferredRowSize = CGFloat(0)
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -105,6 +114,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return preferredRowSize
     }
     
+    //  MARK: Gestures selectors
+    @objc func disableEditingTable(sender : UITapGestureRecognizer){
+        if weekTableView.isEditing == true {
+            weekTableView.isEditing = false
+        }
+    }
+    
+    @objc func startEditingTextField( sender: UITapGestureRecognizer){
+        if let cell = sender.view as? UndoneActionTableViewCell{
+            cell.startEditing()
+        }
+    }
+    
+    @objc func enableEditingTable(sender : UILongPressGestureRecognizer){
+        if weekTableView.isEditing == false{
+            weekTableView.isEditing = true
+        }
+    }
     
     //    MARK: Custom Deleting
     
@@ -157,10 +184,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    //  MARK: MoveRow
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if weekTableView.isEditing{
+            return .none
+        }else{
+            return .delete
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedItem = thisWeek.removeToDo(at: sourceIndexPath.section, position: sourceIndexPath.item)
+        thisWeek.days[destinationIndexPath.section].insertActivity(newElement: movedItem, at: destinationIndexPath.item)
+        thisWeek.days[destinationIndexPath.section].sortDay()
+        weekTableView.reloadData()
+    }
+    
     //    MARK: Header
     
     private func titleAttributedString(_ string: String, fontsize:CGFloat) -> NSAttributedString{
-        print("hola \(fontsize)")
         var font = UIFont.preferredFont(forTextStyle: .title1).withSize(fontsize)
         font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: font) // This update the text size with metrics
         let paragraphStyle = NSMutableParagraphStyle()
@@ -194,6 +245,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
                 thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, priority: 0,completed: false), at: index)
+                thisWeek.days[index].sortDay()
                 weekTableView.reloadData()
             }
         }
