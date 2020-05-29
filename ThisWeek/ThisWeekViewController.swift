@@ -382,6 +382,7 @@ extension ThisWeekViewController {
         static let setButtonText = "Establecer"
         static let pickTimeText = "Elegir el horario de la alarma:"
         static let deleteButtonText = "Eliminar recordatorio"
+        static let pickerSizeFactor = CGFloat(1.2)
     }
 }
 

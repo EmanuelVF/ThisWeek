@@ -25,7 +25,7 @@ class SetReminderViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let fittedSize = topLevelStack?.sizeThatFits(UIView.layoutFittingCompressedSize){
-            preferredContentSize = CGSize(width: fittedSize.width, height: fittedSize.height )
+            preferredContentSize = CGSize(width: fittedSize.width * ThisWeekViewController.Defaults.pickerSizeFactor, height: fittedSize.height * ThisWeekViewController.Defaults.pickerSizeFactor)
         }
     }
     
