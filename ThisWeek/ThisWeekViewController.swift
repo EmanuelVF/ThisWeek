@@ -63,7 +63,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     //    MARK: Keyboard Moves
     @objc func keyboardWillShow(notification: NSNotification) {
-        print("notification: Keyboard will show")
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             weekTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height*1.1, right: 0)
         }
