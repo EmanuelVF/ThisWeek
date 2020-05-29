@@ -190,6 +190,7 @@
                     <navigationItem key="navigationItem" id="DFU-Vm-GGr"/>
                     <connections>
                         <outlet property="cancelButton" destination="A2e-Mf-Vmm" id="lFB-l0-wle"/>
+                        <outlet property="pickTimeLabel" destination="FiI-Jf-yZB" id="S7z-42-DSX"/>
                         <outlet property="reminderDate" destination="Cdr-6s-xPl" id="Qn9-Dv-QX0"/>
                         <outlet property="setButton" destination="Gdn-nN-7IJ" id="COx-Gq-59q"/>
                         <outlet property="topLevelStack" destination="QPb-33-vSb" id="NbK-YK-5PE"/>

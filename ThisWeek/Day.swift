@@ -9,8 +9,12 @@
 import Foundation
 class Day{
     
+//    MARK: Vars
+    
     private var Date : String? = ""
     private var activities = [Activity] ()
+    
+//    MARK: Functions
     
     func addActivity(activity : Activity){
         activities.append(activity)

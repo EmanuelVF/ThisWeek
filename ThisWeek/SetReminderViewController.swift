@@ -46,7 +46,21 @@ class SetReminderViewController: UIViewController {
     
     @IBOutlet weak var topLevelStack: UIStackView!
     
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!{
+        didSet{
+            cancelButton.setTitle(ThisWeekViewController.Defaults.cancelButtonText, for: .normal)
+            
+        }
+    }
     
-    @IBOutlet weak var setButton: UIButton!
+    @IBOutlet weak var setButton: UIButton!{
+        didSet{
+            setButton.setTitle(ThisWeekViewController.Defaults.setButtonText, for: .normal)
+        }
+    }
+    @IBOutlet weak var pickTimeLabel: UILabel!{
+        didSet{
+            pickTimeLabel.text = ThisWeekViewController.Defaults.pickTimeText
+        }
+    }
 }

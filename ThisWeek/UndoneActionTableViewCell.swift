@@ -10,6 +10,8 @@ import UIKit
 
 class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+//    MARK: Outlets & Actions
+    
     @IBOutlet weak var addNewReminderButton: UIButton!
     @IBOutlet weak var taskTextField: UITextField!{
         didSet{
@@ -24,6 +26,7 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
         addReminderButtonHandler?()
     }
     
+//    MARK: UITextFieldDelegate
     
     func startEditing(){
         taskTextField.isUserInteractionEnabled = true
@@ -42,7 +45,7 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
-    
+//    MARK: Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

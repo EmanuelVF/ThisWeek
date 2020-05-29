@@ -48,7 +48,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         didSet{
             weekTableView.dataSource = self
             weekTableView.delegate = self
-            weekTableView.isEditing = false
+            weekTableView.setEditing(false, animated: true)
         }
     }
     
@@ -150,7 +150,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     //  MARK: Gestures selectors
     @objc func disableEditingTable(sender : UITapGestureRecognizer){
         if weekTableView.isEditing == true {
-            weekTableView.isEditing = false
+            weekTableView.setEditing(false, animated: true)
         }
     }
     
@@ -162,7 +162,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func enableEditingTable(sender : UILongPressGestureRecognizer){
         if weekTableView.isEditing == false{
-            //TODO: add this everywhere!
             weekTableView.setEditing(true, animated: true)
         }
     }
@@ -307,6 +306,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 do {
                     try self.eventStore.save(reminder, commit: true)
+//                    try self.eventStore.remove(reminder, commit: true)
                 } catch {
                     return
                 }
@@ -338,6 +338,9 @@ extension ThisWeekViewController {
         static let headerTextSizeFactor = CGFloat(0.5)
         static let rowSizeFactor = CGFloat(0.05)
         static let rowTextSizeFactor = CGFloat(0.45)
+        static let cancelButtonText = "Cancelar"
+        static let setButtonText = "Establecer"
+        static let pickTimeText = "Pick the reminder time:"
     }
 }
 

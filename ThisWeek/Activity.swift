@@ -9,15 +9,21 @@
 import Foundation
 class Activity{
     
+//    MARK: Vars
+    
     private var name : String?
     private var hasAReminder : Bool?
     private var completed : Bool?
+    
+//    MARK: Initializer
     
     init(name: String, hasAReminder: Bool, completed : Bool){
         self.name = name
         self.hasAReminder = hasAReminder
         self.completed = completed
     }
+    
+//    MARK: Functions
     
     func setName(with newName: String){
         self.name = newName

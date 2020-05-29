@@ -10,7 +10,11 @@ import Foundation
 
 class ThisWeek {
     
+//    MARK: Vars
+    
     var days = [Day]()
+    
+//    MARK: Functions
     
     func addToDo(activity: Activity ,at day : Int){
         days[day].addActivity(activity: activity)
