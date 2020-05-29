@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-33-vSb">
-                                <rect key="frame" x="47" y="239" width="320" height="364"/>
+                                <rect key="frame" x="47" y="199" width="320" height="444"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the reminder time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiI-Jf-yZB">
                                         <rect key="frame" x="13" y="0.0" width="294" height="36"/>
@@ -177,6 +177,16 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-5X-L7q">
+                                        <rect key="frame" x="28" y="396" width="264" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Eliminar recordatorio">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleActualReminder:" destination="8hs-mi-dOB" eventType="touchUpInside" id="0Id-AJ-4uK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -190,6 +200,7 @@
                     <navigationItem key="navigationItem" id="DFU-Vm-GGr"/>
                     <connections>
                         <outlet property="cancelButton" destination="A2e-Mf-Vmm" id="lFB-l0-wle"/>
+                        <outlet property="deleteReminderButton" destination="OrJ-5X-L7q" id="hRX-sl-XhJ"/>
                         <outlet property="pickTimeLabel" destination="FiI-Jf-yZB" id="S7z-42-DSX"/>
                         <outlet property="reminderDate" destination="Cdr-6s-xPl" id="Qn9-Dv-QX0"/>
                         <outlet property="setButton" destination="Gdn-nN-7IJ" id="COx-Gq-59q"/>
