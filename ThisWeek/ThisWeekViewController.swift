@@ -26,8 +26,20 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 
 //    MARK: - ViewController Lifecycle
     
+    private var keyboardWillShowObserver : NSObjectProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        
+        
         // Do any additional setup after loading the view.
         
         thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false, alarm: nil), at: 0)
@@ -41,7 +53,26 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
         
     }
-
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        
+    }
+    
+    //    MARK: Keyboard Moves
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print("notification: Keyboard will show")
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            weekTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height*1.1, right: 0)
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+            weekTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    
 //    MARK: - UITableView
     
     @IBOutlet weak var weekTableView: UITableView!{
