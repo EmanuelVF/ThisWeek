@@ -375,7 +375,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 extension ThisWeekViewController {
     struct Defaults {
         static let headerSizeFactor = CGFloat(0.05)
-        static let headerTextSizeFactor = CGFloat(0.5)
+        static let headerTextSizeFactor = CGFloat(0.47)
         static let rowSizeFactor = CGFloat(0.05)
         static let rowTextSizeFactor = CGFloat(0.45)
         static let cancelButtonText = "Cancelar"
