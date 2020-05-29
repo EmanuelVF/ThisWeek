@@ -30,15 +30,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false), at: 1)
-        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false), at: 2)
-        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false), at: 4)
-        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false), at: 7)
+        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false, alarm: nil), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil), at: 1)
+        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil), at: 2)
+        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil), at: 4)
+        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil), at: 6)
+        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
         
     }
 
@@ -277,7 +277,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false,completed: false), at: index)
+                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarm: nil), at: index)
                 thisWeek.days[index].sortDay()
                 weekTableView.reloadData()
             }
@@ -289,6 +289,22 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     var eventStore : EKEventStore!
     
     func addReminder(_ sender: SetReminderViewController) {
+        
+        if thisWeek.days[sectionToRemind].getActivities()[itemToRemind].hasItAReminder()!{
+            let calendar = eventStore.defaultCalendarForNewReminders()
+            var myReminders = [EKReminder]()
+            let predicate = self.eventStore.predicateForReminders(in: [calendar!])
+            self.eventStore.fetchReminders(matching: predicate, completion:{ (reminders: [EKReminder]?) -> Void in
+                myReminders = reminders!
+                do{
+                    try self.eventStore.remove(myReminders.filter{ $0.title == self.taskToRemind && $0.alarms?.first! == self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].getAlarm()}.first!, commit: true)
+                }catch{
+                    print("An error occurred while removing the reminder from the Calendar database: \(error)")
+                }
+            })
+            
+        }
+        
         eventStore = EKEventStore()
         eventStore.requestAccess(to: EKEntityType.reminder, completion: {
             granted, error in
@@ -298,7 +314,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let chosenTime = sender.reminderDay
                 let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
-                //            let alarmTime = Date().addingTimeInterval(10)
                 let alarm = EKAlarm(absoluteDate: alarmTime)
                 reminder.addAlarm(alarm)
                 
@@ -306,11 +321,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 do {
                     try self.eventStore.save(reminder, commit: true)
-//                    try self.eventStore.remove(reminder, commit: true)
                 } catch {
                     return
                 }
+                
+                print("Reminder saved")
                 self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
+                self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarm(with: reminder.alarms?.first)
                 DispatchQueue.main.async {
                     self.weekTableView.reloadData()
                 }

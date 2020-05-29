@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EventKit
 class Activity{
     
 //    MARK: Vars
@@ -14,13 +15,15 @@ class Activity{
     private var name : String?
     private var hasAReminder : Bool?
     private var completed : Bool?
+    private var alarm : EKAlarm?
     
 //    MARK: Initializer
     
-    init(name: String, hasAReminder: Bool, completed : Bool){
+    init(name: String, hasAReminder: Bool, completed : Bool, alarm : EKAlarm?){
         self.name = name
         self.hasAReminder = hasAReminder
         self.completed = completed
+        self.alarm = alarm
     }
     
 //    MARK: Functions
@@ -31,6 +34,14 @@ class Activity{
     
     func getName() -> String?{
         return self.name
+    }
+    
+    func setAlarm(with newAlarm: EKAlarm?){
+        self.alarm = newAlarm
+    }
+    
+    func getAlarm() -> EKAlarm?{
+        return self.alarm
     }
     
     func setHasAReminder(with reminder : Bool?){
