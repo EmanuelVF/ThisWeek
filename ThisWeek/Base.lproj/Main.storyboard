@@ -45,17 +45,15 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wf-n6-2oh">
                                                     <rect key="frame" x="20" y="12.5" width="320" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="sVj-Xd-6R5"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-io-ICU">
-                                                    <rect key="frame" x="348" y="7" width="46" height="30"/>
+                                                    <rect key="frame" x="348" y="4" width="46" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="6JP-Pp-wXa"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="⏲"/>
                                                     <connections>
                                                         <action selector="addReminderButton:" destination="EP2-eQ-eew" eventType="touchUpInside" id="u1z-5K-JUs"/>
@@ -89,12 +87,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ni4-ES-lyR">
-                                                    <rect key="frame" x="364" y="-2" width="30" height="47.5"/>
+                                                    <rect key="frame" x="364" y="-2.5" width="30" height="48.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="yCU-ZO-Do0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                                    <state key="normal" title="+">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="⊕">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -112,6 +110,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="addActionButton" destination="ni4-ES-lyR" id="Ki5-N2-eUg"/>
                                             <outlet property="titleLabel" destination="PqI-gI-NqJ" id="Twj-0t-l5q"/>
                                         </connections>
                                     </tableViewCell>

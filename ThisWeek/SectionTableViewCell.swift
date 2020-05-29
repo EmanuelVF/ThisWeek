@@ -20,7 +20,19 @@ class SectionTableViewCell: UITableViewCell {
     //    MARK: - Outlets and Actions
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var addActionButton: UIButton!{
+        didSet{
+            addActionButton.setTitle("+", for: .normal)
+            let attrs = [
+                NSAttributedString.Key.underlineStyle : 0]
+            let attributedString = NSMutableAttributedString(string:"")
 
+            let buttonTitleStr = NSMutableAttributedString(string:"⊕", attributes:attrs)
+            attributedString.append(buttonTitleStr)
+            addActionButton.setAttributedTitle(attributedString, for: .normal)
+        }
+    }
+    
     @IBAction func addAction(_ sender: UIButton) {
         self.delegate?.addOneTask(self)
     }

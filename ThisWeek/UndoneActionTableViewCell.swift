@@ -12,7 +12,18 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
 //    MARK: Outlets & Actions
     
-    @IBOutlet weak var addNewReminderButton: UIButton!
+    @IBOutlet weak var addNewReminderButton: UIButton!{
+        didSet{
+            addNewReminderButton.setTitle("⏲", for: .normal)
+            let attrs = [
+                NSAttributedString.Key.underlineStyle : 0]
+            let attributedString = NSMutableAttributedString(string:"")
+
+            let buttonTitleStr = NSMutableAttributedString(string:"⏲", attributes:attrs)
+            attributedString.append(buttonTitleStr)
+            addNewReminderButton.setAttributedTitle(attributedString, for: .normal)
+        }
+    }
     @IBOutlet weak var taskTextField: UITextField!{
         didSet{
             taskTextField.delegate = self

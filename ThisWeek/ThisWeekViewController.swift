@@ -130,8 +130,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                     cell?.addNewReminderButton.backgroundColor = .clear
                 }
             }
-            
-            
             return cell!
         }
     }

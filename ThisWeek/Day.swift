@@ -39,7 +39,7 @@ class Day{
     }
     
     func setDate(with newDate: String){
-        self.Date = newDate
+        self.Date = newDate.capitalized
     }
     
     func getDate() -> String?{
