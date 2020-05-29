@@ -17,6 +17,9 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
         didSet{
             taskTextField.delegate = self
             taskTextField.isUserInteractionEnabled = false
+            taskTextField.autocapitalizationType = .sentences
+            taskTextField.autocorrectionType = .yes
+            taskTextField.clearButtonMode = .whileEditing
         }
     }
    
