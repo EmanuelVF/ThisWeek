@@ -19,19 +19,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        loadLogo()
+    }
+    
+    private func loadLogo(){
         let image = UIImage(named: "ThisWeekLogo+Title1.png") //Your logo url here
         let imageView = UIImageView(image: image)
-
-        let bannerWidth = navigationController!.navigationBar.frame.size.width
-        let bannerHeight = navigationController!.navigationBar.frame.size.height
-
-        let bannerX = bannerWidth / 4 - (image?.size.width)! / 2
-        let bannerY = bannerHeight / 4 - (image?.size.height)! / 2
-
-        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
         imageView.contentMode = .scaleAspectFit
-        
         navigationItem.titleView = imageView
     }
     
