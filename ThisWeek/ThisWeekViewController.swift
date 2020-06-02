@@ -13,11 +13,25 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 //    MARK: - App Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "This Week Logo!"
+//        navigationItem.title = "This Week Logo!"
         //TODO: Add a logo here
-//        let logo = UIImage(named: "logo.png")
+//        let logo = UIImage(named: "ThisWeekLogo+Title.png")
 //        let imageView = UIImageView(image:logo)
 //        self.navigationItem.titleView = imageView
+        
+        let image = UIImage(named: "ThisWeekLogo+Title1.png") //Your logo url here
+        let imageView = UIImageView(image: image)
+
+        let bannerWidth = navigationController!.navigationBar.frame.size.width
+        let bannerHeight = navigationController!.navigationBar.frame.size.height
+
+        let bannerX = bannerWidth / 4 - (image?.size.width)! / 2
+        let bannerY = bannerHeight / 4 - (image?.size.height)! / 2
+
+        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+        imageView.contentMode = .scaleAspectFit
+        
+        navigationItem.titleView = imageView
     }
     
 //    MARK: - Model
@@ -205,7 +219,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
-                thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
+                _ = thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
                 weekTableView.deleteRows(at: [indexPath], with: .fade)
                 weekTableView.reloadData()
             }

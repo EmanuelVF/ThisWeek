@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8812F7BF2485908600EB8A00 /* ThisWeek logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8812F7BE2485908600EB8A00 /* ThisWeek logo.png */; };
+		8812F7C524859E2D00EB8A00 /* ThisWeekLogo+Title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */; };
 		8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D27F247D6E5400A45448 /* ThisWeek.swift */; };
 		8838D282247D6F7600A45448 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D281247D6F7600A45448 /* Day.swift */; };
 		8838D284247D704D00A45448 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D283247D704D00A45448 /* Activity.swift */; };
@@ -19,9 +21,12 @@
 		8874DBD2247D6B9300B51EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBD1247D6B9300B51EE0 /* Assets.xcassets */; };
 		8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBD3247D6B9300B51EE0 /* LaunchScreen.storyboard */; };
 		887CEBC4247EC9AF001047FE /* UndoneActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */; };
+		88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8812F7BE2485908600EB8A00 /* ThisWeek logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeek logo.png"; sourceTree = "<group>"; };
+		8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeekLogo+Title1.png"; sourceTree = "<group>"; };
 		8838D27F247D6E5400A45448 /* ThisWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeek.swift; sourceTree = "<group>"; };
 		8838D281247D6F7600A45448 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8838D283247D704D00A45448 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		8874DBD4247D6B9300B51EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8874DBD6247D6B9300B51EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoneActionTableViewCell.swift; sourceTree = "<group>"; };
+		88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 		8874DBC7247D6B9000B51EE0 /* ThisWeek */ = {
 			isa = PBXGroup;
 			children = (
+				88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */,
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
 				8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */,
 				884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */,
@@ -77,6 +84,8 @@
 				8838D281247D6F7600A45448 /* Day.swift */,
 				8838D283247D704D00A45448 /* Activity.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
+				8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */,
+				8812F7BE2485908600EB8A00 /* ThisWeek logo.png */,
 				8874DBDC247D6C3600B51EE0 /* SupportingFiles */,
 			);
 			path = ThisWeek;
@@ -152,7 +161,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */,
+				8812F7BF2485908600EB8A00 /* ThisWeek logo.png in Resources */,
 				8874DBD2247D6B9300B51EE0 /* Assets.xcassets in Resources */,
+				8812F7C524859E2D00EB8A00 /* ThisWeekLogo+Title1.png in Resources */,
 				8874DBD0247D6B9000B51EE0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +182,7 @@
 				8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */,
 				887CEBC4247EC9AF001047FE /* UndoneActionTableViewCell.swift in Sources */,
 				8838D282247D6F7600A45448 /* Day.swift in Sources */,
+				88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */,
 				8838D284247D704D00A45448 /* Activity.swift in Sources */,
 				8874DBCB247D6B9000B51EE0 /* SceneDelegate.swift in Sources */,
 			);
