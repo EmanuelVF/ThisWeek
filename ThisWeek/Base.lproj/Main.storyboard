@@ -231,9 +231,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-t7-z5p">
-                                        <rect key="frame" x="135" y="61" width="84" height="48"/>
+                                        <rect key="frame" x="130.5" y="61" width="93" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Done !"/>
+                                        <state key="normal" title="Done !!"/>
                                         <connections>
                                             <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="dkV-Kr-NAT"/>
                                         </connections>
