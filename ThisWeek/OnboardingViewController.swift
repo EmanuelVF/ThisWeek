@@ -23,9 +23,12 @@ class OnboardingViewController: UIViewController {
     }
     
     @IBAction func done(_ sender: UIButton) {
+        
         UserDefaults.standard.set(true, forKey: "OnboardingDone")
         
         performSegue(withIdentifier: "OnboardingDone", sender: self)
+        print ("pepe")
+        
         
     }
     
