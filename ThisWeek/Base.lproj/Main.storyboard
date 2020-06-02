@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qyy-1K-ald">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DoneActionCell" textLabel="fBv-R8-kTC" style="IBUITableViewCellStyleDefault" id="jn8-g3-gAn">
@@ -221,8 +221,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="cTk-pc-flw">
-                                <rect key="frame" x="30" y="399.5" width="354" height="97"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-wz-k2K">
+                                <rect key="frame" x="30" y="393.5" width="354" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! This is the first Time !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I8-BS-HNv">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="36"/>
@@ -230,12 +230,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euY-em-gap">
-                                        <rect key="frame" x="135" y="49" width="84" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-t7-z5p">
+                                        <rect key="frame" x="130.5" y="61" width="93" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Done !"/>
+                                        <state key="normal" title="Done !!"/>
                                         <connections>
-                                            <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="qmC-DD-hqb"/>
+                                            <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="dkV-Kr-NAT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -243,26 +243,25 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cTk-pc-flw" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="5DZ-lO-Wvc"/>
-                            <constraint firstItem="cTk-pc-flw" firstAttribute="centerY" secondItem="bJ7-tF-pNk" secondAttribute="centerY" id="IbB-Im-3ae"/>
+                            <constraint firstItem="Amb-wz-k2K" firstAttribute="centerY" secondItem="bJ7-tF-pNk" secondAttribute="centerY" id="TAm-qf-mDb"/>
+                            <constraint firstItem="Amb-wz-k2K" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="zg1-Rf-pR2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wJJ-cv-TJr"/>
                     </view>
                     <navigationItem key="navigationItem" id="tcz-HR-6ow"/>
                     <connections>
-                        <segue destination="nHT-sI-eZj" kind="presentation" identifier="OnboardingDone" modalPresentationStyle="fullScreen" id="tRb-JF-Oa6"/>
+                        <segue destination="nHT-sI-eZj" kind="showDetail" identifier="OnboardingDone" id="xAF-s8-CNO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imF-Ct-gMm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1370" y="152"/>
+            <point key="canvasLocation" x="-1262.3188405797102" y="115.84821428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rxN-K8-yiZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nHT-sI-eZj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="nHT-sI-eZj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="7fF-q2-DUS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qsP-aG-TOM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
