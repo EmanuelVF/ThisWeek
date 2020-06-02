@@ -34,6 +34,12 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.titleView = imageView
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UserDefaults.standard.set(false, forKey: "OnboardingDone")
+    }
+    
 //    MARK: - Model
     private var thisWeek = ThisWeek(numberOfDays: ThisWeek.Defaults.numberOfDays)
     
