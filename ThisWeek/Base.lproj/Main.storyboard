@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -221,30 +222,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-wz-k2K">
-                                <rect key="frame" x="30" y="393.5" width="354" height="109"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to This Week !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I8-BS-HNv">
+                                <rect key="frame" x="53" y="125" width="308.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With this app you could:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIE-wH-4DY">
+                                <rect key="frame" x="52.5" y="234" width="309" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-3v-BJ1">
+                                <rect key="frame" x="91" y="386" width="232" height="124"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! This is the first Time !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I8-BS-HNv">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan your week!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swd-G6-dcO">
+                                        <rect key="frame" x="15" y="0.0" width="202" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-t7-z5p">
-                                        <rect key="frame" x="130.5" y="61" width="93" height="48"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminders!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wV7-l0-68E">
+                                        <rect key="frame" x="22.5" y="44" width="187" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Done !!"/>
-                                        <connections>
-                                            <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="dkV-Kr-NAT"/>
-                                        </connections>
-                                    </button>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outline the future!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUH-i0-LQW">
+                                        <rect key="frame" x="0.0" y="88" width="232" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-t7-z5p">
+                                <rect key="frame" x="127.5" y="668" width="159" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Get started !"/>
+                                <connections>
+                                    <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="dkV-Kr-NAT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Amb-wz-k2K" firstAttribute="centerY" secondItem="bJ7-tF-pNk" secondAttribute="centerY" id="TAm-qf-mDb"/>
-                            <constraint firstItem="Amb-wz-k2K" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="zg1-Rf-pR2"/>
+                            <constraint firstItem="nIE-wH-4DY" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="5zG-Ep-RoC"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="centerY" secondItem="bJ7-tF-pNk" secondAttribute="centerY" id="AXR-SS-rKe"/>
+                            <constraint firstItem="2I8-BS-HNv" firstAttribute="top" secondItem="wJJ-cv-TJr" secondAttribute="top" constant="81" id="Bq5-7R-I8n"/>
+                            <constraint firstItem="WwS-t7-z5p" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="Itx-5Z-bHB"/>
+                            <constraint firstItem="nIE-wH-4DY" firstAttribute="top" secondItem="2I8-BS-HNv" secondAttribute="bottom" constant="73" id="JSQ-fb-Hhy"/>
+                            <constraint firstItem="wJJ-cv-TJr" firstAttribute="bottom" secondItem="WwS-t7-z5p" secondAttribute="bottom" constant="146" id="QT3-Gl-Uxq"/>
+                            <constraint firstItem="2I8-BS-HNv" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="Uvd-5t-OTc"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="pFM-hN-zdt"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="top" secondItem="nIE-wH-4DY" secondAttribute="bottom" constant="116" id="vSf-5L-u6x"/>
+                            <constraint firstItem="WwS-t7-z5p" firstAttribute="top" secondItem="FvQ-3v-BJ1" secondAttribute="bottom" constant="158" id="yoX-Rt-zNp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wJJ-cv-TJr"/>
                     </view>
