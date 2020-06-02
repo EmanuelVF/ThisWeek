@@ -10,14 +10,15 @@ import UIKit
 import EventKit
 
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate {
-//    MARK: - App Lifecycle
+    
+//    MARK: - Model
+    private var thisWeek = ThisWeek(numberOfDays: ThisWeek.Defaults.numberOfDays)
+    
+
+//    MARK: - ViewController Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationItem.title = "This Week Logo!"
-        //TODO: Add a logo here
-//        let logo = UIImage(named: "ThisWeekLogo+Title.png")
-//        let imageView = UIImageView(image:logo)
-//        self.navigationItem.titleView = imageView
         
         let image = UIImage(named: "ThisWeekLogo+Title1.png") //Your logo url here
         let imageView = UIImageView(image: image)
@@ -33,18 +34,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         navigationItem.titleView = imageView
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        UserDefaults.standard.set(false, forKey: "OnboardingDone")
-    }
-    
-//    MARK: - Model
-    private var thisWeek = ThisWeek(numberOfDays: ThisWeek.Defaults.numberOfDays)
-    
-
-//    MARK: - ViewController Lifecycle
     
     private var keyboardWillShowObserver : NSObjectProtocol?
     
@@ -73,6 +62,12 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           print("User defaults: Onboarding = false")
+           UserDefaults.standard.set(false, forKey: "OnboardingDone")
+       }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

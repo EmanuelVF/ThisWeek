@@ -27,11 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let onBoardingDone = (UserDefaults.standard.value(forKey: "OnboardingDone") as? Bool) , onBoardingDone{
             // do not show onboarding
-            print("holas")
             vc = storyboard.instantiateInitialViewController()!
         } else{
             //show onboarding
-            print("hola")
             vc = storyboard.instantiateViewController(identifier: "OnboardingVC")
         }
         
