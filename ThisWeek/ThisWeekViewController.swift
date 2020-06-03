@@ -20,8 +20,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadLogo()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
