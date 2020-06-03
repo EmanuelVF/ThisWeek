@@ -12,7 +12,9 @@ import EventKit
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate {
     
 //    MARK: - Model
+    //TODO: Delete this line
     private var thisWeek = ThisWeek(startingWith: Date().addingTimeInterval(TimeInterval(exactly: -86400)!), numberOfDays: ThisWeek.Defaults.numberOfDays)
+//    private var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
     
 
 //    MARK: - ViewController Lifecycle
@@ -180,9 +182,10 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self!.performSegue(withIdentifier: "SetTime", sender: self)
             }
             if indexPath.section == thisWeek.days.count-1{
-                cell?.addNewReminderButton.isHidden = true
+                cell?.buttonString = "🗓"
+                //TODO: Paint if it has a Day.
             }else{
-                cell?.addNewReminderButton.isHidden = false
+                cell?.buttonString = "⏲"
                 if thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!{
                     cell?.addNewReminderButton.backgroundColor = .yellow
                 }else{
