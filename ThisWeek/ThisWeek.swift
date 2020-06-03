@@ -88,6 +88,8 @@ class ThisWeek {
             }
             days.last!.sortDay()
             
+            //TODO: Move a programmed item to the corresponding date
+            
         }
     }
         
