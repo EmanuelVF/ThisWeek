@@ -223,7 +223,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Hs-ZqO">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Hs-ZqO">
                                 <rect key="frame" x="47" y="199" width="320" height="444"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the reminder date:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-Jd-92f">
@@ -275,6 +275,10 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oUA-Hs-ZqO" firstAttribute="centerY" secondItem="393-iW-DBB" secondAttribute="centerY" id="XNQ-0g-MH3"/>
+                            <constraint firstItem="oUA-Hs-ZqO" firstAttribute="centerX" secondItem="393-iW-DBB" secondAttribute="centerX" id="mTO-Xv-Kmx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="vpo-TJ-mDk"/>
                     </view>
                     <connections>

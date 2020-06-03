@@ -16,14 +16,16 @@ class Activity{
     private var hasAReminder : Bool?
     private var completed : Bool?
     private var alarm : EKAlarm?
+    private var futureDay : Date?
     
 //    MARK: Initializer
     
-    init(name: String, hasAReminder: Bool, completed : Bool, alarm : EKAlarm?){
+    init(name: String, hasAReminder: Bool, completed : Bool, alarm : EKAlarm?, futureDay: Date?){
         self.name = name
         self.hasAReminder = hasAReminder
         self.completed = completed
         self.alarm = alarm
+        self.futureDay = futureDay
     }
     
 //    MARK: Functions
@@ -62,5 +64,13 @@ class Activity{
     
     func isCompleted() -> Bool?{
         return self.completed
+    }
+    
+    func setFutureDay(with newFutureDay: Date?){
+        self.futureDay = newFutureDay
+    }
+    
+    func getFutureDay() -> Date?{
+        return self.futureDay
     }
 }

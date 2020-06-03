@@ -138,6 +138,7 @@ extension ThisWeek{
         static let dateTemplate = "EEEEddMMM"
         static let numberOfDays = 8
         static let oneDay = 86400
+        static let oneWeek = 8*86400
         static let localeIdentifier = "es_AR"
         static let laterText = "Más Tarde"
         static let doneText = "Hecho"

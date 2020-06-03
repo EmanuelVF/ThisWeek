@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate {
+class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate  {
     
 //    MARK: - Model
     //TODO: Delete this line
@@ -62,15 +62,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         //TO DO: Load the model
         print("Hardcoding model...")
-        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil), at: 1)
-        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil), at: 2)
-        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil), at: 4)
-        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
+        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil, futureDay: nil), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 0)
+        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 1)
+        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 2)
+        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
+        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 4)
+        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 6)
+        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 7)
         
         //TO DO: Change the model base on today
         print("Refreshing model, for tomorrow")
@@ -180,6 +180,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self!.itemToRemind = indexPath.item
                 self!.hasReminder = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!
                 if indexPath.section == self!.thisWeek.days.count-1{
+                    self!.futureDay = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getFutureDay()
                     self!.performSegue(withIdentifier: "SetDate", sender: self)
                 }else{
                     self!.performSegue(withIdentifier: "SetTime", sender: self)
@@ -187,7 +188,11 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             }
             if indexPath.section == thisWeek.days.count-1{
                 cell?.buttonString = "🗓"
-                //TODO: Paint if it has a Day.
+                if thisWeek.days[indexPath.section].getActivities()[indexPath.item].getFutureDay() != nil{
+                    cell?.addNewReminderButton.backgroundColor = .yellow
+                }else{
+                    cell?.addNewReminderButton.backgroundColor = .clear
+                }
             }else{
                 cell?.buttonString = "⏲"
                 if thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!{
@@ -204,6 +209,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     private var taskToRemind = ""
     private var dateToRemind = ""
     private var hasReminder = false
+    private var futureDay : Date? = nil
     
     
     private var preferredRowSize = CGFloat(0)
@@ -353,7 +359,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarm: nil), at: index)
+                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarm: nil, futureDay: nil), at: index)
                 thisWeek.days[index].sortDay()
                 weekTableView.reloadData()
             }
@@ -423,12 +429,34 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         })
     }
     
+//    MARK:- SetDateViewControllerDelegate
+    func setAFutureDay(_ sender: SetDateViewController) {
+        thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setFutureDay(with: sender.newDayToRemember!)
+        weekTableView.reloadData()
+    }
+    
+    func deleteAFutureDay(_ sender: SetDateViewController) {
+        thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setFutureDay(with: nil)
+        weekTableView.reloadData()
+    }
+    
 //  MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SetTime"{
             if let destination = segue.destination as? SetReminderViewController, let source = segue.source as? ThisWeekViewController{
                 destination.delegate = self
                 destination.deleteButtonNeeded = source.hasReminder
+            }
+        }
+        if segue.identifier == "SetDate"{
+            if let destination = segue.destination as? SetDateViewController, let source = segue.source as? ThisWeekViewController{
+                destination.delegate = self
+                destination.dayToRemember = source.futureDay
+                if source.futureDay == nil{
+                    destination.editingMode = false
+                }else{
+                    destination.editingMode = true
+                }
             }
         }
     }
@@ -438,6 +466,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 
 extension ThisWeekViewController {
     struct Defaults {
+        static let oneDay = 86400
+        static let oneWeek = 8*86400
         static let headerSizeFactor = CGFloat(0.05)
         static let headerTextSizeFactor = CGFloat(0.47)
         static let rowSizeFactor = CGFloat(0.05)
@@ -451,6 +481,12 @@ extension ThisWeekViewController {
         static let alertMessage = "Al avanzar de día, sus tareas incompletas se movieron a la última sección."
         static let alertOk = "Aceptar"
         static let logoName = "ThisWeekLogo+Title1.png"
+        static let rightButtonTextChoose = "Elegir"
+        static let rightButtonTextEdit = "Editar"
+        static let leftButtonTextCancel = "Cancelar"
+        static let lastButtonTextDelete = "Eliminar fecha"
+        static let titleTextChoose = "Elegir el día de la actividad:"
+        static let titleTextInfo = "Actividad asignada al día:"
     }
 }
 

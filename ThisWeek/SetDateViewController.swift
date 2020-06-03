@@ -26,6 +26,15 @@ class SetDateViewController: UIViewController {
             preferredContentSize = CGSize(width: fittedSize.width * ThisWeekViewController.Defaults.pickerSizeFactor, height: fittedSize.height * ThisWeekViewController.Defaults.pickerSizeFactor)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if dayToRemember != nil {
+            pickerDate.setDate( dayToRemember!, animated: true)
+        }else{
+            pickerDate.setDate(Date().addingTimeInterval(TimeInterval(8*ThisWeek.Defaults.oneDay)),animated: true)
+        }
+    }
 
     //  MARK:-  Delegation
     weak var delegate : SetDateViewControllerDelegate?
@@ -39,10 +48,10 @@ class SetDateViewController: UIViewController {
     
     @IBAction func rightButtonPressed(_ sender: UIButton) {
         if editingMode! == false{
-            rightButton.setTitle("Elegir", for: .normal)
+            rightButton.setTitle(ThisWeekViewController.Defaults.rightButtonTextChoose, for: .normal)
             pickerDate.isUserInteractionEnabled = true
             editingMode = true
-            titleLabel.text = "Elegi el dia puto"
+            titleLabel.text = ThisWeekViewController.Defaults.titleTextChoose
         }else{
             newDayToRemember = pickerDate.date
             self.delegate?.setAFutureDay(self)
@@ -62,23 +71,23 @@ class SetDateViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!{
         didSet{
             if dayToRemember != nil{
-                titleLabel.text = "Queres saber tu dia guachin?"
+                titleLabel.text = ThisWeekViewController.Defaults.titleTextInfo
             }else{
-                titleLabel.text = "Elegi el dia puto"
+                titleLabel.text = ThisWeekViewController.Defaults.titleTextChoose
             }
         }
     }
     
     @IBOutlet weak var pickerDate: UIDatePicker!{
         didSet{
+            pickerDate.minimumDate = Date().addingTimeInterval(TimeInterval(ThisWeekViewController.Defaults.oneWeek))
+            pickerDate.maximumDate = nil
             if dayToRemember != nil{
-                pickerDate.date = Date().addingTimeInterval(TimeInterval(8*ThisWeek.Defaults.oneDay))
-                pickerDate.isUserInteractionEnabled = true
-                editingMode = true
-            }else{
-                pickerDate.date = dayToRemember!
                 pickerDate.isUserInteractionEnabled = false
                 editingMode = false
+            }else{
+                pickerDate.isUserInteractionEnabled = true
+                editingMode = true
             }
         }
     }
@@ -86,9 +95,9 @@ class SetDateViewController: UIViewController {
     @IBOutlet weak var rightButton: UIButton!{
         didSet{
             if dayToRemember != nil{
-                rightButton.setTitle("Editar", for: .normal)
+                rightButton.setTitle(ThisWeekViewController.Defaults.rightButtonTextEdit, for: .normal)
             }else{
-                rightButton.setTitle("Elegir", for: .normal)
+                rightButton.setTitle(ThisWeekViewController.Defaults.rightButtonTextChoose, for: .normal)
             }
         }
     }
@@ -96,14 +105,14 @@ class SetDateViewController: UIViewController {
     
     @IBOutlet weak var leftButton: UIButton!{
         didSet{
-            leftButton.setTitle("Cancelar", for: .normal)
+            leftButton.setTitle(ThisWeekViewController.Defaults.leftButtonTextCancel, for: .normal)
         }
     }
     
     @IBOutlet weak var lastButton: UIButton!{
         didSet{
             if dayToRemember != nil{
-                lastButton.setTitle("Eliminar Recordatorio", for: .normal)
+                lastButton.setTitle(ThisWeekViewController.Defaults.lastButtonTextDelete, for: .normal)
                 lastButton.isHidden = false
             }else{
                 lastButton.isHidden = true
