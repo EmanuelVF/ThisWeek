@@ -50,7 +50,7 @@ class ThisWeek {
                     for indexAct in days[indexDay].getActivities().indices{
                         if !days[indexDay].getActivities()[indexAct].isCompleted()!{
                             days[indexDay].getActivities()[indexAct].setAlarm(with: nil)
-                            days[indexDay].getActivities()[indexAct].setHasAReminder(with: nil)
+                            days[indexDay].getActivities()[indexAct].setHasAReminder(with: false)
                             days.last!.appendActivity(newElement: days[indexDay].getActivities()[indexAct])
                             if !(somethingChangedWhenRefresh) {
                                 somethingChangedWhenRefresh = true
@@ -75,7 +75,7 @@ class ThisWeek {
                     for indexAct in days[indexDay].getActivities().indices{
                         if !days[indexDay].getActivities()[indexAct].isCompleted()!{
                             days[indexDay].getActivities()[indexAct].setAlarm(with: nil)
-                            days[indexDay].getActivities()[indexAct].setHasAReminder(with: nil)
+                            days[indexDay].getActivities()[indexAct].setHasAReminder(with: false)
                             days.last!.appendActivity(newElement: days[indexDay].getActivities()[indexAct])
                             if !(somethingChangedWhenRefresh) {
                                 somethingChangedWhenRefresh = true

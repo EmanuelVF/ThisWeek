@@ -179,7 +179,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self!.sectionToRemind = indexPath.section
                 self!.itemToRemind = indexPath.item
                 self!.hasReminder = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!
-                self!.performSegue(withIdentifier: "SetTime", sender: self)
+                if indexPath.section == self!.thisWeek.days.count-1{
+                    self!.performSegue(withIdentifier: "SetDate", sender: self)
+                }else{
+                    self!.performSegue(withIdentifier: "SetTime", sender: self)
+                }
+                
+                
             }
             if indexPath.section == thisWeek.days.count-1{
                 cell?.buttonString = "🗓"

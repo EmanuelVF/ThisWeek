@@ -131,7 +131,7 @@
                     <connections>
                         <outlet property="weekTableView" destination="qyy-1K-ald" id="aEY-7E-qzg"/>
                         <segue destination="8hs-mi-dOB" kind="presentation" identifier="SetTime" modalPresentationStyle="formSheet" id="6vL-oh-GMK"/>
-                        <segue destination="BLz-pp-OYd" kind="presentation" identifier="setDate" modalPresentationStyle="formSheet" id="BOF-cm-euV"/>
+                        <segue destination="BLz-pp-OYd" kind="presentation" identifier="SetDate" modalPresentationStyle="formSheet" id="BOF-cm-euV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
