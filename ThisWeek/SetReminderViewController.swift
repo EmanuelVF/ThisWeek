@@ -29,6 +29,21 @@ class SetReminderViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .clear
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(blurView, at: 0)
+        
+        NSLayoutConstraint.activate([
+        blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
+        blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+    }
+    
 //    MARK:- Actions
     
     @IBAction func cancel(_ sender: UIButton) {
