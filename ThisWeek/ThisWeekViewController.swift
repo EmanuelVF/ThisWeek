@@ -184,8 +184,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 }else{
                     self!.performSegue(withIdentifier: "SetTime", sender: self)
                 }
-                
-                
             }
             if indexPath.section == thisWeek.days.count-1{
                 cell?.buttonString = "🗓"

@@ -215,16 +215,76 @@
             </objects>
             <point key="canvasLocation" x="1119" y="925"/>
         </scene>
-        <!--View Controller-->
+        <!--Set Date View Controller-->
         <scene sceneID="deM-En-HzO">
             <objects>
-                <viewController id="BLz-pp-OYd" sceneMemberID="viewController">
+                <viewController id="BLz-pp-OYd" customClass="SetDateViewController" customModule="ThisWeek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="393-iW-DBB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Hs-ZqO">
+                                <rect key="frame" x="47" y="199" width="320" height="444"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the reminder date:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-Jd-92f">
+                                        <rect key="frame" x="12.5" y="0.0" width="295" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="0tH-Ga-u5g">
+                                        <rect key="frame" x="0.0" y="68" width="320" height="216"/>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="0qj-2H-FOy">
+                                        <rect key="frame" x="14.5" y="316" width="291" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXh-K9-pYg">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="8hs-mi-dOB" eventType="touchUpInside" id="RqC-Ey-Z9W"/>
+                                                    <action selector="leftButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="R8C-Ix-xTI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipo-4g-twa">
+                                                <rect key="frame" x="155" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Establecer"/>
+                                                <connections>
+                                                    <action selector="rightButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="zmZ-e7-1JW"/>
+                                                    <action selector="set:" destination="8hs-mi-dOB" eventType="touchUpInside" id="YNm-hS-4LV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-id-M0h">
+                                        <rect key="frame" x="28" y="396" width="264" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Eliminar recordatorio">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleActualReminder:" destination="8hs-mi-dOB" eventType="touchUpInside" id="ypu-br-UrX"/>
+                                            <action selector="lastButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="Wl9-He-nDl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="vpo-TJ-mDk"/>
                     </view>
+                    <connections>
+                        <outlet property="lastButton" destination="0yc-id-M0h" id="vH9-dr-dya"/>
+                        <outlet property="leftButton" destination="yXh-K9-pYg" id="0WL-c5-cue"/>
+                        <outlet property="mainStack" destination="oUA-Hs-ZqO" id="slG-cs-rHS"/>
+                        <outlet property="pickerDate" destination="0tH-Ga-u5g" id="gLV-Be-twk"/>
+                        <outlet property="rightButton" destination="Ipo-4g-twa" id="lQM-uz-XnM"/>
+                        <outlet property="titleLabel" destination="QXD-Jd-92f" id="JUZ-0J-srf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQz-aE-7dX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
