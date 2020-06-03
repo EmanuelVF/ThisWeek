@@ -25,8 +25,16 @@ class Day{
         return activities.remove(at: index)
     }
     
+    func removeAllActivities(){
+        activities.removeAll()
+    }
+    
     func insertActivity(newElement: Activity, at index: Int){
         activities.insert(newElement,at: index)
+    }
+    
+    func appendActivity(newElement: Activity){
+        activities.append(newElement)
     }
     
     func getActivities()-> [Activity]{

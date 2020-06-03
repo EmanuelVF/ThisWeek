@@ -12,7 +12,7 @@ import EventKit
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate {
     
 //    MARK: - Model
-    private var thisWeek = ThisWeek(numberOfDays: ThisWeek.Defaults.numberOfDays)
+    private var thisWeek = ThisWeek(startingWith: Date().addingTimeInterval(TimeInterval(exactly: -86400)!), numberOfDays: ThisWeek.Defaults.numberOfDays)
     
 
 //    MARK: - ViewController Lifecycle
@@ -20,10 +20,25 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadLogo()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Advise that something chaged
+        if thisWeek.somethingChangedWhenRefresh{
+            let alert = UIAlertController(
+                title: Defaults.alertTitle,
+                message: Defaults.alertMessage,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     private func loadLogo(){
-        let image = UIImage(named: "ThisWeekLogo+Title1.png") //Your logo url here
+        let image = UIImage(named: Defaults.logoName) //Your logo url here
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
@@ -46,7 +61,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
         
         //TO DO: Load the model
-        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false, alarm: nil), at: 0)
+        print("Hardcoding model...")
+        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil), at: 0)
         thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil), at: 0)
         thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil), at: 1)
         thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil), at: 2)
@@ -57,9 +73,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
         
         //TO DO: Change the model base on today
-        thisWeek.refresh(basedOn: Date())
-        
-        
+        print("Refreshing model, for tomorrow")
+        thisWeek.refresh(basedOn: Date().addingTimeInterval(TimeInterval(exactly: ThisWeek.Defaults.oneDay) ?? 0),numberOfDays: ThisWeek.Defaults.numberOfDays)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -427,6 +442,10 @@ extension ThisWeekViewController {
         static let pickTimeText = "Elegir el horario de la alarma:"
         static let deleteButtonText = "Eliminar recordatorio"
         static let pickerSizeFactor = CGFloat(1.2)
+        static let alertTitle = "Se realizaron cambios en su planificación"
+        static let alertMessage = "Al avanzar de día, sus tareas incompletas se movieron a la última sección."
+        static let alertOk = "Aceptar"
+        static let logoName = "ThisWeekLogo+Title1.png"
     }
 }
 
