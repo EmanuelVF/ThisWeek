@@ -11,6 +11,7 @@ class Day{
     
 //    MARK: Vars
     
+    private var longDate : Date?
     private var Date : String? = ""
     private var activities = [Activity] ()
     
@@ -44,6 +45,14 @@ class Day{
     
     func getDate() -> String?{
         return self.Date
+    }
+    
+    func setLongDate(with newLongDate: Date?){
+        self.longDate = newLongDate
+    }
+    
+    func getLongDate() -> Date?{
+        return self.longDate
     }
     
     init(){

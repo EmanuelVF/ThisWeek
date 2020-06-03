@@ -45,6 +45,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Do any additional setup after loading the view.
         
+        //TO DO: Load the model
         thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: false, alarm: nil), at: 0)
         thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil), at: 0)
         thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil), at: 1)
@@ -55,10 +56,16 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil), at: 6)
         thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil), at: 7)
         
+        //TO DO: Change the model base on today
+        thisWeek.refresh(basedOn: Date())
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
+            //TODO: Save Model
+        
            print("User defaults: Onboarding = false")
            UserDefaults.standard.set(false, forKey: "OnboardingDone")
        }

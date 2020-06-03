@@ -42,6 +42,26 @@ class ThisWeek {
             date = date.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay) ?? 0)
         }
     }
+    
+    func refresh( basedOn today : Date){
+        var currentDay : Int?
+        
+        if !Calendar.current.isDateInToday(today){
+            for index in days.indices{
+                if Calendar.current.isDateInToday(days[index].getLongDate()!){
+                    currentDay = index
+                }
+            }
+            
+            if currentDay != nil {
+                //Set the days correctly
+                //For the days that are usefull, move them
+                //For the days passed, Move all to future deleting done actions
+            }else{
+                //Move all to future deleting done actions
+            }
+        }
+    }
 }
 
 //    MARK: - Defaults values
