@@ -70,7 +70,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
         thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 4)
         thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 7)
+        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: Date().addingTimeInterval(TimeInterval(ThisWeek.Defaults.oneWeek-15*ThisWeek.Defaults.oneDay))), at: 7)
         
         //TO DO: Change the model base on today
         print("Refreshing model, for tomorrow")

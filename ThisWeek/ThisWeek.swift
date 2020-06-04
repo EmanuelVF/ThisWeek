@@ -90,6 +90,29 @@ class ThisWeek {
             
             //TODO: Move a programmed item to the corresponding date
             
+            for indexActs in days.last!.getActivities().indices{
+                if let futureDay = days.last!.getActivities()[indexActs].getFutureDay(){
+                    if futureDay < Date(){
+                        days.last!.getActivities()[indexActs].setFutureDay(with: nil)
+                    }
+                }
+            }
+            
+            var itemsToDelete : [Int] = []
+            for indexActs in days.last!.getActivities().indices{
+                if let futureDay = days.last!.getActivities()[indexActs].getFutureDay(){
+                    for indexDays in stride(from: 0, through: days.count-2, by:1){
+                        if Calendar.current.isDate(days[indexDays].getLongDate()!, inSameDayAs: futureDay){
+                            days[indexDays].appendActivity(newElement: days.last!.getActivities()[indexActs])
+                            itemsToDelete.append(indexActs)
+                        }
+                    }
+                }
+            }
+            
+            for index in itemsToDelete{
+                _ = days.last!.removeActivity(at: index)
+            }
         }
     }
         
