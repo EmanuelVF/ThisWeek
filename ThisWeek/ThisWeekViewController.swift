@@ -9,13 +9,16 @@
 import UIKit
 import EventKit
 
-class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate  {
+class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate  {
+    
+    
     
 //    MARK: - Model
     //TODO: Delete this line
-    private var thisWeek = ThisWeek(startingWith: Date().addingTimeInterval(TimeInterval(exactly: -86400)!), numberOfDays: ThisWeek.Defaults.numberOfDays)
+//     var thisWeek = ThisWeek(startingWith: Date().addingTimeInterval(TimeInterval(exactly: -86400)!), numberOfDays: ThisWeek.Defaults.numberOfDays)
 //    private var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
     
+    var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
 
 //    MARK: - ViewController Lifecycle
     
@@ -60,21 +63,21 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Do any additional setup after loading the view.
         
-        //TO DO: Load the model
-        print("Hardcoding model...")
-        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil, futureDay: nil), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 0)
-        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 1)
-        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 2)
-        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
-        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 4)
-        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 6)
-        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: Date().addingTimeInterval(TimeInterval(ThisWeek.Defaults.oneWeek-15*ThisWeek.Defaults.oneDay))), at: 7)
-        
-        //TO DO: Change the model base on today
-        print("Refreshing model, for tomorrow")
-        thisWeek.refresh(basedOn: Date().addingTimeInterval(TimeInterval(exactly: ThisWeek.Defaults.oneDay) ?? 0),numberOfDays: ThisWeek.Defaults.numberOfDays)
+//        //TO DO: Load the model
+//        print("Hardcoding model...")
+//        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil, futureDay: nil), at: 0)
+//        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 0)
+//        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 1)
+//        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 2)
+//        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
+//        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
+//        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 4)
+//        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 6)
+//        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: Date().addingTimeInterval(TimeInterval(ThisWeek.Defaults.oneWeek-15*ThisWeek.Defaults.oneDay))), at: 7)
+//
+//        //TO DO: Change the model base on today
+//        print("Refreshing model, for tomorrow")
+//        thisWeek.refresh(basedOn: Date().addingTimeInterval(TimeInterval(exactly: ThisWeek.Defaults.oneDay) ?? 0),numberOfDays: ThisWeek.Defaults.numberOfDays)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -154,6 +157,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "UndoneActionCell", for: indexPath) as? UndoneActionTableViewCell
+            cell?.delegate = self
             cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
             // Single tap to stop reordering rows
             let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
@@ -167,11 +171,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(enableEditingTable))
             cell?.addGestureRecognizer(longPress)
             //Resignation handler to execute when the textfield is done
-            cell?.resignationHandler = { [weak self, unowned cell] in
-                if let text = cell!.taskTextField.text{
-                    self?.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setName(with: text)
-                }
-                self?.weekTableView.reloadData()
+            cell?.resignationHandler = { [weak self] in
+//                if let text = cell!.taskTextField.text{
+//                    self?.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setName(with: text)
+//                }
+//                self?.weekTableView.reloadData()
+                self!.sectionToRemind = indexPath.section
+                self!.itemToRemind = indexPath.item
             }
             cell?.addReminderButtonHandler = { [weak self] in
                 self!.taskToRemind = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!
@@ -365,6 +371,16 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+    
+//      MARK: -  UndoneActionTableViewCell
+    func endEditingTask(_ sender: UndoneActionTableViewCell) {
+            if let text = sender.taskTextField.text{
+                thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setName(with: text)
+            }
+            weekTableView.reloadData()
+    }
+    
     
 //    MARK: - SetReminderViewControllerDelegate
     

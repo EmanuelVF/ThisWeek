@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		8812F7BF2485908600EB8A00 /* ThisWeek logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8812F7BE2485908600EB8A00 /* ThisWeek logo.png */; };
 		8812F7C524859E2D00EB8A00 /* ThisWeekLogo+Title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */; };
+		882BFE7B248A870A00DC5F03 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 882BFE7A248A870A00DC5F03 /* CloudKit.framework */; };
 		8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D27F247D6E5400A45448 /* ThisWeek.swift */; };
 		8838D282247D6F7600A45448 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D281247D6F7600A45448 /* Day.swift */; };
 		8838D284247D704D00A45448 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D283247D704D00A45448 /* Activity.swift */; };
 		8838D286247DBADB00A45448 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D285247DBADB00A45448 /* SectionTableViewCell.swift */; };
 		884E2CEB248047E200B8EDC4 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */; };
+		8854C76E24898649000FDE58 /* CloudKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854C76D24898649000FDE58 /* CloudKitExtension.swift */; };
+		8854C77024898A9E000FDE58 /* CloudThisWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */; };
 		886B62D524883391006A2E9A /* SetDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886B62D424883391006A2E9A /* SetDateViewController.swift */; };
 		8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */; };
 		8874DBCB247D6B9000B51EE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */; };
@@ -28,11 +31,14 @@
 /* Begin PBXFileReference section */
 		8812F7BE2485908600EB8A00 /* ThisWeek logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeek logo.png"; sourceTree = "<group>"; };
 		8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeekLogo+Title1.png"; sourceTree = "<group>"; };
+		882BFE7A248A870A00DC5F03 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8838D27F247D6E5400A45448 /* ThisWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeek.swift; sourceTree = "<group>"; };
 		8838D281247D6F7600A45448 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8838D283247D704D00A45448 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8838D285247DBADB00A45448 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
 		884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReminderViewController.swift; sourceTree = "<group>"; };
+		8854C76D24898649000FDE58 /* CloudKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitExtension.swift; sourceTree = "<group>"; };
+		8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudThisWeekViewController.swift; sourceTree = "<group>"; };
 		886B62D424883391006A2E9A /* SetDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateViewController.swift; sourceTree = "<group>"; };
 		8874DBC5247D6B9000B51EE0 /* ThisWeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThisWeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,7 @@
 		8874DBD1247D6B9300B51EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8874DBD4247D6B9300B51EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8874DBD6247D6B9300B51EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8878DB43248A84580014317A /* ThisWeek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThisWeek.entitlements; sourceTree = "<group>"; };
 		887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoneActionTableViewCell.swift; sourceTree = "<group>"; };
 		88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,17 +58,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882BFE7B248A870A00DC5F03 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		882BFE79248A870A00DC5F03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				882BFE7A248A870A00DC5F03 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8874DBBC247D6B9000B51EE0 = {
 			isa = PBXGroup;
 			children = (
 				8874DBC7247D6B9000B51EE0 /* ThisWeek */,
 				8874DBC6247D6B9000B51EE0 /* Products */,
+				882BFE79248A870A00DC5F03 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +93,7 @@
 		8874DBC7247D6B9000B51EE0 /* ThisWeek */ = {
 			isa = PBXGroup;
 			children = (
+				8878DB43248A84580014317A /* ThisWeek.entitlements */,
 				88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */,
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
 				8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */,
@@ -86,6 +104,8 @@
 				8838D27F247D6E5400A45448 /* ThisWeek.swift */,
 				8838D281247D6F7600A45448 /* Day.swift */,
 				8838D283247D704D00A45448 /* Activity.swift */,
+				8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */,
+				8854C76D24898649000FDE58 /* CloudKitExtension.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
 				8874DBDC247D6C3600B51EE0 /* SupportingFiles */,
 			);
@@ -184,6 +204,8 @@
 				886B62D524883391006A2E9A /* SetDateViewController.swift in Sources */,
 				8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */,
 				8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */,
+				8854C76E24898649000FDE58 /* CloudKitExtension.swift in Sources */,
+				8854C77024898A9E000FDE58 /* CloudThisWeekViewController.swift in Sources */,
 				887CEBC4247EC9AF001047FE /* UndoneActionTableViewCell.swift in Sources */,
 				8838D282247D6F7600A45448 /* Day.swift in Sources */,
 				88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */,
@@ -332,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThisWeek/ThisWeek.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 325CWX756R;
 				INFOPLIST_FILE = ThisWeek/Info.plist;
@@ -350,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThisWeek/ThisWeek.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 325CWX756R;
 				INFOPLIST_FILE = ThisWeek/Info.plist;

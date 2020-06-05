@@ -8,12 +8,15 @@
 
 import Foundation
 
-class ThisWeek {
+struct ThisWeek:Codable {
     
 //    MARK: Vars
     
     var days = [Day]()
     var somethingChangedWhenRefresh : Bool = false
+    var json : Data?{
+        return try? JSONEncoder().encode(self)
+    }
     
 //    MARK: Functions
     
@@ -30,7 +33,21 @@ class ThisWeek {
         
     }
     
-    func refresh( basedOn today : Date, numberOfDays: Int){
+    init?(json : Data){
+        if let newValue = try? JSONDecoder().decode(ThisWeek.self, from: json){
+            self = newValue
+        }else{
+            return nil
+        }
+    }
+    
+    init(withDays days : [Day], withRefresh somethingChangedWhenRefresh : Bool ){
+        self.days = days
+        self.somethingChangedWhenRefresh = somethingChangedWhenRefresh
+        
+    }
+    
+    mutating func refresh( basedOn today : Date, numberOfDays: Int){
         var currentDay : Int?
         
         if !Calendar.current.isDateInToday(today){
@@ -116,7 +133,7 @@ class ThisWeek {
         }
     }
         
-    private func setDaysDates(startingWith date : Date, using numberOfDays : Int, creating : Bool){
+    mutating private func setDaysDates(startingWith date : Date, using numberOfDays : Int, creating : Bool){
         let template = Defaults.dateTemplate
         let format = DateFormatter.dateFormat(fromTemplate: template, options: 0, locale: NSLocale(localeIdentifier:Defaults.localeIdentifier) as Locale )
         let formatter = DateFormatter()

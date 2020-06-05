@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Day{
+class Day : Codable{
     
 //    MARK: Vars
     

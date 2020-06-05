@@ -8,14 +8,14 @@
 
 import Foundation
 import EventKit
-class Activity{
+class Activity : Codable{
     
 //    MARK: Vars
     
     private var name : String?
     private var hasAReminder : Bool?
     private var completed : Bool?
-    private var alarm : EKAlarm?
+//    private var alarm : EKAlarm?
     private var futureDay : Date?
     
 //    MARK: Initializer
@@ -24,7 +24,7 @@ class Activity{
         self.name = name
         self.hasAReminder = hasAReminder
         self.completed = completed
-        self.alarm = alarm
+//        self.alarm = alarm
         self.futureDay = futureDay
     }
     
@@ -39,11 +39,12 @@ class Activity{
     }
     
     func setAlarm(with newAlarm: EKAlarm?){
-        self.alarm = newAlarm
+//        self.alarm = newAlarm
     }
     
     func getAlarm() -> EKAlarm?{
-        return self.alarm
+//        return self.alarm
+        return EKAlarm()
     }
     
     func setHasAReminder(with reminder : Bool?){

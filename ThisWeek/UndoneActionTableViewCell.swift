@@ -8,9 +8,16 @@
 
 import UIKit
 
-class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
+protocol UndoneActionTableViewCellDelegate : class {
+    func endEditingTask(_ sender : UndoneActionTableViewCell)
+}
 
-//    MARK: Outlets & Actions
+class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
+    
+    //    MARK: - Delegation
+    weak var delegate : UndoneActionTableViewCellDelegate?
+
+//    MARK:- Outlets & Actions
     
     var buttonString :  String = ""{
         didSet{
@@ -48,7 +55,7 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
         addReminderButtonHandler?()
     }
     
-//    MARK: UITextFieldDelegate
+//    MARK:- UITextFieldDelegate
     
     func startEditing(){
         taskTextField.isUserInteractionEnabled = true
@@ -59,6 +66,7 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         resignationHandler?()
+        delegate?.endEditingTask(self)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
