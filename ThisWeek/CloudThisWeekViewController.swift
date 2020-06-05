@@ -26,7 +26,6 @@ class CloudThisWeekViewController: ThisWeekViewController {
     private var _ckThisWeekRecord : CKRecord?{
         didSet{
             print("set")
-            print(ckThisWeekRecord.recordID)
             let days = ckThisWeekRecord[Cloud.Attribute.Days] as? Data
             if (days != nil) {
                 thisWeek = ThisWeek(json: days!)!
@@ -35,6 +34,11 @@ class CloudThisWeekViewController: ThisWeekViewController {
     }
 
 //   MARK: - App Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        iCloudFetch()
+    }
     
     override func viewDidLoad() {
             super.viewDidLoad()
@@ -113,28 +117,32 @@ class CloudThisWeekViewController: ThisWeekViewController {
     }
     
     
-    
-    
-    
-    
+    //   MARK: - Perform the Read
     
     var allWeeks = [CKRecord]() {
         didSet{
-            thisWeek = ThisWeek(json: (allWeeks.first![Cloud.Attribute.Days] as? Data)!)!
-            weekTableView.reloadData()
+            if let newData = (allWeeks.first![Cloud.Attribute.Days] as? Data){
+                print("hola")
+                thisWeek = ThisWeek(json: newData)!
+                weekTableView.reloadData()
+            }
         }
     }
     
     private func iCloudFetch(){
+        print("read")
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let query = CKQuery(recordType: Cloud.Entity.ThisWeek, predicate: predicate)
+//        query.sortDescriptors = NSSortDescriptor(key: <#T##String?#>, ascending: <#T##Bool#>)
         database.perform(query,inZoneWith: nil) { (records, error) in
             if records != nil {
                 DispatchQueue.main.async {
                     self.allWeeks = records!
-                    self.database.delete(withRecordID: records!.first!.recordID) { (recordID, error) in
-                        
-                    }}
+//                    self.database.delete(withRecordID: records!.first!.recordID) { (recordID, error) in
+//
+//                    }
+                    
+                }
             }
         }
     }
