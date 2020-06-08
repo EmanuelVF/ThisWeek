@@ -8,8 +8,10 @@
 
 import CloudKit
 
+extension Notification.Name{
+    static let CloudKitNotifications = Notification.Name("iCloudRemoteNotificationReceived")
+}
 struct CloudKitNotifications{
-    static let NotificationReceived = "iCloudRemoteNotificationReceived"
     static let NotificationKey = "Notification"
 }
 
