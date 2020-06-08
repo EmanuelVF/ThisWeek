@@ -8,6 +8,7 @@
 
 import UIKit
 import EventKit
+import UserNotifications
 
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate  {
     
@@ -399,39 +400,35 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     var eventStore : EKEventStore!
     
     func addReminder(_ sender: SetReminderViewController) {
+        
+        let center = UNUserNotificationCenter.current()
+        
         if thisWeek.days[sectionToRemind].getActivities()[itemToRemind].hasItAReminder()!{
             removeReminder(alarm :self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].getAlarm()! ,  withTitle: self.taskToRemind)
         }
         
-        eventStore = EKEventStore()
-        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
-            granted, error in
-            if (granted) && (error == nil) {
-                let reminder : EKReminder = EKReminder(eventStore: self.eventStore)
-                reminder.title = self.taskToRemind
-                
-                let chosenTime = sender.reminderDay
-                let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
-                let alarm = EKAlarm(absoluteDate: alarmTime)
-                reminder.addAlarm(alarm)
-                
-                reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-                
-                do {
-                    try self.eventStore.save(reminder, commit: true)
-                } catch {
-                    return
-                }
-                
-//                print("Reminder saved")
-                self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
-                self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarm(with: reminder.alarms?.first)
-                DispatchQueue.main.async {
-                    self.weekTableView.reloadData()
-                }
-                
-            }
-        })
+        let content = UNMutableNotificationContent()
+        content.title = "Remember to complete this action"
+        content.body = self.taskToRemind
+        content.categoryIdentifier = "alarm"
+        content.sound = .default
+        content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        
+        let chosenTime = sender.reminderDay
+        let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
+        let alarmTimeComps = Calendar.current.dateComponents([.year, .month, .day,.hour,.minute], from: alarmTime)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTimeComps, repeats: false)
+        let alarmID = UUID().uuidString
+        let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
+        center.add(request) { (error) in
+            //parse error
+        }
+        self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
+        self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarm(with: alarmID)
+        DispatchQueue.main.async {
+            self.weekTableView.reloadData()
+        }
     }
     
     func deleteReminder(_ sender: SetReminderViewController) {
@@ -443,18 +440,12 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    private func removeReminder(alarm : EKAlarm, withTitle taskTitle: String){
-        let calendar = eventStore.defaultCalendarForNewReminders()
-        var myReminders = [EKReminder]()
-        let predicate = self.eventStore.predicateForReminders(in: [calendar!])
-        self.eventStore.fetchReminders(matching: predicate, completion:{ (reminders: [EKReminder]?) -> Void in
-            myReminders = reminders!
-            do{
-                try self.eventStore.remove(myReminders.filter{ $0.title == taskTitle && $0.alarms?.first! == alarm}.first!, commit: true)
-            }catch{
-//                print("An error occurred while removing the reminder from the Calendar database: \(error)")
-            }
-        })
+    private func removeReminder(alarm : String, withTitle taskTitle: String){
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [alarm])
+        DispatchQueue.main.async {
+            self.weekTableView.reloadData()
+        }
     }
     
 //    MARK:- SetDateViewControllerDelegate
