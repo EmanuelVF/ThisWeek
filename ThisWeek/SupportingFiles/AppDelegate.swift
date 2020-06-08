@@ -25,6 +25,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         UNUserNotificationCenter.current().delegate = self
+        
+        let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
+              title: "Done",
+              options: UNNotificationActionOptions(rawValue: 0))
+        let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
+              title: "Decline",
+              options: UNNotificationActionOptions(rawValue: 0))
+        // Define the notification type
+        let taskCategory =
+              UNNotificationCategory(identifier: "ActionAlert",
+              actions: [acceptAction, declineAction],
+              intentIdentifiers: [],
+              hiddenPreviewsBodyPlaceholder: "",
+              options: .customDismissAction)
+        // Register the notification type.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([taskCategory])
+        
         return true
     }
     
@@ -33,7 +51,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        print("holaaa")
+        
+        let userInfo = response.notification.request.content.userInfo
+        UIApplication.shared.applicationIconBadgeNumber =  UIApplication.shared.applicationIconBadgeNumber - 1
+        switch response.actionIdentifier {
+            case "ACCEPT_ACTION":
+                let notification = Notification(
+                    name: .DoneNotification,
+                    object: self,
+                    userInfo: [NotificationFromUser.DoneNotificationKey : userInfo])
+                NotificationCenter.default.post(notification)
+             break
+               
+        case "DECLINE_ACTION":
+            let notification = Notification(
+                name: .UndoneNotification,
+                object: self,
+                userInfo: [ NotificationFromUser.UndoneNotificationKey: userInfo])
+            NotificationCenter.default.post(notification)
+             break
+        
+          default:
+             break
+          }
+        
+        
         completionHandler()
     }
     

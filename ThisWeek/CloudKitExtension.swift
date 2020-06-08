@@ -9,6 +9,16 @@
 import CloudKit
 
 extension Notification.Name{
+    static let DoneNotification = Notification.Name("DoneNotificationReceived")
+    static let UndoneNotification = Notification.Name("UndoneNotificationReceived")
+}
+
+struct NotificationFromUser{
+    static let DoneNotificationKey = "Done"
+    static let UndoneNotificationKey = "Undone"
+}
+
+extension Notification.Name{
     static let CloudKitNotifications = Notification.Name("iCloudRemoteNotificationReceived")
 }
 struct CloudKitNotifications{

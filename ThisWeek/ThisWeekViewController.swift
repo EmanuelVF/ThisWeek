@@ -60,6 +60,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+        addNotificationsObserver()
         
         
         // Do any additional setup after loading the view.
@@ -92,7 +93,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
-        
+        removeNotificationsObserver()
     }
     
     //    MARK: Keyboard Moves
@@ -407,19 +408,23 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             removeReminder(alarm :self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].getAlarm()! ,  withTitle: self.taskToRemind)
         }
         
+        let alarmID = UUID().uuidString
+        
         let content = UNMutableNotificationContent()
         content.title = "Remember to complete this action"
         content.body = self.taskToRemind
-        content.categoryIdentifier = "alarm"
+        content.categoryIdentifier = "ActionAlert"
         content.sound = .default
         content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        content.userInfo = ["TaskName" : self.taskToRemind,
+                            "alarmID" : alarmID]
         
         let chosenTime = sender.reminderDay
         let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
         let alarmTimeComps = Calendar.current.dateComponents([.year, .month, .day,.hour,.minute], from: alarmTime)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTimeComps, repeats: false)
-        let alarmID = UUID().uuidString
+        
         let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
         center.add(request) { (error) in
             //parse error
@@ -479,6 +484,70 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+//  MARK:- Notification response
+    
+    private var doneNotificationObserver : NSObjectProtocol?
+    private var undoneNotificationObserver : NSObjectProtocol?
+    
+    func addNotificationsObserver(){
+        doneNotificationObserver = NotificationCenter.default.addObserver(
+        forName: .DoneNotification,
+        object: nil,
+        queue: OperationQueue.main,
+        using: { (notification) in
+            if let userInfo = notification.userInfo?[NotificationFromUser.DoneNotificationKey] as? [String:String]{
+                self.doneActionfromNotification(taskName: userInfo["TaskName"], alarmID: userInfo["alarmID"])
+            }
+        })
+        
+        undoneNotificationObserver = NotificationCenter.default.addObserver(
+        forName: .UndoneNotification,
+        object: nil,
+        queue: OperationQueue.main,
+        using: { (notification) in
+            if let userInfo = notification.userInfo?[NotificationFromUser.UndoneNotificationKey] as? [String:String]{
+                self.undoneActionfromNotification(taskName: userInfo["TaskName"], alarmID: userInfo["alarmID"])
+            }
+        })
+    }
+    
+    func undoneActionfromNotification(taskName : String?, alarmID :String?){
+        removeReminder(alarm: alarmID!, withTitle: taskName!)
+        for index in self.thisWeek.days.first!.getActivities().indices{
+            if self.thisWeek.days.first!.getActivities()[index].getName() == taskName{
+                self.thisWeek.days.first!.getActivities()[index].setAlarm(with: nil)
+                self.thisWeek.days.first!.getActivities()[index].setHasAReminder(with: false)
+                
+            }
+        }
+        self.weekTableView.reloadData()
+        
+    }
+    
+    func doneActionfromNotification(taskName : String?, alarmID :String?){
+        removeReminder(alarm: alarmID!, withTitle: taskName!)
+        for index in self.thisWeek.days.first!.getActivities().indices{
+            if self.thisWeek.days.first!.getActivities()[index].getName() == taskName{
+                self.thisWeek.days.first!.getActivities()[index].complete()
+                self.thisWeek.days.first!.getActivities()[index].setAlarm(with: nil)
+                self.thisWeek.days.first!.getActivities()[index].setHasAReminder(with: false)
+            }
+        }
+        self.thisWeek.days.first!.sortDay()
+        self.weekTableView.reloadData()
+    }
+    
+    func removeNotificationsObserver(){
+        if let observer = doneNotificationObserver{
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
+        if let observer = undoneNotificationObserver{
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
 }
 
 // MARK: - ViewController Extension
