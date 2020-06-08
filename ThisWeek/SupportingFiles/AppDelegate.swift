@@ -12,8 +12,6 @@ import CloudKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -21,39 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("D'oh: \(error.localizedDescription)")
             } else {
                 DispatchQueue.main.async {
-                    print("Registering for reemote notification")
                     application.registerForRemoteNotifications()
                 }
             }
         }
-        print("delegate configuration")
         UNUserNotificationCenter.current().delegate = self
         return true
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("didReceive response")
-        completionHandler()
-    }
-//
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
-//        print("settingsforNotification")
-//    }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Configure notification")
-//        completionHandler([.alert, .sound, .badge])
         completionHandler([.badge])
     }
     
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        print("cheeeeee")
-//    }
-//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//        print("le digo pepe veni y el salta y salta")
-//    }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Receive notification")
         let ckqn = CKQueryNotification(fromRemoteNotificationDictionary: userInfo as! [String : NSObject])
         let notification = Notification(
             name: .CloudKitNotifications,

@@ -82,7 +82,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
-            //TODO: Save Model
         
            print("User defaults: Onboarding = false")
            UserDefaults.standard.set(false, forKey: "OnboardingDone")
@@ -255,9 +254,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
                 _ = thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
                 weekTableView.deleteRows(at: [indexPath], with: .fade)
+                deleteActions()
                 weekTableView.reloadData()
             }
         }
+    }
+    
+    func deleteActions(){
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -270,6 +273,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             }
             self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
+            self.doneActions()
             completionHandler(true)
         }
         swipe.backgroundColor = UIColor.green
@@ -282,10 +286,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             return nil
         }
     }
+    
+    func doneActions(){
+    }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipe = UIContextualAction(style: .normal, title: ThisWeek.Defaults.unDoneText){(action, sourceView, completionHandler) in
             self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].unComplete()
             self.thisWeek.days[indexPath.section].sortDay()
+            self.undoneActions()
             self.weekTableView.reloadData()
             completionHandler(true)
         }
@@ -298,6 +307,9 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             return nil
         }
+    }
+    
+    func undoneActions(){
     }
     
     //  MARK: MoveRow

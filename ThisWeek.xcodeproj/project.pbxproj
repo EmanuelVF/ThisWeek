@@ -115,12 +115,12 @@
 		8874DBDC247D6C3600B51EE0 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */,
-				8812F7BE2485908600EB8A00 /* ThisWeek logo.png */,
-				8874DBD1247D6B9300B51EE0 /* Assets.xcassets */,
 				8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */,
+				8874DBD1247D6B9300B51EE0 /* Assets.xcassets */,
 				8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */,
 				8874DBD3247D6B9300B51EE0 /* LaunchScreen.storyboard */,
+				8812F7BE2485908600EB8A00 /* ThisWeek logo.png */,
+				8812F7C424859E2D00EB8A00 /* ThisWeekLogo+Title1.png */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";

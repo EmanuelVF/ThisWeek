@@ -18,18 +18,11 @@ class OnboardingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        
     }
     
     @IBAction func done(_ sender: UIButton) {
-        
         UserDefaults.standard.set(true, forKey: "OnboardingDone")
-        
         performSegue(withIdentifier: "OnboardingDone", sender: self)
-        print ("pepe")
-        
-        
     }
     
     
