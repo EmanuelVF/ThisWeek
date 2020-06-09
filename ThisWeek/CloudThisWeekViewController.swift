@@ -28,6 +28,16 @@ class CloudThisWeekViewController: ThisWeekViewController {
             let days = ckThisWeekRecord[Cloud.Attribute.Days] as? Data
             if (days != nil) {
                 thisWeek = ThisWeek(json: days!)!
+                thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!, numberOfDays: ThisWeek.Defaults.numberOfDays)
+                // Advise that something chaged
+                if thisWeek.somethingChangedWhenRefresh{
+                    let alert = UIAlertController(
+                        title: Defaults.alertTitle,
+                        message: Defaults.alertMessage,
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                }
                 weekTableView.reloadData()
             }
         }

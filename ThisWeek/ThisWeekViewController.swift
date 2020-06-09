@@ -30,15 +30,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Advise that something chaged
-        if thisWeek.somethingChangedWhenRefresh{
-            let alert = UIAlertController(
-                title: Defaults.alertTitle,
-                message: Defaults.alertMessage,
-                preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
     }
     
     private func loadLogo(){
@@ -80,6 +71,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 //        //TO DO: Change the model base on today
 //        print("Refreshing model, for tomorrow")
 //        thisWeek.refresh(basedOn: Date().addingTimeInterval(TimeInterval(exactly: ThisWeek.Defaults.oneDay) ?? 0),numberOfDays: ThisWeek.Defaults.numberOfDays)
+        thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!,numberOfDays: ThisWeek.Defaults.numberOfDays)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
