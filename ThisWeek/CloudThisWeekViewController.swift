@@ -39,6 +39,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                     present(alert, animated: true, completion: nil)
                 }
                 weekTableView.reloadData()
+                syncAllNotifications()
             }
         }
     }

@@ -268,6 +268,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self.removeReminder(alarm : self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getAlarm()!, withTitle: self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
                 self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setAlarm(with: nil)
                 self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setHasAReminder(with: false)
+                self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setAlarmTime(with: nil)
             }
             self.thisWeek.days[indexPath.section].sortDay()
             self.weekTableView.reloadData()
@@ -333,6 +334,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             removeReminder(alarm : thisWeek.days[sourceIndexPath.section].getActivities()[sourceIndexPath.item].getAlarm()!, withTitle: thisWeek.days[sourceIndexPath.section].getActivities()[sourceIndexPath.item].getName()!)
             thisWeek.days[sourceIndexPath.section].getActivities()[sourceIndexPath.item].setAlarm(with: nil)
             thisWeek.days[sourceIndexPath.section].getActivities()[sourceIndexPath.item].setHasAReminder(with: false)
+            thisWeek.days[sourceIndexPath.section].getActivities()[sourceIndexPath.item].setAlarmTime(with: nil)
         }
         let movedItem = thisWeek.removeToDo(at: sourceIndexPath.section, position: sourceIndexPath.item)
         thisWeek.days[destinationIndexPath.section].insertActivity(newElement: movedItem, at: destinationIndexPath.item)
@@ -379,7 +381,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let text = sender.titleLabel.text
         for index in thisWeek.days.indices{
             if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarm: nil, futureDay: nil), at: index)
+                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarmID: nil, alarmTime: nil, futureDay: nil), at: index)
                 thisWeek.days[index].sortDay()
                 weekTableView.reloadData()
             }
@@ -427,8 +429,9 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
         center.add(request) { (error) in
-            //parse error
+            //TODO: Parse error
         }
+        self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarmTime(with: alarmTime)
         self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
         self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarm(with: alarmID)
         DispatchQueue.main.async {
@@ -441,6 +444,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             removeReminder(alarm :thisWeek.days[sectionToRemind].getActivities()[itemToRemind].getAlarm()! ,  withTitle:taskToRemind)
             thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setAlarm(with: nil)
             thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setHasAReminder(with: false)
+            thisWeek.days[sectionToRemind].getActivities()[itemToRemind].setAlarmTime(with: nil)
             weekTableView.reloadData()
         }
     }
@@ -518,6 +522,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             if self.thisWeek.days.first!.getActivities()[index].getName() == taskName{
                 self.thisWeek.days.first!.getActivities()[index].setAlarm(with: nil)
                 self.thisWeek.days.first!.getActivities()[index].setHasAReminder(with: false)
+                self.thisWeek.days.first!.getActivities()[index].setAlarmTime(with: nil)
                 
             }
         }
@@ -532,6 +537,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self.thisWeek.days.first!.getActivities()[index].complete()
                 self.thisWeek.days.first!.getActivities()[index].setAlarm(with: nil)
                 self.thisWeek.days.first!.getActivities()[index].setHasAReminder(with: false)
+                self.thisWeek.days.first!.getActivities()[index].setAlarmTime(with: nil)
             }
         }
         self.thisWeek.days.first!.sortDay()
@@ -548,6 +554,100 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+//    MARK:- External functions
+    
+    func syncAllNotifications(){
+        let center = UNUserNotificationCenter.current()
+        center.removeAllDeliveredNotifications()
+        
+        // Delete Delivered Notifications
+        for dayIndex in thisWeek.days.indices{
+            for taskIndex in thisWeek.days[dayIndex].getActivities().indices{
+                if let hasAReminder = self.thisWeek.days[dayIndex].getActivities()[taskIndex].hasItAReminder() , hasAReminder  {
+                    if thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarmTime()! < Date(){
+                        thisWeek.days[dayIndex].getActivities()[taskIndex].setAlarmTime(with: nil)
+                        thisWeek.days[dayIndex].getActivities()[taskIndex].setAlarm(with: nil)
+                        thisWeek.days[dayIndex].getActivities()[taskIndex].setHasAReminder(with: false)
+                    }
+                }
+            }
+        }
+        
+        //Delete future notifications unparent
+        center.getPendingNotificationRequests { (notifications) in
+            for indexNotifications in notifications.indices{
+                var notificationOk = false
+                for dayIndex in self.thisWeek.days.indices{
+                    for taskIndex in self.thisWeek.days[dayIndex].getActivities().indices{
+                        if let hasAReminder = self.thisWeek.days[dayIndex].getActivities()[taskIndex].hasItAReminder() , hasAReminder  {
+                            if notifications[indexNotifications].identifier == self.thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarm()! {
+                                notificationOk = true
+                            }
+                        }
+                    }
+                }
+                if !notificationOk {
+                    center.removePendingNotificationRequests(withIdentifiers: [notifications[indexNotifications].identifier])
+                }
+            }
+        }
+        
+        //Set Missing Notifications
+        center.getPendingNotificationRequests { (notifications) in
+            for dayIndex in self.thisWeek.days.indices{
+                for taskIndex in self.thisWeek.days[dayIndex].getActivities().indices{
+                    if let hasAReminder = self.thisWeek.days[dayIndex].getActivities()[taskIndex].hasItAReminder() , hasAReminder  {
+                        if self.thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarmTime()! > Date(){
+                            var notificationSet = false
+                            for notificationIndex in notifications.indices{
+                                if notifications[notificationIndex].identifier == self.thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarm()!{
+                                    notificationSet = true
+                                    break;
+                                }
+                            }
+                            if !notificationSet{
+                                DispatchQueue.main.async {
+                                    self.setMissingNotification(date: self.thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarmTime()!, title: self.thisWeek.days[dayIndex].getActivities()[taskIndex].getName()!,identifier: self.thisWeek.days[dayIndex].getActivities()[taskIndex].getAlarm()!)
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func setMissingNotification ( date: Date, title: String, identifier: String){
+        
+        let center = UNUserNotificationCenter.current()
+
+        let alarmID = identifier
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Remember to complete this action"
+        content.body = title
+        content.categoryIdentifier = "ActionAlert"
+        content.sound = .default
+        content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        content.userInfo = ["TaskName" : title,
+                            "alarmID" : identifier]
+        
+        let alarmTime = date
+        let alarmTimeComps = Calendar.current.dateComponents([.year, .month, .day,.hour,.minute], from: alarmTime)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTimeComps, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
+        center.add(request) { (error) in
+            //TODO: Parse error
+        }
+
+        DispatchQueue.main.async {
+            self.weekTableView.reloadData()
+        }
+        
+    }
 }
 
 // MARK: - ViewController Extension

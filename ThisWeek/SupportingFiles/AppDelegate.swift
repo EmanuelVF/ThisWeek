@@ -71,6 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             NotificationCenter.default.post(notification)
              break
         
+        case "com.apple.UNNotificationDefaultActionIdentifier","com.apple.UNNotificationDismissActionIdentifier":
+            let notification = Notification(
+                name: .UndoneNotification,
+                object: self,
+                userInfo: [ NotificationFromUser.UndoneNotificationKey: userInfo])
+            NotificationCenter.default.post(notification)
+             break
           default:
              break
           }

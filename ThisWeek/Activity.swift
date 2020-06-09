@@ -13,18 +13,20 @@ class Activity : Codable{
 //    MARK: Vars
     
     private var name : String?
-    private var hasAReminder : Bool?
     private var completed : Bool?
+    private var hasAReminder : Bool?
     private var alarmID : String?
+    private var alarmTime : Date?
     private var futureDay : Date?
     
 //    MARK: Initializer
     
-    init(name: String, hasAReminder: Bool, completed : Bool, alarm : String?, futureDay: Date?){
+    init(name: String, hasAReminder: Bool, completed : Bool, alarmID : String?, alarmTime : Date?, futureDay: Date?){
         self.name = name
         self.hasAReminder = hasAReminder
         self.completed = completed
-        self.alarmID = alarm
+        self.alarmID = alarmID
+        self.alarmTime = alarmTime
         self.futureDay = futureDay
     }
     
@@ -44,6 +46,14 @@ class Activity : Codable{
     
     func getAlarm() -> String?{
         return self.alarmID
+    }
+    
+    func setAlarmTime(with newAlarm: Date?){
+        self.alarmTime = newAlarm
+    }
+    
+    func getAlarmTime() -> Date?{
+        return self.alarmTime
     }
     
     func setHasAReminder(with reminder : Bool?){
