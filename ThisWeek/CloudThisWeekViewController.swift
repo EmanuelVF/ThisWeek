@@ -87,6 +87,11 @@ class CloudThisWeekViewController: ThisWeekViewController {
         self.iCloudUpdate()
     }
     
+    override func insertActions() {
+        super.insertActions()
+        self.iCloudUpdate()
+    }
+    
     override func deleteReminder(_ sender: SetReminderViewController) {
         super.deleteReminder(sender)
         self.iCloudUpdate()

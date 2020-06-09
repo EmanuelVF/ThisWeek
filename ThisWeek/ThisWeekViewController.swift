@@ -333,9 +333,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let movedItem = thisWeek.removeToDo(at: sourceIndexPath.section, position: sourceIndexPath.item)
         thisWeek.days[destinationIndexPath.section].insertActivity(newElement: movedItem, at: destinationIndexPath.item)
         thisWeek.days[destinationIndexPath.section].sortDay()
+        insertActions()
         weekTableView.reloadData()
     }
-    
+        
+    func insertActions(){
+        
+    }
     //    MARK: Header
     
     private func titleAttributedString(_ string: String, fontsize:CGFloat) -> NSAttributedString{
