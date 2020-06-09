@@ -50,6 +50,8 @@ struct ThisWeek:Codable {
     mutating func refresh( basedOn firstDay : Date, numberOfDays: Int){
         var currentDay : Int?
         
+        somethingChangedWhenRefresh = false
+        
         let today = Date()
         if !Calendar.current.isDateInToday(firstDay){
             for index in stride(from: 0, to: days.count-2, by: 1){

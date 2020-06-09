@@ -171,6 +171,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 //                self?.weekTableView.reloadData()
                 self!.sectionToRemind = indexPath.section
                 self!.itemToRemind = indexPath.item
+                self!.isEditingText = false
             }
             cell?.addReminderButtonHandler = { [weak self] in
                 self!.taskToRemind = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!
@@ -225,14 +226,17 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    private var isEditingText = false
+    
     @objc func startEditingTextField( sender: UITapGestureRecognizer){
         if let cell = sender.view as? UndoneActionTableViewCell{
             cell.startEditing()
+            isEditingText = true
         }
     }
     
     @objc func enableEditingTable(sender : UILongPressGestureRecognizer){
-        if weekTableView.isEditing == false{
+        if weekTableView.isEditing == false && !isEditingText{
             weekTableView.setEditing(true, animated: true)
         }
     }
