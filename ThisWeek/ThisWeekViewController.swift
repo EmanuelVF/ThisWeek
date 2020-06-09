@@ -474,6 +474,11 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             if let destination = segue.destination as? SetReminderViewController, let source = segue.source as? ThisWeekViewController{
                 destination.delegate = self
                 destination.deleteButtonNeeded = source.hasReminder
+                if source.hasReminder {
+                    destination.actualTime = thisWeek.days[source.sectionToRemind].getActivities()[source.itemToRemind].getAlarmTime()!
+                }else{
+                    destination.actualTime = nil
+                }
             }
         }
         if segue.identifier == "SetDate"{

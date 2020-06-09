@@ -17,6 +17,7 @@ class SetReminderViewController: UIViewController {
     
     var reminderDay : Date = Date()
     var deleteButtonNeeded = true
+    var actualTime : Date?
     
     //  MARK:-  Delegation
     weak var delegate : SetReminderViewControllerDelegate?
@@ -44,6 +45,16 @@ class SetReminderViewController: UIViewController {
         ])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if actualTime != nil{
+            reminderDate.setDate(actualTime!, animated: true)
+        }else{
+            reminderDate.setDate(Date(), animated: true)
+        }
+    }
+    
 //    MARK:- Actions
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -63,7 +74,12 @@ class SetReminderViewController: UIViewController {
     }
     
     //    MARK: - Outlets
-    @IBOutlet weak var reminderDate: UIDatePicker!
+    @IBOutlet weak var reminderDate: UIDatePicker!{
+        didSet{
+            reminderDate.minimumDate = Date()
+            reminderDate.maximumDate = nil
+        }
+    }
     
     @IBOutlet weak var topLevelStack: UIStackView!
     
