@@ -686,6 +686,8 @@ extension ThisWeekViewController {
         static let IDFromOnboardingToMain = "OnboardingDone"
         //SectionTableViewCell
         static let addingButtonTitle = "⊕"
+        //Files
+        static let backUpFile = "Backup.json"
     }
 }
 

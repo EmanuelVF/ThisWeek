@@ -122,7 +122,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                 for: .applicationSupportDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
-                create : true).appendingPathComponent("Backup.json"){
+                create : true).appendingPathComponent(ThisWeekViewController.Defaults.backUpFile){
                 do{
                    try json.write(to: url)
 //                    print("Saved OK")
@@ -139,7 +139,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("Backup.json"){
+        ).appendingPathComponent(ThisWeekViewController.Defaults.backUpFile){
             if let jsonData = try? Data(contentsOf: url){
                 thisWeek = ThisWeek(json: jsonData) ?? ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
             }
@@ -183,9 +183,9 @@ class CloudThisWeekViewController: ThisWeekViewController {
     }
     
     private func iCloudFetch(){
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let predicate = NSPredicate(format: Cloud.Defaults.predicateForAll)
         let query = CKQuery(recordType: Cloud.Entity.ThisWeek, predicate: predicate)
-        query.sortDescriptors = [NSSortDescriptor(key: "modificationDate", ascending: false)] // Read the Newest
+        query.sortDescriptors = [NSSortDescriptor(key: Cloud.Defaults.sortKeyModificationDate, ascending: false)] // Read the Newest
         database.perform(query,inZoneWith: nil) { (records, error) in
             //TODO: Handle errors.
             if records != nil {
@@ -198,11 +198,11 @@ class CloudThisWeekViewController: ThisWeekViewController {
     
     //   MARK:- Subscription
     
-    private let subscriptionID = "AllUpdatedRecords"
+    private let subscriptionID = Cloud.Defaults.subscriptionIDAllUpdated
     private var cloudKitObserver : NSObjectProtocol?
     
     private func iCloudSubscribe(){
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        let predicate = NSPredicate(format: Cloud.Defaults.predicateForAll)
         
         let subscription = CKQuerySubscription(
             recordType: Cloud.Entity.ThisWeek,

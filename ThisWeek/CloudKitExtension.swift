@@ -46,6 +46,13 @@ struct Cloud{
         static let Alarm = "alarm"
         static let FutureDay = "futureDay"
     }
+    
+    struct Defaults {
+        static let predicateForAll = "TRUEPREDICATE"
+        static let sortKeyModificationDate = "modificationDate"
+        static let subscriptionIDAllUpdated = "AllUpdatedRecords"
+        
+    }
 }
 
 
