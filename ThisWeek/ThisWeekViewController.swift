@@ -684,6 +684,8 @@ extension ThisWeekViewController {
         static let UserDefaultsOnBoardingDoneKey = "OnboardingDone"
         //Segues
         static let IDFromOnboardingToMain = "OnboardingDone"
+        //SectionTableViewCell
+        static let addingButtonTitle = "⊕"
     }
 }
 

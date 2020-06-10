@@ -22,30 +22,15 @@ class SectionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addActionButton: UIButton!{
         didSet{
-            addActionButton.setTitle("+", for: .normal)
-            let attrs = [
-                NSAttributedString.Key.underlineStyle : 0]
-            let attributedString = NSMutableAttributedString(string:"")
+            let attrs = [NSAttributedString.Key.underlineStyle : 0]
+            let attributedString = NSMutableAttributedString(string:ThisWeekViewController.Defaults.addingButtonTitle, attributes:attrs)
 
-            let buttonTitleStr = NSMutableAttributedString(string:"⊕", attributes:attrs)
-            attributedString.append(buttonTitleStr)
             addActionButton.setAttributedTitle(attributedString, for: .normal)
         }
     }
     
     @IBAction func addAction(_ sender: UIButton) {
         self.delegate?.addOneTask(self)
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
