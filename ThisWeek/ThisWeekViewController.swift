@@ -681,6 +681,10 @@ extension ThisWeekViewController {
         static let notificationCategoryAlert = "ActionAlert"
         static let notificationUserDefaultsTaskName = "TaskName"
         static let notificationUserDefaultsAlarmID = "alarmID"
+        static let notificationActionIDForDone = "ACCEPT_ACTION"
+        static let notificationActionTitleForDone = "Aceptar"
+        static let notificationActionIDForDecline = "DECLINE_ACTION"
+        static let notificationActionTitleForDecline = "Declinar"
     }
 }
 

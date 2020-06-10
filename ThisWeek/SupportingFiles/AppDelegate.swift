@@ -26,15 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         UNUserNotificationCenter.current().delegate = self
         
-        let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
-              title: "Done",
+        let acceptAction = UNNotificationAction(identifier: ThisWeekViewController.Defaults.notificationActionIDForDone,
+                                                title: ThisWeekViewController.Defaults.notificationActionTitleForDone,
               options: UNNotificationActionOptions(rawValue: 0))
-        let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
-              title: "Decline",
+        let declineAction = UNNotificationAction(identifier: ThisWeekViewController.Defaults.notificationActionIDForDecline,
+                                                 title: ThisWeekViewController.Defaults.notificationActionTitleForDecline,
               options: UNNotificationActionOptions(rawValue: 0))
         // Define the notification type
         let taskCategory =
-              UNNotificationCategory(identifier: "ActionAlert",
+            UNNotificationCategory(identifier: ThisWeekViewController.Defaults.notificationCategoryAlert,
               actions: [acceptAction, declineAction],
               intentIdentifiers: [],
               hiddenPreviewsBodyPlaceholder: "",
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = response.notification.request.content.userInfo
         UIApplication.shared.applicationIconBadgeNumber =  UIApplication.shared.applicationIconBadgeNumber - 1
         switch response.actionIdentifier {
-            case "ACCEPT_ACTION":
+        case ThisWeekViewController.Defaults.notificationActionIDForDone:
                 let notification = Notification(
                     name: .DoneNotification,
                     object: self,
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 NotificationCenter.default.post(notification)
              break
                
-        case "DECLINE_ACTION":
+        case ThisWeekViewController.Defaults.notificationActionIDForDecline:
             let notification = Notification(
                 name: .UndoneNotification,
                 object: self,
