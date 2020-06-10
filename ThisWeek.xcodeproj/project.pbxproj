@@ -93,7 +93,6 @@
 		8874DBC7247D6B9000B51EE0 /* ThisWeek */ = {
 			isa = PBXGroup;
 			children = (
-				8878DB43248A84580014317A /* ThisWeek.entitlements */,
 				88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */,
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
 				8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */,
@@ -107,6 +106,7 @@
 				8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */,
 				8854C76D24898649000FDE58 /* CloudKitExtension.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
+				8878DB43248A84580014317A /* ThisWeek.entitlements */,
 				8874DBDC247D6C3600B51EE0 /* SupportingFiles */,
 			);
 			path = ThisWeek;
