@@ -11,13 +11,7 @@ import UserNotifications
 
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate  {
     
-    
-    
 //    MARK: - Model
-    //TODO: Delete this line
-//     var thisWeek = ThisWeek(startingWith: Date().addingTimeInterval(TimeInterval(exactly: -86400)!), numberOfDays: ThisWeek.Defaults.numberOfDays)
-//    private var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
-    
     var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
 
 //    MARK: - ViewController Lifecycle
@@ -32,7 +26,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func loadLogo(){
-        let image = UIImage(named: Defaults.logoName) //Your logo url here
+        let image = UIImage(named: Defaults.logoName)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
@@ -51,34 +45,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         addNotificationsObserver()
-        
-        
-        // Do any additional setup after loading the view.
-        
-//        //TO DO: Load the model
-//        print("Hardcoding model...")
-//        thisWeek.addToDo(activity: Activity(name: "Planchar", hasAReminder: false,completed: true, alarm: nil, futureDay: nil), at: 0)
-//        thisWeek.addToDo(activity: Activity(name: "Ir a comprar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 0)
-//        thisWeek.addToDo(activity: Activity(name: "Reunion con Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 1)
-//        thisWeek.addToDo(activity: Activity(name: "Salir a correr", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 2)
-//        thisWeek.addToDo(activity: Activity(name: "Leer", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
-//        thisWeek.addToDo(activity: Activity(name: "Comprar regalo para Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 3)
-//        thisWeek.addToDo(activity: Activity(name: "Cumpleaños Pepe", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 4)
-//        thisWeek.addToDo(activity: Activity(name: "Cocinar", hasAReminder: false,completed: false, alarm: nil, futureDay: nil), at: 6)
-//        thisWeek.addToDo(activity: Activity(name: "Averiguar sobre algo", hasAReminder: false,completed: false, alarm: nil, futureDay: Date().addingTimeInterval(TimeInterval(ThisWeek.Defaults.oneWeek-15*ThisWeek.Defaults.oneDay))), at: 7)
-//
-//        //TO DO: Change the model base on today
-//        print("Refreshing model, for tomorrow")
-//        thisWeek.refresh(basedOn: Date().addingTimeInterval(TimeInterval(exactly: ThisWeek.Defaults.oneDay) ?? 0),numberOfDays: ThisWeek.Defaults.numberOfDays)
-        thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!,numberOfDays: ThisWeek.Defaults.numberOfDays)
+//        thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!,numberOfDays: ThisWeek.Defaults.numberOfDays)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(animated)
-        
-           print("User defaults: Onboarding = false")
-           UserDefaults.standard.set(false, forKey: "OnboardingDone")
-       }
+        super.viewWillDisappear(animated)
+        //TODO: Delete This
+        print("User defaults: Onboarding = false")
+        UserDefaults.standard.set(false, forKey: "OnboardingDone")
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -90,7 +65,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     //    MARK: Keyboard Moves
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            weekTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height*1.1, right: 0)
+            weekTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height * Defaults.keyboardContentFactor, right: 0)
         }
     }
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -137,37 +112,33 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DoneActionCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDDoneAction, for: indexPath)
             cell.textLabel?.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor, strikethrough: true)
             // Single tap to stop reordering rows
             let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
-            singleTapGesture.numberOfTapsRequired = 1
+            singleTapGesture.numberOfTapsRequired = Defaults.numberOfTapsForStopReordering
             cell.addGestureRecognizer(singleTapGesture)
             // Long press to start reordering rows
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(enableEditingTable))
             cell.addGestureRecognizer(longPress)
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UndoneActionCell", for: indexPath) as? UndoneActionTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDUndoneAction, for: indexPath) as? UndoneActionTableViewCell
             cell?.delegate = self
             cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
             // Single tap to stop reordering rows
             let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
-            singleTapGesture.numberOfTapsRequired = 1
+            singleTapGesture.numberOfTapsRequired = Defaults.numberOfTapsForStopReordering
             cell?.addGestureRecognizer(singleTapGesture)
             // Two taps to start editing row text
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startEditingTextField))
-            tapGesture.numberOfTapsRequired = 2
+            tapGesture.numberOfTapsRequired = Defaults.numberOfTapsForStartEditingText
             cell?.addGestureRecognizer(tapGesture)
             // Long press to start reordering rows
             let longPress = UILongPressGestureRecognizer(target: self, action: #selector(enableEditingTable))
             cell?.addGestureRecognizer(longPress)
             //Resignation handler to execute when the textfield is done
             cell?.resignationHandler = { [weak self] in
-//                if let text = cell!.taskTextField.text{
-//                    self?.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setName(with: text)
-//                }
-//                self?.weekTableView.reloadData()
                 self!.sectionToRemind = indexPath.section
                 self!.itemToRemind = indexPath.item
                 self!.isEditingText = false
@@ -178,26 +149,28 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 self!.sectionToRemind = indexPath.section
                 self!.itemToRemind = indexPath.item
                 self!.hasReminder = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!
-                if indexPath.section == self!.thisWeek.days.count-1{
-                    self!.futureDay = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getFutureDay()
-                    self!.performSegue(withIdentifier: "SetDate", sender: self)
-                }else{
-                    self!.performSegue(withIdentifier: "SetTime", sender: self)
+                if(!self!.isEditingText){
+                    if indexPath.section == self!.thisWeek.days.count-1{
+                        self!.futureDay = self!.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getFutureDay()
+                        self!.performSegue(withIdentifier: Defaults.IDFromMaintoDate, sender: self)
+                    }else{
+                        self!.performSegue(withIdentifier: Defaults.IDFromMainToTime, sender: self)
+                    }
                 }
             }
             if indexPath.section == thisWeek.days.count-1{
-                cell?.buttonString = "🗓"
+                cell?.buttonString = Defaults.dateButton
                 if thisWeek.days[indexPath.section].getActivities()[indexPath.item].getFutureDay() != nil{
-                    cell?.addNewReminderButton.backgroundColor = .yellow
+                    cell?.addNewReminderButton.backgroundColor = Defaults.backgorundColorSet
                 }else{
-                    cell?.addNewReminderButton.backgroundColor = .clear
+                    cell?.addNewReminderButton.backgroundColor = Defaults.backgorundColorReset
                 }
             }else{
-                cell?.buttonString = "⏲"
+                cell?.buttonString = Defaults.reminderButton
                 if thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()!{
-                    cell?.addNewReminderButton.backgroundColor = .yellow
+                    cell?.addNewReminderButton.backgroundColor = Defaults.backgorundColorSet
                 }else{
-                    cell?.addNewReminderButton.backgroundColor = .clear
+                    cell?.addNewReminderButton.backgroundColor = Defaults.backgorundColorReset
                 }
             }
             return cell!
@@ -357,7 +330,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let headerCell = tableView.dequeueReusableCell(withIdentifier: "SectionCell") as? SectionTableViewCell{
+        if let headerCell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDSection) as? SectionTableViewCell{
             headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: preferredHeaderHeight * Defaults.headerTextSizeFactor)
             headerCell.delegate = self
             return headerCell
@@ -410,13 +383,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let alarmID = UUID().uuidString
         
         let content = UNMutableNotificationContent()
-        content.title = "Remember to complete this action"
+        content.title = Defaults.notificationTitle
         content.body = self.taskToRemind
-        content.categoryIdentifier = "ActionAlert"
+        content.categoryIdentifier = Defaults.notificationCategoryAlert
         content.sound = .default
         content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        content.userInfo = ["TaskName" : self.taskToRemind,
-                            "alarmID" : alarmID]
+        content.userInfo = [Defaults.notificationUserDefaultsTaskName : self.taskToRemind,
+                            Defaults.notificationUserDefaultsAlarmID : alarmID]
         
         let chosenTime = sender.reminderDay
         let alarmTime = chosenTime.addingTimeInterval(TimeInterval(exactly: self.sectionToRemind*ThisWeek.Defaults.oneDay) ?? 0)
@@ -467,7 +440,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
 //  MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SetTime"{
+        if segue.identifier == Defaults.IDFromMainToTime{
             if let destination = segue.destination as? SetReminderViewController, let source = segue.source as? ThisWeekViewController{
                 destination.delegate = self
                 destination.deleteButtonNeeded = source.hasReminder
@@ -478,7 +451,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
-        if segue.identifier == "SetDate"{
+        if segue.identifier == Defaults.IDFromMaintoDate{
             if let destination = segue.destination as? SetDateViewController, let source = segue.source as? ThisWeekViewController{
                 destination.delegate = self
                 destination.dayToRemember = source.futureDay
@@ -503,7 +476,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         queue: OperationQueue.main,
         using: { (notification) in
             if let userInfo = notification.userInfo?[NotificationFromUser.DoneNotificationKey] as? [String:String]{
-                self.doneActionfromNotification(taskName: userInfo["TaskName"], alarmID: userInfo["alarmID"])
+                self.doneActionfromNotification(taskName: userInfo[Defaults.notificationUserDefaultsTaskName], alarmID: userInfo[Defaults.notificationUserDefaultsAlarmID])
             }
         })
         
@@ -513,7 +486,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         queue: OperationQueue.main,
         using: { (notification) in
             if let userInfo = notification.userInfo?[NotificationFromUser.UndoneNotificationKey] as? [String:String]{
-                self.undoneActionfromNotification(taskName: userInfo["TaskName"], alarmID: userInfo["alarmID"])
+                self.undoneActionfromNotification(taskName: userInfo[Defaults.notificationUserDefaultsTaskName], alarmID: userInfo[Defaults.notificationUserDefaultsAlarmID])
             }
         })
     }
@@ -627,13 +600,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let alarmID = identifier
         
         let content = UNMutableNotificationContent()
-        content.title = "Remember to complete this action"
+        content.title = Defaults.notificationTitle
         content.body = title
-        content.categoryIdentifier = "ActionAlert"
+        content.categoryIdentifier = Defaults.notificationCategoryAlert
         content.sound = .default
         content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        content.userInfo = ["TaskName" : title,
-                            "alarmID" : identifier]
+        content.userInfo = [Defaults.notificationUserDefaultsTaskName: title,
+                            Defaults.notificationUserDefaultsAlarmID: identifier]
         
         let alarmTime = date
         let alarmTimeComps = Calendar.current.dateComponents([.year, .month, .day,.hour,.minute], from: alarmTime)
@@ -662,6 +635,19 @@ extension ThisWeekViewController {
         static let headerTextSizeFactor = CGFloat(0.47)
         static let rowSizeFactor = CGFloat(0.05)
         static let rowTextSizeFactor = CGFloat(0.45)
+        static let keyboardContentFactor = CGFloat(1.1)
+        //Cells Identifiers
+        static let cellIDDoneAction = "DoneActionCell"
+        static let cellIDUndoneAction = "UndoneActionCell"
+        static let cellIDSection = "SectionCell"
+        //Gestures
+        static let numberOfTapsForStopReordering = 1
+        static let numberOfTapsForStartEditingText = 2
+        //Buttons
+        static let reminderButton = "⏲"
+        static let dateButton = "🗓"
+        static let backgorundColorSet = UIColor.yellow
+        static let backgorundColorReset = UIColor.clear
         //SetReminderViewController
         static let cancelButtonText = "Cancelar"
         static let setButtonText = "Establecer"
@@ -684,10 +670,17 @@ extension ThisWeekViewController {
         static let UserDefaultsOnBoardingDoneKey = "OnboardingDone"
         //Segues
         static let IDFromOnboardingToMain = "OnboardingDone"
+        static let IDFromMaintoDate = "SetDate"
+        static let IDFromMainToTime = "SetTime"
         //SectionTableViewCell
         static let addingButtonTitle = "⊕"
         //Files
         static let backUpFile = "Backup.json"
+        //Notifications
+        static let notificationTitle = "Remember to complete this action"
+        static let notificationCategoryAlert = "ActionAlert"
+        static let notificationUserDefaultsTaskName = "TaskName"
+        static let notificationUserDefaultsAlarmID = "alarmID"
     }
 }
 

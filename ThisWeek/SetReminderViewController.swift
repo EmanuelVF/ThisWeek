@@ -74,12 +74,7 @@ class SetReminderViewController: UIViewController {
     }
     
     //    MARK: - Outlets
-    @IBOutlet weak var reminderDate: UIDatePicker!{
-        didSet{
-            reminderDate.minimumDate = Date()
-            reminderDate.maximumDate = nil
-        }
-    }
+    @IBOutlet weak var reminderDate: UIDatePicker!
     
     @IBOutlet weak var topLevelStack: UIStackView!
     
