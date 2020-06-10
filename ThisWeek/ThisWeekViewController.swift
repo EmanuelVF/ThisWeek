@@ -662,6 +662,7 @@ extension ThisWeekViewController {
         static let headerTextSizeFactor = CGFloat(0.47)
         static let rowSizeFactor = CGFloat(0.05)
         static let rowTextSizeFactor = CGFloat(0.45)
+        //SetReminderViewController
         static let cancelButtonText = "Cancelar"
         static let setButtonText = "Establecer"
         static let pickTimeText = "Elegir el horario de la alarma:"
@@ -670,13 +671,19 @@ extension ThisWeekViewController {
         static let alertTitle = "Se realizaron cambios en su planificación"
         static let alertMessage = "Al avanzar de día, sus tareas incompletas se movieron a la última sección."
         static let alertOk = "Aceptar"
+        //Logo
         static let logoName = "ThisWeekLogo+Title1.png"
+        //SetDateViewContoller
         static let rightButtonTextChoose = "Elegir"
         static let rightButtonTextEdit = "Editar"
         static let leftButtonTextCancel = "Cancelar"
         static let lastButtonTextDelete = "Eliminar fecha"
         static let titleTextChoose = "Elegir el día de la actividad:"
         static let titleTextInfo = "Actividad asignada al día:"
+        //UserDefaults
+        static let UserDefaultsOnBoardingDoneKey = "OnboardingDone"
+        //Segues
+        static let IDFromOnboardingToMain = "OnboardingDone"
     }
 }
 
