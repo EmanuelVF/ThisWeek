@@ -363,6 +363,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="tcz-HR-6ow"/>
                     <connections>
+                        <outlet property="getStartedButton" destination="WwS-t7-z5p" id="0dB-8E-fu7"/>
+                        <outlet property="outlineLabel" destination="nUH-i0-LQW" id="ceU-8a-rHE"/>
+                        <outlet property="planLabel" destination="Swd-G6-dcO" id="4sE-Ve-eNN"/>
+                        <outlet property="setLabel" destination="wV7-l0-68E" id="v12-SK-dSa"/>
+                        <outlet property="subTitleLabel" destination="nIE-wH-4DY" id="kMH-PD-sY2"/>
+                        <outlet property="welcomeLabel" destination="2I8-BS-HNv" id="FcN-5u-03c"/>
                         <segue destination="nHT-sI-eZj" kind="showDetail" identifier="OnboardingDone" id="xAF-s8-CNO"/>
                     </connections>
                 </viewController>

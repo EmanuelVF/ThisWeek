@@ -685,6 +685,13 @@ extension ThisWeekViewController {
         static let notificationActionTitleForDone = "Aceptar"
         static let notificationActionIDForDecline = "DECLINE_ACTION"
         static let notificationActionTitleForDecline = "Declinar"
+        //OnboardingMVC
+        static let getStartedButtonText = "Empecemos!"
+        static let welcomeLabelText = "Bienvenido a This Week !"
+        static let subTitleLabelText = "Con esta app, vas a poder:"
+        static let planLabelText = "Planear tu semana"
+        static let setLabelText = "Crear recordatorios"
+        static let outlineLabelText = "Organizar el futuro"
     }
 }
 
