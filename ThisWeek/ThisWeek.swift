@@ -17,6 +17,7 @@ struct ThisWeek:Codable {
     var json : Data?{
         return try? JSONEncoder().encode(self)
     }
+    var shouldUseBackup = false
     
 //    MARK: Functions
     

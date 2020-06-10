@@ -27,7 +27,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
         didSet{
             let days = ckThisWeekRecord[Cloud.Attribute.Days] as? Data
             if (days != nil) {
-                thisWeek = ThisWeek(json: days!)!
+                thisWeek = ThisWeek(json: days!) ?? ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
                 thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!, numberOfDays: ThisWeek.Defaults.numberOfDays)
                 // Advise that something chaged
                 if thisWeek.somethingChangedWhenRefresh{
@@ -38,6 +38,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                     alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
                     present(alert, animated: true, completion: nil)
                 }
+                saveBackUp()
                 weekTableView.reloadData()
                 syncAllNotifications()
             }
@@ -48,7 +49,12 @@ class CloudThisWeekViewController: ThisWeekViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        iCloudFetch()
+        readBackUp()
+        if !thisWeek.shouldUseBackup{
+            iCloudFetch()
+        }else{
+            self.iCloudUpdate()
+        }
         iCloudSubscribe()
     }
     
@@ -107,7 +113,40 @@ class CloudThisWeekViewController: ThisWeekViewController {
     override func deleteAFutureDay(_ sender: SetDateViewController) {
         super.deleteAFutureDay(sender)
         self.iCloudUpdate()
+        self.saveBackUp()
     }
+    
+    func saveBackUp(){
+        if let json = thisWeek.json{
+            if let url = try? FileManager.default.url(
+                for: .applicationSupportDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create : true).appendingPathComponent("Backup.json"){
+                do{
+                   try json.write(to: url)
+//                    print("Saved OK")
+                }catch let error{
+//                    print("Couldn't save \(error)")
+                }
+            }
+        }
+    }
+    
+    func readBackUp(){
+        if let url = try? FileManager.default.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("Backup.json"){
+            if let jsonData = try? Data(contentsOf: url){
+                thisWeek = ThisWeek(json: jsonData) ?? ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
+            }
+        }
+        
+    }
+    
     
     private func iCloudUpdate(){
             if !thisWeek.days.isEmpty{
@@ -121,7 +160,10 @@ class CloudThisWeekViewController: ThisWeekViewController {
     private func iCloudSaveRecord (recordToSave: CKRecord){
         database.save(recordToSave) { (savedRecord, error) in
             //parse errors here!
+            self.saveBackUp()
             if let ckError = error as? CKError{
+                self.thisWeek.shouldUseBackup = true
+                self.saveBackUp()
                 if ckError.code == CKError.Code.serverRecordChanged{
                     //ignore
                 }
