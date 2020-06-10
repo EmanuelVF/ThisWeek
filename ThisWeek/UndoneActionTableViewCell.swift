@@ -46,6 +46,10 @@ class UndoneActionTableViewCell: UITableViewCell, UITextFieldDelegate {
             taskTextField.autocapitalizationType = .sentences
             taskTextField.autocorrectionType = .yes
             taskTextField.clearButtonMode = .whileEditing
+            taskTextField.adjustsFontSizeToFitWidth = true
+            taskTextField.adjustsFontForContentSizeCategory = true
+            taskTextField.returnKeyType = .done
+            taskTextField.spellCheckingType = .yes
         }
     }
    
