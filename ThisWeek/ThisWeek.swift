@@ -10,7 +10,7 @@ import Foundation
 
 struct ThisWeek:Codable {
     
-//    MARK: Vars
+//    MARK:- Vars
     
     var days = [Day]()
     var somethingChangedWhenRefresh : Bool = false
@@ -19,7 +19,7 @@ struct ThisWeek:Codable {
     }
     var shouldUseBackup = false
     
-//    MARK: Functions
+//    MARK: - Functions
     
     func addToDo(activity: Activity ,at day : Int){
         days[day].addActivity(activity: activity)
@@ -108,8 +108,6 @@ struct ThisWeek:Codable {
                 }
             }
             days.last!.sortDay()
-            
-            //TODO: Move a programmed item to the corresponding date
             
             for indexActs in days.last!.getActivities().indices{
                 if let futureDay = days.last!.getActivities()[indexActs].getFutureDay(){
