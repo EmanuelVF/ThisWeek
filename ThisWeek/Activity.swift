@@ -10,7 +10,7 @@ import Foundation
 import EventKit
 class Activity : Codable{
     
-//    MARK: Vars
+//    MARK: -  Vars
     
     private var name : String?
     private var completed : Bool?
@@ -18,8 +18,8 @@ class Activity : Codable{
     private var alarmID : String?
     private var alarmTime : Date?
     private var futureDay : Date?
-    
-//    MARK: Initializer
+
+//    MARK: -  Functions
     
     init(name: String, hasAReminder: Bool, completed : Bool, alarmID : String?, alarmTime : Date?, futureDay: Date?){
         self.name = name
@@ -29,8 +29,6 @@ class Activity : Codable{
         self.alarmTime = alarmTime
         self.futureDay = futureDay
     }
-    
-//    MARK: Functions
     
     func setName(with newName: String){
         self.name = newName

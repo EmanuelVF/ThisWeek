@@ -9,13 +9,13 @@
 import Foundation
 class Day : Codable{
     
-//    MARK: Vars
+//    MARK:- Vars
     
     private var longDate : Date?
     private var Date : String? = ""
     private var activities = [Activity] ()
     
-//    MARK: Functions
+//    MARK:- Functions
     
     func addActivity(activity : Activity){
         activities.append(activity)
@@ -61,9 +61,5 @@ class Day : Codable{
     
     func getLongDate() -> Date?{
         return self.longDate
-    }
-    
-    init(){
-        
     }
 }
