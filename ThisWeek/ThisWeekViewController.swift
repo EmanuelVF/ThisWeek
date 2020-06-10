@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EventKit
 import UserNotifications
 
 class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate  {
@@ -399,8 +398,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     
 //    MARK: - SetReminderViewControllerDelegate
-    
-    var eventStore : EKEventStore!
     
     func addReminder(_ sender: SetReminderViewController) {
         
