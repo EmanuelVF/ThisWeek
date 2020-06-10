@@ -14,7 +14,6 @@ class OnboardingViewController: UIViewController {
     //MARK:- Functions
     
     @IBAction func done(_ sender: UIButton) {
-        print("hola)")
         UserDefaults.standard.set(true, forKey: ThisWeekViewController.Defaults.UserDefaultsOnBoardingDoneKey)
         performSegue(withIdentifier: ThisWeekViewController.Defaults.IDFromOnboardingToMain, sender: self)
     }
