@@ -39,8 +39,8 @@ class CloudThisWeekViewController: ThisWeekViewController {
                     present(alert, animated: true, completion: nil)
                 }
                 saveBackUp()
-                weekTableView.reloadData()
                 syncAllNotifications()
+                weekTableView.reloadData()
             }
         }
     }
@@ -142,6 +142,18 @@ class CloudThisWeekViewController: ThisWeekViewController {
         ).appendingPathComponent(ThisWeekViewController.Defaults.backUpFile){
             if let jsonData = try? Data(contentsOf: url){
                 thisWeek = ThisWeek(json: jsonData) ?? ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
+                thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!, numberOfDays: ThisWeek.Defaults.numberOfDays)
+                // Advise that something chaged
+                if thisWeek.somethingChangedWhenRefresh{
+                    let alert = UIAlertController(
+                        title: Defaults.alertTitle,
+                        message: Defaults.alertMessage,
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                }
+                syncAllNotifications()
+                weekTableView.reloadData()
             }
         }
         
@@ -160,6 +172,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
     private func iCloudSaveRecord (recordToSave: CKRecord){
         database.save(recordToSave) { (savedRecord, error) in
             //parse errors here!
+            self.thisWeek.shouldUseBackup = false
             self.saveBackUp()
             if let ckError = error as? CKError{
                 self.thisWeek.shouldUseBackup = true

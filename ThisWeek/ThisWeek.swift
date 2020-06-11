@@ -132,6 +132,8 @@ struct ThisWeek:Codable {
             for index in itemsToDelete{
                 _ = days.last!.removeActivity(at: index)
             }
+        }else{
+            setDaysDates(startingWith: today, using : numberOfDays, creating : false)
         }
     }
         
@@ -183,11 +185,11 @@ extension ThisWeek{
         static let numberOfDays = 8
         static let oneDay = 86400
         static let oneWeek = 8*86400
-        static let localeIdentifier = "es_AR"
-        static let laterText = "Más Tarde"
-        static let doneText = "Hecho"
-        static let unDoneText = "Deshacer"
-        static let newTaskText = "Nueva Tarea"
+        static let localeIdentifier = NSLocalizedString("en_US", comment: "")
+        static let laterText = NSLocalizedString("Later", comment: "")
+        static let doneText = NSLocalizedString("Done", comment: "")
+        static let unDoneText = NSLocalizedString("Undo", comment: "")
+        static let newTaskText = NSLocalizedString("New task", comment: "")
     }
     
 }

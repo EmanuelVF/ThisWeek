@@ -14,6 +14,8 @@
 		8838D282247D6F7600A45448 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D281247D6F7600A45448 /* Day.swift */; };
 		8838D284247D704D00A45448 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D283247D704D00A45448 /* Activity.swift */; };
 		8838D286247DBADB00A45448 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D285247DBADB00A45448 /* SectionTableViewCell.swift */; };
+		883D396624928E09008B1CAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 883D396424928E09008B1CAB /* InfoPlist.strings */; };
+		883D396924928E09008B1CAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 883D396724928E09008B1CAB /* Localizable.strings */; };
 		884E2CEB248047E200B8EDC4 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */; };
 		8854C76E24898649000FDE58 /* CloudKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854C76D24898649000FDE58 /* CloudKitExtension.swift */; };
 		8854C77024898A9E000FDE58 /* CloudThisWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */; };
@@ -36,6 +38,10 @@
 		8838D281247D6F7600A45448 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8838D283247D704D00A45448 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8838D285247DBADB00A45448 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
+		883D396224927D71008B1CAB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		883D396324927D71008B1CAB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		883D396524928E09008B1CAB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		883D396824928E09008B1CAB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		884E2CEA248047E200B8EDC4 /* SetReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReminderViewController.swift; sourceTree = "<group>"; };
 		8854C76D24898649000FDE58 /* CloudKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitExtension.swift; sourceTree = "<group>"; };
 		8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudThisWeekViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +112,8 @@
 				8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */,
 				8854C76D24898649000FDE58 /* CloudKitExtension.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
+				883D396724928E09008B1CAB /* Localizable.strings */,
+				883D396424928E09008B1CAB /* InfoPlist.strings */,
 				8878DB43248A84580014317A /* ThisWeek.entitlements */,
 				8874DBDC247D6C3600B51EE0 /* SupportingFiles */,
 			);
@@ -167,6 +175,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 8874DBBC247D6B9000B51EE0;
 			productRefGroup = 8874DBC6247D6B9000B51EE0 /* Products */;
@@ -184,8 +193,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */,
+				883D396624928E09008B1CAB /* InfoPlist.strings in Resources */,
 				8812F7BF2485908600EB8A00 /* ThisWeek logo.png in Resources */,
 				8874DBD2247D6B9300B51EE0 /* Assets.xcassets in Resources */,
+				883D396924928E09008B1CAB /* Localizable.strings in Resources */,
 				8812F7C524859E2D00EB8A00 /* ThisWeekLogo+Title1.png in Resources */,
 				8874DBD0247D6B9000B51EE0 /* Main.storyboard in Resources */,
 			);
@@ -217,10 +228,27 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		883D396424928E09008B1CAB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883D396524928E09008B1CAB /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		883D396724928E09008B1CAB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883D396824928E09008B1CAB /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8874DBCE247D6B9000B51EE0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8874DBCF247D6B9000B51EE0 /* Base */,
+				883D396224927D71008B1CAB /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -229,6 +257,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8874DBD4247D6B9300B51EE0 /* Base */,
+				883D396324927D71008B1CAB /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -240,6 +269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -300,6 +330,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

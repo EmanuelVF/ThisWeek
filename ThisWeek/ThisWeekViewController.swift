@@ -649,23 +649,23 @@ extension ThisWeekViewController {
         static let backgorundColorSet = UIColor.yellow
         static let backgorundColorReset = UIColor.clear
         //SetReminderViewController
-        static let cancelButtonText = "Cancelar"
-        static let setButtonText = "Establecer"
-        static let pickTimeText = "Elegir el horario de la alarma:"
-        static let deleteButtonText = "Eliminar recordatorio"
+        static let cancelButtonText = NSLocalizedString("Cancel", comment: "")
+        static let setButtonText = NSLocalizedString("Set",comment: "")
+        static let pickTimeText = NSLocalizedString("Pick the reminder time:",comment: "")
+        static let deleteButtonText = NSLocalizedString("Delete reminder",comment: "")
         static let pickerSizeFactor = CGFloat(1.2)
-        static let alertTitle = "Se realizaron cambios en su planificación"
-        static let alertMessage = "Al avanzar de día, sus tareas incompletas se movieron a la última sección."
-        static let alertOk = "Aceptar"
+        static let alertTitle = NSLocalizedString("Changes were made to your planning",comment: "")
+        static let alertMessage = NSLocalizedString("As the day changed, your uncomplete tasks were moved to the last section.",comment: "")
+        static let alertOk = NSLocalizedString("Acept",comment: "")
         //Logo
         static let logoName = "ThisWeekLogo+Title1.png"
         //SetDateViewContoller
-        static let rightButtonTextChoose = "Elegir"
-        static let rightButtonTextEdit = "Editar"
-        static let leftButtonTextCancel = "Cancelar"
-        static let lastButtonTextDelete = "Eliminar fecha"
-        static let titleTextChoose = "Elegir el día de la actividad:"
-        static let titleTextInfo = "Actividad asignada al día:"
+        static let rightButtonTextChoose = NSLocalizedString("Choose",comment: "")
+        static let rightButtonTextEdit = NSLocalizedString("Edit",comment: "")
+        static let leftButtonTextCancel = NSLocalizedString("Cancel",comment: "")
+        static let lastButtonTextDelete = NSLocalizedString("Delete date",comment: "")
+        static let titleTextChoose = NSLocalizedString("Pick the task date:",comment: "")
+        static let titleTextInfo = NSLocalizedString("Task assigned to the day",comment: "")
         //UserDefaults
         static let UserDefaultsOnBoardingDoneKey = "OnboardingDone"
         //Segues
@@ -677,21 +677,21 @@ extension ThisWeekViewController {
         //Files
         static let backUpFile = "Backup.json"
         //Notifications
-        static let notificationTitle = "Remember to complete this action"
+        static let notificationTitle = NSLocalizedString("Remember to complete this action",comment: "")
         static let notificationCategoryAlert = "ActionAlert"
         static let notificationUserDefaultsTaskName = "TaskName"
         static let notificationUserDefaultsAlarmID = "alarmID"
         static let notificationActionIDForDone = "ACCEPT_ACTION"
-        static let notificationActionTitleForDone = "Aceptar"
+        static let notificationActionTitleForDone = NSLocalizedString("Acept",comment: "")
         static let notificationActionIDForDecline = "DECLINE_ACTION"
-        static let notificationActionTitleForDecline = "Declinar"
+        static let notificationActionTitleForDecline = NSLocalizedString("Decline",comment: "")
         //OnboardingMVC
-        static let getStartedButtonText = "Empecemos!"
-        static let welcomeLabelText = "Bienvenido a This Week !"
-        static let subTitleLabelText = "Con esta app, vas a poder:"
-        static let planLabelText = "Planear tu semana"
-        static let setLabelText = "Crear recordatorios"
-        static let outlineLabelText = "Organizar el futuro"
+        static let getStartedButtonText = NSLocalizedString("Get started!",comment: "")
+        static let welcomeLabelText = NSLocalizedString("Welcome to This Week !",comment: "")
+        static let subTitleLabelText = NSLocalizedString("With this app, you could:",comment: "")
+        static let planLabelText = NSLocalizedString("Plan your week",comment: "")
+        static let setLabelText = NSLocalizedString("Create reminders",comment: "")
+        static let outlineLabelText = NSLocalizedString("Outline the future",comment: "")
     }
 }
 

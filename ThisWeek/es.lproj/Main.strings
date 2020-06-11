@@ -1,0 +1,54 @@
+/* Class = "UIButton"; normalTitle = "Eliminar recordatorio"; ObjectID = "0yc-id-M0h"; */
+"0yc-id-M0h.normalTitle" = "Eliminar recordatorio";
+
+/* Class = "UILabel"; text = "Welcome to This Week !"; ObjectID = "2I8-BS-HNv"; */
+"2I8-BS-HNv.text" = "Welcome to This Week !";
+
+/* Class = "UIButton"; normalTitle = "⏲"; ObjectID = "6Lc-io-ICU"; */
+"6Lc-io-ICU.normalTitle" = "⏲";
+
+/* Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "A2e-Mf-Vmm"; */
+"A2e-Mf-Vmm.normalTitle" = "Cancelar";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "fBv-R8-kTC"; */
+"fBv-R8-kTC.text" = "Title";
+
+/* Class = "UILabel"; text = "Pick the reminder time:"; ObjectID = "FiI-Jf-yZB"; */
+"FiI-Jf-yZB.text" = "Pick the reminder time:";
+
+/* Class = "UIButton"; normalTitle = "Establecer"; ObjectID = "Gdn-nN-7IJ"; */
+"Gdn-nN-7IJ.normalTitle" = "Establecer";
+
+/* Class = "UIButton"; normalTitle = "Establecer"; ObjectID = "Ipo-4g-twa"; */
+"Ipo-4g-twa.normalTitle" = "Establecer";
+
+/* Class = "UIButton"; normalTitle = "⊕"; ObjectID = "ni4-ES-lyR"; */
+"ni4-ES-lyR.normalTitle" = "⊕";
+
+/* Class = "UILabel"; text = "With this app you could:"; ObjectID = "nIE-wH-4DY"; */
+"nIE-wH-4DY.text" = "With this app you could:";
+
+/* Class = "UILabel"; text = "Outline the future!"; ObjectID = "nUH-i0-LQW"; */
+"nUH-i0-LQW.text" = "Outline the future!";
+
+/* Class = "UIButton"; normalTitle = "Eliminar recordatorio"; ObjectID = "OrJ-5X-L7q"; */
+"OrJ-5X-L7q.normalTitle" = "Eliminar recordatorio";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PqI-gI-NqJ"; */
+"PqI-gI-NqJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Pick the reminder date:"; ObjectID = "QXD-Jd-92f"; */
+"QXD-Jd-92f.text" = "Pick the reminder date:";
+
+/* Class = "UILabel"; text = "Plan your week!"; ObjectID = "Swd-G6-dcO"; */
+"Swd-G6-dcO.text" = "Plan your week!";
+
+/* Class = "UILabel"; text = "Set reminders!"; ObjectID = "wV7-l0-68E"; */
+"wV7-l0-68E.text" = "Set reminders!";
+
+/* Class = "UIButton"; normalTitle = "Get started !"; ObjectID = "WwS-t7-z5p"; */
+"WwS-t7-z5p.normalTitle" = "Get started !";
+
+/* Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "yXh-K9-pYg"; */
+"yXh-K9-pYg.normalTitle" = "Cancelar";
+
