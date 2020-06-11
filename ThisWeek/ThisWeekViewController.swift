@@ -56,8 +56,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //TODO: Delete This
-        print("User defaults: Onboarding = false")
-        UserDefaults.standard.set(false, forKey: "OnboardingDone")
+//        print("User defaults: Onboarding = false")
+//        UserDefaults.standard.set(false, forKey: "OnboardingDone")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -403,9 +403,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTimeComps, repeats: false)
         
         let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
-        center.add(request) { (error) in
-            //TODO: Parse error
-        }
+        center.add(request)
         self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarmTime(with: alarmTime)
         self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setHasAReminder(with: true)
         self.thisWeek.days[self.sectionToRemind].getActivities()[self.itemToRemind].setAlarm(with: alarmID)
@@ -623,9 +621,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTimeComps, repeats: false)
         
         let request = UNNotificationRequest(identifier: alarmID, content: content, trigger : trigger)
-        center.add(request) { (error) in
-            //TODO: Parse error
-        }
+        center.add(request)
 
         DispatchQueue.main.async {
             self.weekTableView.reloadData()
