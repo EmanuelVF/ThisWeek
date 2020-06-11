@@ -112,7 +112,7 @@ class SetDateViewController: UIViewController {
             if dayToRemember != nil{
                 rightButton.setTitle(ThisWeekViewController.Defaults.rightButtonTextEdit, for: .normal)
             }else{
-                rightButton.setTitle(ThisWeekViewController.Defaults.rightButtonTextChoose, for: .normal)
+                rightButton.setTitle(ThisWeekViewController.Defaults.setButtonText, for: .normal)
             }
         }
     }
