@@ -47,27 +47,50 @@ class CloudThisWeekViewController: ThisWeekViewController {
 
 //   MARK: - App Lifecycle
     
+    var activeObserver :NSObjectProtocol?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ckThisWeekRecord = CKRecord(recordType: Cloud.Entity.ThisWeek)
+        NotificationCenter.default.addObserver(self, selector: #selector(didActivate), name: UIScene.didActivateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didInactivate), name: UIScene.didEnterBackgroundNotification, object: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        iCloudSubscribe()
+    }
+    
+    @objc func didActivate() {
         readBackUp()
         if !thisWeek.shouldUseBackup{
             iCloudFetch()
         }else{
             self.iCloudUpdate()
         }
-        iCloudSubscribe()
     }
     
-    override func viewDidLoad() {
-            super.viewDidLoad()
-            ckThisWeekRecord = CKRecord(recordType: Cloud.Entity.ThisWeek)
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @objc func didInactivate() {
+        self.iCloudUpdate()
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.iCloudUpdate()
         iCloudUnsubscribe()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
 //   MARK: - Perform the Save
     override func endEditingTask(_ sender: UndoneActionTableViewCell) {
         super.endEditingTask(sender)
