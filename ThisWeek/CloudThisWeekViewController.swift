@@ -152,9 +152,8 @@ class CloudThisWeekViewController: ThisWeekViewController {
                 create : true).appendingPathComponent(ThisWeekViewController.Defaults.backUpFile){
                 do{
                    try json.write(to: url)
-//                    print("Saved OK")
                 }catch let error{
-//                    print("Couldn't save \(error)")
+
                 }
             }
         }
@@ -198,14 +197,16 @@ class CloudThisWeekViewController: ThisWeekViewController {
     
     private func iCloudSaveRecord (recordToSave: CKRecord){
         database.save(recordToSave) { (savedRecord, error) in
-            //parse errors here!
-            self.thisWeek.shouldUseBackup = false
-            self.saveBackUp()
-            if let ckError = error as? CKError{
-                self.thisWeek.shouldUseBackup = true
+            if error == nil{
+                self.thisWeek.shouldUseBackup = false
                 self.saveBackUp()
-                if ckError.code == CKError.Code.serverRecordChanged{
-                    //ignore
+            }else{
+                if let ckError = error as? CKError{
+                    self.thisWeek.shouldUseBackup = true
+                    self.saveBackUp()
+                    if ckError.code == CKError.Code.serverRecordChanged{
+                        //ignore
+                    }
                 }
             }
         }
@@ -227,7 +228,6 @@ class CloudThisWeekViewController: ThisWeekViewController {
         let query = CKQuery(recordType: Cloud.Entity.ThisWeek, predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: Cloud.Defaults.sortKeyModificationDate, ascending: false)] // Read the Newest
         database.perform(query,inZoneWith: nil) { (records, error) in
-            //TODO: Handle errors.
             if records != nil {
                 DispatchQueue.main.async {
                     self.allWeeks = records!
