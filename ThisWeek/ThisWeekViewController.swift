@@ -506,8 +506,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                 
             }
         }
+        saveModel()
         self.weekTableView.reloadData()
-        
     }
     
     func doneActionfromNotification(taskName : String?, alarmID :String?){
@@ -521,7 +521,11 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         self.thisWeek.days.first!.sortDay()
+        saveModel()
         self.weekTableView.reloadData()
+    }
+    
+    func saveModel(){
     }
     
     func removeNotificationsObserver(){

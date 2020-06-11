@@ -136,7 +136,11 @@ class CloudThisWeekViewController: ThisWeekViewController {
     override func deleteAFutureDay(_ sender: SetDateViewController) {
         super.deleteAFutureDay(sender)
         self.iCloudUpdate()
-        self.saveBackUp()
+    }
+    
+    override func saveModel() {
+        super.saveModel()
+        self.iCloudUpdate()
     }
     
     func saveBackUp(){
