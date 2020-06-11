@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         
         let acceptAction = UNNotificationAction(identifier: ThisWeekViewController.Defaults.notificationActionIDForDone,
-                                                title: ThisWeekViewController.Defaults.notificationActionTitleForDone,
+                                                title: ThisWeek.Defaults.doneText,
               options: UNNotificationActionOptions(rawValue: 0))
         let declineAction = UNNotificationAction(identifier: ThisWeekViewController.Defaults.notificationActionIDForDecline,
                                                  title: ThisWeekViewController.Defaults.notificationActionTitleForDecline,

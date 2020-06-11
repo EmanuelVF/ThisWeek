@@ -661,7 +661,7 @@ extension ThisWeekViewController {
         static let pickerSizeFactor = CGFloat(1.2)
         static let alertTitle = NSLocalizedString("Changes were made to your planning",comment: "")
         static let alertMessage = NSLocalizedString("As the day changed, your uncomplete tasks were moved to the last section.",comment: "")
-        static let alertOk = NSLocalizedString("Acept",comment: "")
+//        static let alertOk = NSLocalizedString("Acept",comment: "")
         //Logo
         static let logoName = "ThisWeekLogo+Title1.png"
         //SetDateViewContoller
@@ -687,7 +687,7 @@ extension ThisWeekViewController {
         static let notificationUserDefaultsTaskName = "TaskName"
         static let notificationUserDefaultsAlarmID = "alarmID"
         static let notificationActionIDForDone = "ACCEPT_ACTION"
-        static let notificationActionTitleForDone = NSLocalizedString("Acept",comment: "")
+//        static let notificationActionTitleForDone = NSLocalizedString("Acept",comment: "")
         static let notificationActionIDForDecline = "DECLINE_ACTION"
         static let notificationActionTitleForDecline = NSLocalizedString("Decline",comment: "")
         //OnboardingMVC

@@ -35,7 +35,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                         title: Defaults.alertTitle,
                         message: Defaults.alertMessage,
                         preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: ThisWeek.Defaults.doneText, style: .default, handler: nil))
                     present(alert, animated: true, completion: nil)
                 }
                 saveBackUp()
@@ -172,7 +172,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                         title: Defaults.alertTitle,
                         message: Defaults.alertMessage,
                         preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: Defaults.alertOk, style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: ThisWeek.Defaults.doneText, style: .default, handler: nil))
                     present(alert, animated: true, completion: nil)
                 }
                 syncAllNotifications()
