@@ -174,7 +174,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdn-nN-7IJ">
                                                 <rect key="frame" x="155" y="0.0" width="136" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="Establecer"/>
+                                                <state key="normal" title="Establecer">
+                                                    <color key="titleColor" red="0.014974011650000001" green="0.1120302644" blue="0.75058148579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="set:" destination="8hs-mi-dOB" eventType="touchUpInside" id="PSZ-2d-Vkj"/>
                                                 </connections>
@@ -252,7 +254,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipo-4g-twa">
                                                 <rect key="frame" x="155" y="0.0" width="136" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="Establecer"/>
+                                                <state key="normal" title="Establecer">
+                                                    <color key="titleColor" red="0.014974011649885696" green="0.11203026435000882" blue="0.75058148579238582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="rightButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="zmZ-e7-1JW"/>
                                                     <action selector="set:" destination="8hs-mi-dOB" eventType="touchUpInside" id="YNm-hS-4LV"/>

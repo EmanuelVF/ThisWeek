@@ -25,6 +25,11 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidAppear(animated)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        weekTableView.reloadData()
+    }
+    
     private func loadLogo(){
         let image = UIImage(named: Defaults.logoName)
         let imageView = UIImageView(image: image)
