@@ -324,6 +324,13 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="650" translatesAutoresizingMaskIntoConstraints="NO" id="29H-bv-80A">
                                 <rect key="frame" x="0.0" y="44" width="414" height="650"/>
                             </scrollView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThisWeekLogo+Title1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ABU-lp-DW4">
+                                <rect key="frame" x="4" y="44" width="406" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="406" id="hND-7A-Kbm"/>
+                                    <constraint firstAttribute="width" secondItem="ABU-lp-DW4" secondAttribute="height" multiplier="135:26" id="wAf-kM-6qn"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -331,6 +338,8 @@
                             <constraint firstItem="WwS-t7-z5p" firstAttribute="top" secondItem="ooo-BL-Q1O" secondAttribute="bottom" constant="22" id="K7a-km-U4h"/>
                             <constraint firstItem="ooo-BL-Q1O" firstAttribute="centerX" secondItem="wJJ-cv-TJr" secondAttribute="centerX" id="WBs-ud-Iwm"/>
                             <constraint firstItem="wJJ-cv-TJr" firstAttribute="trailing" secondItem="29H-bv-80A" secondAttribute="trailing" id="ZxR-Bs-9bQ"/>
+                            <constraint firstItem="ABU-lp-DW4" firstAttribute="centerX" secondItem="wJJ-cv-TJr" secondAttribute="centerX" id="ac6-GJ-jRT"/>
+                            <constraint firstItem="ABU-lp-DW4" firstAttribute="top" secondItem="wJJ-cv-TJr" secondAttribute="top" id="jr4-Jh-J3C"/>
                             <constraint firstItem="WwS-t7-z5p" firstAttribute="centerX" secondItem="wJJ-cv-TJr" secondAttribute="centerX" id="kEG-VH-GMn"/>
                             <constraint firstItem="wJJ-cv-TJr" firstAttribute="bottom" secondItem="WwS-t7-z5p" secondAttribute="bottom" constant="27" id="rih-Le-oLy"/>
                             <constraint firstItem="29H-bv-80A" firstAttribute="top" secondItem="wJJ-cv-TJr" secondAttribute="top" id="w7q-ug-CvA"/>
@@ -369,4 +378,7 @@
             <point key="canvasLocation" x="-162.31884057971016" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ThisWeekLogo+Title1.png" width="2126" height="396"/>
+    </resources>
 </document>

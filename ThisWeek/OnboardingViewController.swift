@@ -38,6 +38,8 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
         scrollHeight = onboardingScrollView.frame.size.height
     }
     override func viewDidLoad() {
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         //to call viewDidLayoutSubviews() and get dynamic width and height of scrollview
@@ -89,6 +91,11 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
         //initial state
         pageControl.numberOfPages = titles.count
         pageControl.currentPage = 0
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
 
     }
     

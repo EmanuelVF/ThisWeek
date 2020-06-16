@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		881186EA2498062200481D36 /* ThisWeekLogo+Title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 881186E92498062200481D36 /* ThisWeekLogo+Title1.png */; };
 		881186EC2498090300481D36 /* ThisWeek logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 881186EB2498090300481D36 /* ThisWeek logo.png */; };
 		882BFE7B248A870A00DC5F03 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 882BFE7A248A870A00DC5F03 /* CloudKit.framework */; };
 		8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D27F247D6E5400A45448 /* ThisWeek.swift */; };
@@ -28,10 +27,10 @@
 		8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8874DBD3247D6B9300B51EE0 /* LaunchScreen.storyboard */; };
 		887CEBC4247EC9AF001047FE /* UndoneActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */; };
 		88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */; };
+		88EEAEDD24996A5C00630CF7 /* ThisWeekLogo+Title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88EEAEDC24996A5C00630CF7 /* ThisWeekLogo+Title1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		881186E92498062200481D36 /* ThisWeekLogo+Title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeekLogo+Title1.png"; sourceTree = "<group>"; };
 		881186EB2498090300481D36 /* ThisWeek logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeek logo.png"; sourceTree = "<group>"; };
 		882BFE7A248A870A00DC5F03 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8838D27F247D6E5400A45448 /* ThisWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeek.swift; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		8878DB43248A84580014317A /* ThisWeek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThisWeek.entitlements; sourceTree = "<group>"; };
 		887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoneActionTableViewCell.swift; sourceTree = "<group>"; };
 		88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		88EEAEDC24996A5C00630CF7 /* ThisWeekLogo+Title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeekLogo+Title1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 				8874DBD1247D6B9300B51EE0 /* Assets.xcassets */,
 				8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */,
 				8874DBD3247D6B9300B51EE0 /* LaunchScreen.storyboard */,
-				881186E92498062200481D36 /* ThisWeekLogo+Title1.png */,
+				88EEAEDC24996A5C00630CF7 /* ThisWeekLogo+Title1.png */,
 				881186EB2498090300481D36 /* ThisWeek logo.png */,
 			);
 			path = SupportingFiles;
@@ -194,7 +194,7 @@
 			files = (
 				8874DBD5247D6B9300B51EE0 /* LaunchScreen.storyboard in Resources */,
 				883D396624928E09008B1CAB /* InfoPlist.strings in Resources */,
-				881186EA2498062200481D36 /* ThisWeekLogo+Title1.png in Resources */,
+				88EEAEDD24996A5C00630CF7 /* ThisWeekLogo+Title1.png in Resources */,
 				8874DBD2247D6B9300B51EE0 /* Assets.xcassets in Resources */,
 				883D396924928E09008B1CAB /* Localizable.strings in Resources */,
 				8874DBD0247D6B9000B51EE0 /* Main.storyboard in Resources */,
