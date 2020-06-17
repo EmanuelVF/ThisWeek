@@ -152,7 +152,7 @@ class CloudThisWeekViewController: ThisWeekViewController {
                 create : true).appendingPathComponent(ThisWeekViewController.Defaults.backUpFile){
                 do{
                    try json.write(to: url)
-                }catch let error{
+                }catch{ //let error{
 
                 }
             }
