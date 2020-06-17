@@ -18,7 +18,7 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
     }
     
    @IBAction func pageChanged(_ sender: UIPageControl) {
-        onboardingScrollView!.scrollRectToVisible(CGRect(x: scrollWidth * CGFloat ((pageControl?.currentPage)!), y: 0, width: scrollWidth, height: scrollHeight), animated: true)
+    onboardingScrollView!.scrollRectToVisible(CGRect(x: scrollWidth * CGFloat ((pageControl?.currentPage)!), y: Defaults.yInitialPosition, width: scrollWidth, height: scrollHeight), animated: true)
     }
     
     //MARK:- Outlets
@@ -59,8 +59,7 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
 
     //data for the slides
     var titles = [ThisWeekViewController.Defaults.planLabelText,ThisWeekViewController.Defaults.setLabelText,ThisWeekViewController.Defaults.outlineLabelText]
-    var descs = ["","",""]
-    var imgs = ["onboarding_plan","onboarding_reminder","onboarding_calendar"]
+    var imgs = [Defaults.planImage,Defaults.reminderImage,Defaults.calendarImage]
     
     func drawAll() {
         let allSubviews = onboardingScrollView.subviews
@@ -68,7 +67,7 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
             allSubviews[index].removeFromSuperview()
         }
         
-        var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        var frame = CGRect.zero
 
         for index in 0..<titles.count {
             frame.origin.x = scrollWidth * CGFloat(index)
@@ -76,11 +75,17 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
 
             let slide = UIView(frame: frame)
             let imageView = UIImageView.init(image: UIImage.init(named: imgs[index]))
-            imageView.frame = CGRect(x:0,y:0,width:min(scrollWidth/2,scrollHeight/2),height:min(scrollWidth/2,scrollHeight/2))
+            imageView.frame = CGRect( x: 0,
+                                      y: 0,
+                                      width : min(scrollWidth/2, scrollHeight/2),
+                                      height : min(scrollWidth/2, scrollHeight/2))
             imageView.contentMode = .scaleAspectFit
-            imageView.center = CGPoint(x:scrollWidth/2,y: 1*scrollHeight/3)
+            imageView.center = CGPoint(x:scrollWidth/2,y: scrollHeight/3)
             
-            let txt1 = UILabel.init(frame: CGRect(x:0,y:imageView.frame.maxY + 0.2 * imageView.frame.height,width:scrollWidth,height: min(scrollWidth/8,scrollHeight/4)))
+            let txt1 = UILabel.init(frame: CGRect(x : 0,
+                                                  y : imageView.frame.maxY + 0.2 * imageView.frame.height,
+                                                  width : scrollWidth,
+                                                  height: min(scrollWidth/8,scrollHeight/4)))
             txt1.textAlignment = .center
             txt1.font = UIFont.preferredFont(forTextStyle: .title1)
             txt1.adjustsFontForContentSizeCategory = true
@@ -92,9 +97,10 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
 
         }
         onboardingScrollView.contentSize = CGSize(width: scrollWidth * CGFloat(titles.count), height: scrollHeight)
-        onboardingScrollView.contentSize.height = 1.0
+        onboardingScrollView.contentSize.height = Defaults.height
         pageControl.numberOfPages = titles.count
-        pageControl.currentPage = 0
+        pageControl.currentPage = Defaults.initialPage
+        onboardingScrollView.scrollRectToVisible(CGRect(x: Defaults.xInitialPosition, y: Defaults.yInitialPosition, width: scrollWidth, height: scrollHeight), animated: true)
     }
 
     
@@ -109,3 +115,17 @@ class OnboardingViewController: UIViewController , UIScrollViewDelegate{
         pageControl?.currentPage = Int(page)
     }
 }
+
+extension OnboardingViewController {
+    struct Defaults {
+        static let yInitialPosition = CGFloat(0)
+        static let xInitialPosition = CGFloat(0)
+        static let planImage = "onboarding_plan"
+        static let reminderImage = "onboarding_reminder"
+        static let calendarImage = "onboarding_calendar"
+        static let initialPage = 0
+        static let height = CGFloat(1.0)
+    }
+}
+
+
