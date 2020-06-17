@@ -45,7 +45,7 @@
 		8854C76D24898649000FDE58 /* CloudKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitExtension.swift; sourceTree = "<group>"; };
 		8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudThisWeekViewController.swift; sourceTree = "<group>"; };
 		886B62D424883391006A2E9A /* SetDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateViewController.swift; sourceTree = "<group>"; };
-		8874DBC5247D6B9000B51EE0 /* ThisWeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThisWeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8874DBC5247D6B9000B51EE0 /* 7D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 7D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8874DBC8247D6B9000B51EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8874DBCA247D6B9000B51EE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		8874DBC6247D6B9000B51EE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8874DBC5247D6B9000B51EE0 /* ThisWeek.app */,
+				8874DBC5247D6B9000B51EE0 /* 7D.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,7 +150,7 @@
 			);
 			name = ThisWeek;
 			productName = ThisWeek;
-			productReference = 8874DBC5247D6B9000B51EE0 /* ThisWeek.app */;
+			productReference = 8874DBC5247D6B9000B51EE0 /* 7D.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -395,7 +395,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Emanuel.ThisWeek;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 7D;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -415,7 +415,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Emanuel.ThisWeek;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 7D;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
