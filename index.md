@@ -1,6 +1,16 @@
 ---
 layout: 7D
 ---
+# Description
+
+# Download
+
+# FAQ
+
+# Privacy
+
+# Support
+
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
