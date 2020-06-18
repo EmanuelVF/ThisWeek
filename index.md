@@ -28,3 +28,9 @@ In case you have some activities that are not for this week, you could **schedul
 ### [Privacy](./privacy.html)
 
 ### [Support](./support.html)
+
+<p align="center">
+  <b><a href="./faq.html">FAQ:</a></b><br>
+  <b><a href="./privacy.html">Privacy:</a></b><br>
+  <br><br>
+</p>
