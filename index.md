@@ -22,12 +22,9 @@ In case you have some activities that are not for this week, you could **schedul
   <img src="./assets/appleLogo.png">
 </p>
 * * *
-<p align="center">
 
 ### [FAQ](./faq.html)
 
 ### [Privacy](./privacy.html)
 
 ### [Support](./support.html)
-
-</p>
