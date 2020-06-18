@@ -20,7 +20,9 @@ In case you have some activities that are not for this week, you could **schedul
 
 
 # Download
-Download in apple Store!
+<p align="center">
+  <img src="./assets/appleLogo.eps">
+</p>
 
 ### [FAQ](./faq.html)
 
