@@ -12,11 +12,11 @@ d g dfgdgfdgfdfgdfgdgdfgdffgdgdg dg dg d gd dg g g d fg dg d fdg d gdf df fgg dg
 # Download
 Download in apple Store!
 
-## FAQ
+### FAQ
 
-## Privacy
+### Privacy
 
-## Support
+### Support
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
