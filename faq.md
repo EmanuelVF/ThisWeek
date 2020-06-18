@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: 7D
 ---
 
 ## Welcome to another page
