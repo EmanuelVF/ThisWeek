@@ -17,13 +17,17 @@ In case you have some activities that are not for this week, you could **schedul
 <p align="center">
   <img src="./assets/Onboarding_Calendar.png" width="230" height="230">
 </p>
-
+* * *
 <p align="center">
   <img src="./assets/appleLogo.png">
 </p>
+* * *
+<p align="center">
 
 ### [FAQ](./faq.html)
 
 ### [Privacy](./privacy.html)
 
 ### [Support](./support.html)
+
+</p>
