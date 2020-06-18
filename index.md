@@ -12,7 +12,7 @@ d g dfgdgfdgfdfgdfgdgdfgdffgdgdg dg dg d gd dg g g d fg dg d fdg d gdf df fgg dg
 ![Octocat](./assets/Onboarding_reminder.png)
  dfg fd gd fgf d gdf
  
- ![Octocat](./assets/Onboarding_calendar.png)
+ ![Octocat](./assets/Onboarding_Calendar.png)
 
 # Download
 Download in apple Store!
