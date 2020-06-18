@@ -8,18 +8,18 @@ gdf gd fgd gd gf dg df gfd fg df
 g dfg
 
 <p align="center">
-  <img src="./assets/Onboarding_plan.png" width="300" height="300">
+  <img src="./assets/Onboarding_plan.png" width="250" height="250">
 </p>
 
 d g dfgdgfdgfdfgdfgdgdfgdffgdgdg dg dg d gd dg g g d fg dg d fdg d gdf df fgg dg dgd f gd gfd fg dfg fd gd fgfd
 
 <p align="center">
-  <img src="./assets/Onboarding_reminder.png" width="300" height="300">
+  <img src="./assets/Onboarding_reminder.png" width="250" height="250">
 </p>
 
 
 <p align="center">
-  <img src="./assets/Onboarding_Calendar.png" width="300" height="300">
+  <img src="./assets/Onboarding_Calendar.png" width="250" height="250">
 </p>
 
 
