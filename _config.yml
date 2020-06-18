@@ -1,6 +1,6 @@
 title: 7D
 logo: 
-description: This is an app to organize your weekly tasks.
-show_downloads: true
+description: This is an app to organize your weekly tasks
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
