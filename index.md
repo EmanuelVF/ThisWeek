@@ -10,7 +10,7 @@ g dfg
 d g dfgdgfdgfdfgdfgdgdfgdffgdgdg dg dg d gd dg g g d fg dg d fdg d gdf df fgg dg dgd f gd gfd fg dfg fd gd fgfd
 
 <p align="center">
-  <img src="./assets/Onboarding_reminder.png" width="100" height="100">
+  <img src="./assets/Onboarding_reminder.png" width="200" height="200">
 </p>
 
 <img src="./assets/Onboarding_reminder.png" width="100" height="100">
