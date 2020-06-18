@@ -2,22 +2,19 @@
 layout: 7D
 ---
 
-jnrfvdxvfsd
-dfsvfdsfvsdf sdfvsdfvsfv dsv sd vds vs df dv  d dfgdfgdfgdg dfgdgdfgd  dfgdfgd dfg d gfd gfd g dfg d gd gdf gd gdf
-gdf gd fgd gd gf dg df gfd fg df
-g dfg
+### What do you have to do tomorrow? And the day after? Keep in mind you should go to the doctor on Friday. Next week, remind to send an email to Phil. With **Seven Days** you can **plan** all these actions in a eficient way. 
 
 <p align="center">
   <img src="./assets/Onboarding_plan.png" width="250" height="250">
 </p>
 
-d g dfgdgfdgfdfgdfgdgdfgdffgdgdg dg dg d gd dg g g d fg dg d fdg d gdf df fgg dg dgd f gd gfd fg dfg fd gd fgfd
+### Also you could add **reminders** at certain time if you need it.
 
 <p align="center">
   <img src="./assets/Onboarding_reminder.png" width="250" height="250">
 </p>
 
-
+### In case you have some activities that are not for this week, you could **schedule** them too.
 <p align="center">
   <img src="./assets/Onboarding_Calendar.png" width="250" height="250">
 </p>
