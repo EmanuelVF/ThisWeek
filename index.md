@@ -21,7 +21,7 @@ In case you have some activities that are not for this week, you could **schedul
 
 # Download
 <p align="center">
-  <img src="./assets/appleLogo.eps">
+  <img src="./assets/appleLogo.png">
 </p>
 
 ### [FAQ](./faq.html)
