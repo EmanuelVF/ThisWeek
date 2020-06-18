@@ -2,11 +2,12 @@
 layout: 7D
 ---
 
-## Welcome to another page
+## Support
 
-_yay_
+Do you need help?
+Email me and I'll get back to you as soon as I could! 
 
-[back](./)
+_**emanuelvillafernandez@gmail.com**_
 
 * * *
 <p align="center">
