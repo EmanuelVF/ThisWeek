@@ -1,5 +1,6 @@
+title: 7D
+logo: 
+description: This is an app to organize your weekly tasks.
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-minimal
-title: [7D]
-description: [This is an app to organize your weekly tasks]
-logo: [Location of the logo]
-show_downloads: ["true"]
