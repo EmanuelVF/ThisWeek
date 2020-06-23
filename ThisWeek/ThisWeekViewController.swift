@@ -249,12 +249,31 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             completionHandler(true)
         }
         swipe.backgroundColor = UIColor.green
+                
+        let delete = UIContextualAction(style: .destructive, title: ThisWeek.Defaults.deleteText){(action, sourceView, completionHandler) in
+            if self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].hasItAReminder()! {
+                self.removeReminder(alarm : self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getAlarm()!, withTitle: self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()!)
+                self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setAlarm(with: nil)
+                self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setHasAReminder(with: false)
+                self.thisWeek.days[indexPath.section].getActivities()[indexPath.item].setAlarmTime(with: nil)
+            }
+            _ = self.thisWeek.removeToDo(at: indexPath.section, position: indexPath.item)
+            self.weekTableView.deleteRows(at: [indexPath], with: .fade)
+            self.thisWeek.days[indexPath.section].sortDay()
+            self.weekTableView.reloadData()
+            self.deleteActions()
+            completionHandler(true)
+        }
+
+        
         
         if !thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()! {
-            let swipeTrailingAction = UISwipeActionsConfiguration(actions: [swipe])
+            let swipeTrailingAction = UISwipeActionsConfiguration(actions: [swipe,delete])
             swipeTrailingAction.performsFirstActionWithFullSwipe = true
             return swipeTrailingAction
         }else{
+            let swipeTrailingAction = UISwipeActionsConfiguration(actions: [delete])
+            swipeTrailingAction.performsFirstActionWithFullSwipe = true
             return nil
         }
     }

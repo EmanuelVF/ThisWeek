@@ -188,6 +188,7 @@ extension ThisWeek{
         static let localeIdentifier = NSLocalizedString("en_US", comment: "")
         static let laterText = NSLocalizedString("Later", comment: "")
         static let doneText = NSLocalizedString("Done", comment: "")
+        static let deleteText = NSLocalizedString("Delete", comment: "")
         static let unDoneText = NSLocalizedString("Undo", comment: "")
         static let newTaskText = NSLocalizedString("New task", comment: "")
     }
