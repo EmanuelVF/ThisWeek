@@ -1,0 +1,6 @@
+title: Seven Days
+logo: /assets/logo.png
+description: This is an app to organize your weekly tasks
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-minimal
