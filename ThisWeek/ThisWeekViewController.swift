@@ -118,7 +118,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         if thisWeek.days[indexPath.section].getActivities()[indexPath.item].isCompleted()!{
             let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDDoneAction, for: indexPath)
-            cell.textLabel?.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor, strikethrough: true)
+            cell.textLabel?.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: Defaults.preferredRowSize * Defaults.rowTextSizeFactor, strikethrough: true)
             // Single tap to stop reordering rows
             let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
             singleTapGesture.numberOfTapsRequired = Defaults.numberOfTapsForStopReordering
@@ -130,7 +130,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDUndoneAction, for: indexPath) as? UndoneActionTableViewCell
             cell?.delegate = self
-            cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
+            cell?.taskTextField.attributedText = alignLeftAttributedString( thisWeek.days[indexPath.section].getActivities()[indexPath.item].getName()! , fontsize: Defaults.preferredRowSize * Defaults.rowTextSizeFactor , strikethrough: false)
             // Single tap to stop reordering rows
             let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(disableEditingTable))
             singleTapGesture.numberOfTapsRequired = Defaults.numberOfTapsForStopReordering
@@ -188,12 +188,8 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     private var hasReminder = false
     private var futureDay : Date? = nil
     
-    
-    private var preferredRowSize = CGFloat(0)
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        preferredRowSize = view.bounds.height * Defaults.rowSizeFactor
-        return preferredRowSize
+        return Defaults.preferredRowSize
     }
     
     //  MARK: Gestures selectors
@@ -336,19 +332,16 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDSection) as? SectionTableViewCell{
-            headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: preferredHeaderHeight * Defaults.headerTextSizeFactor)
+            headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: Defaults.preferredHeaderHeight * Defaults.headerTextSizeFactor)
             headerCell.delegate = self
             return headerCell
         }else{
             return nil
         }
     }
-    
-    private var preferredHeaderHeight = CGFloat(0)
-    
+        
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        preferredHeaderHeight = view.bounds.height * Defaults.headerSizeFactor
-        return preferredHeaderHeight
+        return Defaults.preferredHeaderHeight
     }
     
 //      MARK: -  SectionTableViewCellDelegate
@@ -636,10 +629,10 @@ extension ThisWeekViewController {
     struct Defaults {
         static let oneDay = 86400
         static let oneWeek = 8*86400
-        static let headerSizeFactor = CGFloat(0.05)
+        static let preferredHeaderHeight = CGFloat(43)
         static let headerTextSizeFactor = CGFloat(0.47)
-        static let rowSizeFactor = CGFloat(0.05)
         static let rowTextSizeFactor = CGFloat(0.45)
+        static let preferredRowSize = CGFloat(40)
         static let keyboardContentFactor = CGFloat(1.1)
         //Cells Identifiers
         static let cellIDDoneAction = "DoneActionCell"
