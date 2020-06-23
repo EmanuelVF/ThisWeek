@@ -22,7 +22,8 @@ class SectionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addActionButton: UIButton!{
         didSet{
-            let attrs = [NSAttributedString.Key.underlineStyle : 0]
+            let attrs = [NSAttributedString.Key.underlineStyle : 0,
+                         NSAttributedString.Key.foregroundColor : UIColor.white] as [NSAttributedString.Key : Any]
             let attributedString = NSMutableAttributedString(string:ThisWeekViewController.Defaults.addingButtonTitle, attributes:attrs)
 
             addActionButton.setAttributedTitle(attributedString, for: .normal)

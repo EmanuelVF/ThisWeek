@@ -651,7 +651,7 @@ extension ThisWeekViewController {
         //Buttons
         static let reminderButton = "⏲"
         static let dateButton = "🗓"
-        static let backgorundColorSet = UIColor.yellow
+        static let backgorundColorSet = UIColor.green
         static let backgorundColorReset = UIColor.clear
         //SetReminderViewController
         static let cancelButtonText = NSLocalizedString("Cancel", comment: "")
