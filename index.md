@@ -19,6 +19,7 @@ In case you have some activities that are not for this week, you could **schedul
 </p>
 * * *
 <p align="center">
+  href="https://apps.apple.com/ar/app/7d/id1518118979#?platform=ipad">
   <img src="./assets/appleLogo.png">
 </p>
 * * *
