@@ -18,7 +18,7 @@ In case you have some activities that are not for this week, you could **schedul
   <img src="./assets/Onboarding_Calendar.png" width="230" height="230">
 </p>
 * * * 
-  <a align="center" href="https://apps.apple.com/ar/app/7d/id1518118979#?platform=ipad">
+  <a href="https://apps.apple.com/ar/app/7d/id1518118979#?platform=ipad">
   <img src="./assets/appleLogo.png">
   </a>
 * * *
