@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nHT-sI-eZj">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cloud This Week View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CloudThisWeekViewController" customModule="ThisWeek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qyy-1K-ald">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DoneActionCell" textLabel="fBv-R8-kTC" style="IBUITableViewCellStyleDefault" id="jn8-g3-gAn">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jn8-g3-gAn" id="PeK-1d-ndT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fBv-R8-kTC">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UndoneActionCell" id="EP2-eQ-eew" customClass="UndoneActionTableViewCell" customModule="ThisWeek" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EP2-eQ-eew" id="9fX-Ky-NcJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wf-n6-2oh">
+                                                    <rect key="frame" x="20" y="12.5" width="320" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-io-ICU">
+                                                    <rect key="frame" x="348" y="4" width="46" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="6JP-Pp-wXa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="⏲"/>
+                                                    <connections>
+                                                        <action selector="addReminderButton:" destination="EP2-eQ-eew" eventType="touchUpInside" id="u1z-5K-JUs"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="6Lc-io-ICU" secondAttribute="trailing" constant="20" symbolic="YES" id="P4S-YT-khT"/>
+                                                <constraint firstItem="9wf-n6-2oh" firstAttribute="centerY" secondItem="9fX-Ky-NcJ" secondAttribute="centerY" id="Y3Y-hJ-qAG"/>
+                                                <constraint firstItem="6Lc-io-ICU" firstAttribute="leading" secondItem="9wf-n6-2oh" secondAttribute="trailing" constant="8" symbolic="YES" id="Zfb-aF-GER"/>
+                                                <constraint firstItem="9wf-n6-2oh" firstAttribute="leading" secondItem="9fX-Ky-NcJ" secondAttribute="leading" constant="20" symbolic="YES" id="pCs-aG-mTU"/>
+                                                <constraint firstItem="6Lc-io-ICU" firstAttribute="centerY" secondItem="9fX-Ky-NcJ" secondAttribute="centerY" id="tS6-Aj-20m"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addNewReminderButton" destination="6Lc-io-ICU" id="r7d-zn-Yio"/>
+                                            <outlet property="taskTextField" destination="9wf-n6-2oh" id="fQH-F3-OdT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionCell" id="8lB-Tl-EoN" customClass="SectionTableViewCell" customModule="ThisWeek" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="142.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8lB-Tl-EoN" id="B27-C6-jig">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqI-gI-NqJ">
+                                                    <rect key="frame" x="28" y="11.5" width="328" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ni4-ES-lyR">
+                                                    <rect key="frame" x="364" y="-2.5" width="30" height="48.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="yCU-ZO-Do0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="⊕">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addAction:" destination="8lB-Tl-EoN" eventType="touchUpInside" id="gdh-Ol-YiR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ni4-ES-lyR" firstAttribute="centerY" secondItem="B27-C6-jig" secondAttribute="centerY" id="4Lt-AM-m6C"/>
+                                                <constraint firstItem="PqI-gI-NqJ" firstAttribute="leading" secondItem="B27-C6-jig" secondAttribute="leadingMargin" constant="8" id="TRp-Xj-zGX"/>
+                                                <constraint firstItem="PqI-gI-NqJ" firstAttribute="centerY" secondItem="B27-C6-jig" secondAttribute="centerY" id="fVa-Z8-FUh"/>
+                                                <constraint firstAttribute="trailing" secondItem="ni4-ES-lyR" secondAttribute="trailing" constant="20" symbolic="YES" id="kxV-GG-1tU"/>
+                                                <constraint firstItem="ni4-ES-lyR" firstAttribute="leading" secondItem="PqI-gI-NqJ" secondAttribute="trailing" constant="8" id="oax-hd-fLT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="addActionButton" destination="ni4-ES-lyR" id="Ki5-N2-eUg"/>
+                                            <outlet property="titleLabel" destination="PqI-gI-NqJ" id="Twj-0t-l5q"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qyy-1K-ald" secondAttribute="trailing" id="7La-D8-qi7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qyy-1K-ald" secondAttribute="bottom" id="TAh-mb-h4y"/>
+                            <constraint firstItem="qyy-1K-ald" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZgW-Ti-O4f"/>
+                            <constraint firstItem="qyy-1K-ald" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xj8-Ch-3TT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LeW-KV-VAV"/>
+                    <connections>
+                        <outlet property="weekTableView" destination="qyy-1K-ald" id="aEY-7E-qzg"/>
+                        <segue destination="8hs-mi-dOB" kind="presentation" identifier="SetTime" modalPresentationStyle="formSheet" id="6vL-oh-GMK"/>
+                        <segue destination="BLz-pp-OYd" kind="presentation" identifier="SetDate" modalPresentationStyle="formSheet" id="BOF-cm-euV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.82608695652175" y="133.92857142857142"/>
+        </scene>
+        <!--Set Reminder View Controller-->
+        <scene sceneID="dbG-EC-xOE">
+            <objects>
+                <viewController id="8hs-mi-dOB" customClass="SetReminderViewController" customModule="ThisWeek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TDg-fE-uMG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-33-vSb">
+                                <rect key="frame" x="47" y="199" width="320" height="444"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the reminder time:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiI-Jf-yZB">
+                                        <rect key="frame" x="13" y="0.0" width="294" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-6s-xPl">
+                                        <rect key="frame" x="0.0" y="68" width="320" height="216"/>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="JPN-Nx-BCm">
+                                        <rect key="frame" x="14.5" y="316" width="291" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2e-Mf-Vmm">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="8hs-mi-dOB" eventType="touchUpInside" id="cXN-Hv-y8S"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdn-nN-7IJ">
+                                                <rect key="frame" x="155" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Establecer"/>
+                                                <connections>
+                                                    <action selector="set:" destination="8hs-mi-dOB" eventType="touchUpInside" id="PSZ-2d-Vkj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-5X-L7q">
+                                        <rect key="frame" x="28" y="396" width="264" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Eliminar recordatorio">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleActualReminder:" destination="8hs-mi-dOB" eventType="touchUpInside" id="0Id-AJ-4uK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QPb-33-vSb" firstAttribute="centerX" secondItem="TDg-fE-uMG" secondAttribute="centerX" id="igR-bd-ATs"/>
+                            <constraint firstItem="QPb-33-vSb" firstAttribute="centerY" secondItem="TDg-fE-uMG" secondAttribute="centerY" id="ofe-KI-9to"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QWu-fB-C5A"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DFU-Vm-GGr"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="A2e-Mf-Vmm" id="lFB-l0-wle"/>
+                        <outlet property="deleteReminderButton" destination="OrJ-5X-L7q" id="hRX-sl-XhJ"/>
+                        <outlet property="pickTimeLabel" destination="FiI-Jf-yZB" id="S7z-42-DSX"/>
+                        <outlet property="reminderDate" destination="Cdr-6s-xPl" id="Qn9-Dv-QX0"/>
+                        <outlet property="setButton" destination="Gdn-nN-7IJ" id="COx-Gq-59q"/>
+                        <outlet property="topLevelStack" destination="QPb-33-vSb" id="NbK-YK-5PE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bTE-rK-lv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="925"/>
+        </scene>
+        <!--Set Date View Controller-->
+        <scene sceneID="deM-En-HzO">
+            <objects>
+                <viewController id="BLz-pp-OYd" customClass="SetDateViewController" customModule="ThisWeek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="393-iW-DBB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Hs-ZqO">
+                                <rect key="frame" x="47" y="199" width="320" height="444"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the reminder date:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-Jd-92f">
+                                        <rect key="frame" x="12.5" y="0.0" width="295" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="0tH-Ga-u5g">
+                                        <rect key="frame" x="0.0" y="68" width="320" height="216"/>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="0qj-2H-FOy">
+                                        <rect key="frame" x="14.5" y="316" width="291" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXh-K9-pYg">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="8hs-mi-dOB" eventType="touchUpInside" id="RqC-Ey-Z9W"/>
+                                                    <action selector="leftButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="R8C-Ix-xTI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipo-4g-twa">
+                                                <rect key="frame" x="155" y="0.0" width="136" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="Establecer"/>
+                                                <connections>
+                                                    <action selector="rightButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="zmZ-e7-1JW"/>
+                                                    <action selector="set:" destination="8hs-mi-dOB" eventType="touchUpInside" id="YNm-hS-4LV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-id-M0h">
+                                        <rect key="frame" x="28" y="396" width="264" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Eliminar recordatorio">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleActualReminder:" destination="8hs-mi-dOB" eventType="touchUpInside" id="ypu-br-UrX"/>
+                                            <action selector="lastButtonPressed:" destination="BLz-pp-OYd" eventType="touchUpInside" id="Wl9-He-nDl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oUA-Hs-ZqO" firstAttribute="centerY" secondItem="393-iW-DBB" secondAttribute="centerY" id="XNQ-0g-MH3"/>
+                            <constraint firstItem="oUA-Hs-ZqO" firstAttribute="centerX" secondItem="393-iW-DBB" secondAttribute="centerX" id="mTO-Xv-Kmx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vpo-TJ-mDk"/>
+                    </view>
+                    <connections>
+                        <outlet property="lastButton" destination="0yc-id-M0h" id="vH9-dr-dya"/>
+                        <outlet property="leftButton" destination="yXh-K9-pYg" id="0WL-c5-cue"/>
+                        <outlet property="mainStack" destination="oUA-Hs-ZqO" id="slG-cs-rHS"/>
+                        <outlet property="pickerDate" destination="0tH-Ga-u5g" id="gLV-Be-twk"/>
+                        <outlet property="rightButton" destination="Ipo-4g-twa" id="lQM-uz-XnM"/>
+                        <outlet property="titleLabel" destination="QXD-Jd-92f" id="JUZ-0J-srf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wQz-aE-7dX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327.536231884058" y="924.77678571428567"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="K7h-CF-ywt">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingVC" id="KBy-Z7-34G" customClass="OnboardingViewController" customModule="ThisWeek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bJ7-tF-pNk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to This Week !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I8-BS-HNv">
+                                <rect key="frame" x="53" y="125" width="308.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With this app you could:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIE-wH-4DY">
+                                <rect key="frame" x="52.5" y="234" width="309" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-3v-BJ1">
+                                <rect key="frame" x="91" y="386" width="232" height="124"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan your week!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swd-G6-dcO">
+                                        <rect key="frame" x="15" y="0.0" width="202" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminders!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wV7-l0-68E">
+                                        <rect key="frame" x="22.5" y="44" width="187" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outline the future!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUH-i0-LQW">
+                                        <rect key="frame" x="0.0" y="88" width="232" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-t7-z5p">
+                                <rect key="frame" x="127.5" y="668" width="159" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Get started !"/>
+                                <connections>
+                                    <action selector="done:" destination="KBy-Z7-34G" eventType="touchUpInside" id="dkV-Kr-NAT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nIE-wH-4DY" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="5zG-Ep-RoC"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="centerY" secondItem="bJ7-tF-pNk" secondAttribute="centerY" id="AXR-SS-rKe"/>
+                            <constraint firstItem="2I8-BS-HNv" firstAttribute="top" secondItem="wJJ-cv-TJr" secondAttribute="top" constant="81" id="Bq5-7R-I8n"/>
+                            <constraint firstItem="WwS-t7-z5p" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="Itx-5Z-bHB"/>
+                            <constraint firstItem="nIE-wH-4DY" firstAttribute="top" secondItem="2I8-BS-HNv" secondAttribute="bottom" constant="73" id="JSQ-fb-Hhy"/>
+                            <constraint firstItem="wJJ-cv-TJr" firstAttribute="bottom" secondItem="WwS-t7-z5p" secondAttribute="bottom" constant="146" id="QT3-Gl-Uxq"/>
+                            <constraint firstItem="2I8-BS-HNv" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="Uvd-5t-OTc"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="centerX" secondItem="bJ7-tF-pNk" secondAttribute="centerX" id="pFM-hN-zdt"/>
+                            <constraint firstItem="FvQ-3v-BJ1" firstAttribute="top" secondItem="nIE-wH-4DY" secondAttribute="bottom" constant="116" id="vSf-5L-u6x"/>
+                            <constraint firstItem="WwS-t7-z5p" firstAttribute="top" secondItem="FvQ-3v-BJ1" secondAttribute="bottom" constant="158" id="yoX-Rt-zNp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wJJ-cv-TJr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tcz-HR-6ow"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="WwS-t7-z5p" id="0dB-8E-fu7"/>
+                        <outlet property="outlineLabel" destination="nUH-i0-LQW" id="ceU-8a-rHE"/>
+                        <outlet property="planLabel" destination="Swd-G6-dcO" id="4sE-Ve-eNN"/>
+                        <outlet property="setLabel" destination="wV7-l0-68E" id="v12-SK-dSa"/>
+                        <outlet property="subTitleLabel" destination="nIE-wH-4DY" id="kMH-PD-sY2"/>
+                        <outlet property="welcomeLabel" destination="2I8-BS-HNv" id="FcN-5u-03c"/>
+                        <segue destination="nHT-sI-eZj" kind="showDetail" identifier="OnboardingDone" id="xAF-s8-CNO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="imF-Ct-gMm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1262.3188405797102" y="115.84821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rxN-K8-yiZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="nHT-sI-eZj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qsP-aG-TOM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="v0c-Qn-2ac"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="so9-8T-3Bd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162.31884057971016" y="133.92857142857142"/>
+        </scene>
+    </scenes>
+</document>

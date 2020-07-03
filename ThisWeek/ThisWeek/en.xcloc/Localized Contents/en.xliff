@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ThisWeek/Base.lproj/Main.storyboard" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="0yc-id-M0h.normalTitle" xml:space="preserve">
+        <source>Eliminar recordatorio</source>
+        <target>Eliminar recordatorio</target>
+        <note>Class = "UIButton"; normalTitle = "Eliminar recordatorio"; ObjectID = "0yc-id-M0h";</note>
+      </trans-unit>
+      <trans-unit id="2I8-BS-HNv.text" xml:space="preserve">
+        <source>Welcome to This Week !</source>
+        <target>Welcome to This Week !</target>
+        <note>Class = "UILabel"; text = "Welcome to This Week !"; ObjectID = "2I8-BS-HNv";</note>
+      </trans-unit>
+      <trans-unit id="6Lc-io-ICU.normalTitle" xml:space="preserve">
+        <source>⏲</source>
+        <target>⏲</target>
+        <note>Class = "UIButton"; normalTitle = "⏲"; ObjectID = "6Lc-io-ICU";</note>
+      </trans-unit>
+      <trans-unit id="A2e-Mf-Vmm.normalTitle" xml:space="preserve">
+        <source>Cancelar</source>
+        <target>Cancelar</target>
+        <note>Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "A2e-Mf-Vmm";</note>
+      </trans-unit>
+      <trans-unit id="FiI-Jf-yZB.text" xml:space="preserve">
+        <source>Pick the reminder time:</source>
+        <target>Pick the reminder time:</target>
+        <note>Class = "UILabel"; text = "Pick the reminder time:"; ObjectID = "FiI-Jf-yZB";</note>
+      </trans-unit>
+      <trans-unit id="Gdn-nN-7IJ.normalTitle" xml:space="preserve">
+        <source>Establecer</source>
+        <target>Establecer</target>
+        <note>Class = "UIButton"; normalTitle = "Establecer"; ObjectID = "Gdn-nN-7IJ";</note>
+      </trans-unit>
+      <trans-unit id="Ipo-4g-twa.normalTitle" xml:space="preserve">
+        <source>Establecer</source>
+        <target>Establecer</target>
+        <note>Class = "UIButton"; normalTitle = "Establecer"; ObjectID = "Ipo-4g-twa";</note>
+      </trans-unit>
+      <trans-unit id="OrJ-5X-L7q.normalTitle" xml:space="preserve">
+        <source>Eliminar recordatorio</source>
+        <target>Eliminar recordatorio</target>
+        <note>Class = "UIButton"; normalTitle = "Eliminar recordatorio"; ObjectID = "OrJ-5X-L7q";</note>
+      </trans-unit>
+      <trans-unit id="PqI-gI-NqJ.text" xml:space="preserve">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "PqI-gI-NqJ";</note>
+      </trans-unit>
+      <trans-unit id="QXD-Jd-92f.text" xml:space="preserve">
+        <source>Pick the reminder date:</source>
+        <target>Pick the reminder date:</target>
+        <note>Class = "UILabel"; text = "Pick the reminder date:"; ObjectID = "QXD-Jd-92f";</note>
+      </trans-unit>
+      <trans-unit id="Swd-G6-dcO.text" xml:space="preserve">
+        <source>Plan your week!</source>
+        <target>Plan your week!</target>
+        <note>Class = "UILabel"; text = "Plan your week!"; ObjectID = "Swd-G6-dcO";</note>
+      </trans-unit>
+      <trans-unit id="WwS-t7-z5p.normalTitle" xml:space="preserve">
+        <source>Get started !</source>
+        <target>Get started !</target>
+        <note>Class = "UIButton"; normalTitle = "Get started !"; ObjectID = "WwS-t7-z5p";</note>
+      </trans-unit>
+      <trans-unit id="fBv-R8-kTC.text" xml:space="preserve">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "fBv-R8-kTC";</note>
+      </trans-unit>
+      <trans-unit id="nIE-wH-4DY.text" xml:space="preserve">
+        <source>With this app you could:</source>
+        <target>With this app you could:</target>
+        <note>Class = "UILabel"; text = "With this app you could:"; ObjectID = "nIE-wH-4DY";</note>
+      </trans-unit>
+      <trans-unit id="nUH-i0-LQW.text" xml:space="preserve">
+        <source>Outline the future!</source>
+        <target>Outline the future!</target>
+        <note>Class = "UILabel"; text = "Outline the future!"; ObjectID = "nUH-i0-LQW";</note>
+      </trans-unit>
+      <trans-unit id="ni4-ES-lyR.normalTitle" xml:space="preserve">
+        <source>⊕</source>
+        <target>⊕</target>
+        <note>Class = "UIButton"; normalTitle = "⊕"; ObjectID = "ni4-ES-lyR";</note>
+      </trans-unit>
+      <trans-unit id="wV7-l0-68E.text" xml:space="preserve">
+        <source>Set reminders!</source>
+        <target>Set reminders!</target>
+        <note>Class = "UILabel"; text = "Set reminders!"; ObjectID = "wV7-l0-68E";</note>
+      </trans-unit>
+      <trans-unit id="yXh-K9-pYg.normalTitle" xml:space="preserve">
+        <source>Cancelar</source>
+        <target>Cancelar</target>
+        <note>Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "yXh-K9-pYg";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ThisWeek/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>This Week</source>
+        <target>This Week</target>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ThisWeek</source>
+        <target>ThisWeek</target>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ThisWeek/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="Acept" xml:space="preserve">
+        <source>Acept</source>
+        <target>Acept</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="As the day changed, your uncomplete tasks were moved to the last section." xml:space="preserve">
+        <source>As the day changed, your uncomplete tasks were moved to the last section.</source>
+        <target>As the day changed, your uncomplete tasks were moved to the last section.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Changes were made to your planning" xml:space="preserve">
+        <source>Changes were made to your planning</source>
+        <target>Changes were made to your planning</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Choose" xml:space="preserve">
+        <source>Choose</source>
+        <target>Choose</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create reminders" xml:space="preserve">
+        <source>Create reminders</source>
+        <target>Create reminders</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Decline" xml:space="preserve">
+        <source>Decline</source>
+        <target>Decline</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete date" xml:space="preserve">
+        <source>Delete date</source>
+        <target>Delete date</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete reminder" xml:space="preserve">
+        <source>Delete reminder</source>
+        <target>Delete reminder</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit" xml:space="preserve">
+        <source>Edit</source>
+        <target>Edit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Get started!" xml:space="preserve">
+        <source>Get started!</source>
+        <target>Get started!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Outline the future" xml:space="preserve">
+        <source>Outline the future</source>
+        <target>Outline the future</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pick the reminder time:" xml:space="preserve">
+        <source>Pick the reminder time:</source>
+        <target>Pick the reminder time:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pick the task date:" xml:space="preserve">
+        <source>Pick the task date:</source>
+        <target>Pick the task date:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plan your week" xml:space="preserve">
+        <source>Plan your week</source>
+        <target>Plan your week</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remember to complete this action" xml:space="preserve">
+        <source>Remember to complete this action</source>
+        <target>Remember to complete this action</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Set" xml:space="preserve">
+        <source>Set</source>
+        <target>Set</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Task assigned to the day" xml:space="preserve">
+        <source>Task assigned to the day</source>
+        <target>Task assigned to the day</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Welcome to This Week !" xml:space="preserve">
+        <source>Welcome to This Week !</source>
+        <target>Welcome to This Week !</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="With this app, you could:" xml:space="preserve">
+        <source>With this app, you could:</source>
+        <target>With this app, you could:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
