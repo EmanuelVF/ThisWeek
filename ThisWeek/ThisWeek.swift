@@ -92,7 +92,7 @@ struct ThisWeek:Codable {
             }else{
                 
                 //Move all days' acts to the last section deleting the done activities
-                for indexDay in stride(from: 0, through: days.count-1, by:1) {
+                for indexDay in stride(from: 0, through: days.count-2, by:1) {
                     for indexAct in days[indexDay].getActivities().indices{
                         if !days[indexDay].getActivities()[indexAct].isCompleted()!{
                             days[indexDay].getActivities()[indexAct].setAlarm(with: nil)
@@ -155,7 +155,7 @@ struct ThisWeek:Codable {
                     days.last?.setDate(with: formatter.string(from: editableDate))
                     days.last?.setLongDate(with: editableDate)
                 }
-                editableDate = editableDate.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay) ?? 0)
+                editableDate = editableDate.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay)!)
             }
             
         }else{
@@ -166,7 +166,7 @@ struct ThisWeek:Codable {
                     days[index].setDate(with: formatter.string(from: editableDate))
                     days[index].setLongDate(with: editableDate)
                 }
-                editableDate = editableDate.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay) ?? 0)
+                editableDate = editableDate.addingTimeInterval(TimeInterval(exactly: Defaults.oneDay)!)
             }
             
         }
