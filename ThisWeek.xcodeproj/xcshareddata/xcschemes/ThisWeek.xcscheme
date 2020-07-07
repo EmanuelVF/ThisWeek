@@ -39,6 +39,16 @@
                ReferencedContainer = "container:ThisWeek.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "88E8FA4C24B5091500F98997"
+               BuildableName = "7DUITests.xctest"
+               BlueprintName = "7DUITests"
+               ReferencedContainer = "container:ThisWeek.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
