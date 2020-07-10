@@ -34,7 +34,6 @@ class _DUITests: XCTestCase {
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         tablesQuery.cells.firstMatch.swipeLeft()
-        print(localizedString("Delete"))
         tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
     }
