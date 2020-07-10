@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "A66BA49B-28CE-483F-93AE-98FA4BE20A4C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ThisWeek.xcodeproj",
+        "identifier" : "88F6108424AFB74900FE02BC",
+        "name" : "7DTestsModelTests"
+      }
+    }
+  ],
+  "version" : 1
+}

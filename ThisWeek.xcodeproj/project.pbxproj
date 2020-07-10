@@ -74,6 +74,7 @@
 		8874DBD6247D6B9300B51EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8878DB43248A84580014317A /* ThisWeek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThisWeek.entitlements; sourceTree = "<group>"; };
 		887CEBC3247EC9AF001047FE /* UndoneActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoneActionTableViewCell.swift; sourceTree = "<group>"; };
+		8898818224B8F10000E893F7 /* FastTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = FastTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		88E8FA4D24B5091500F98997 /* 7DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 7DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E8FA4F24B5091500F98997 /* _DUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DUITests.swift; sourceTree = "<group>"; };
 		88E8FA5124B5091500F98997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 		8874DBC7247D6B9000B51EE0 /* ThisWeek */ = {
 			isa = PBXGroup;
 			children = (
+				8898818224B8F10000E893F7 /* FastTests.xctestplan */,
 				88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */,
 				8874DBCE247D6B9000B51EE0 /* Main.storyboard */,
 				8874DBCC247D6B9000B51EE0 /* ThisWeekViewController.swift */,
