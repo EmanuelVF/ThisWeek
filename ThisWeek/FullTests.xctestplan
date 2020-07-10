@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "50DD72C6-C6D4-4089-80D9-86032336E409",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ThisWeek.xcodeproj",
+        "identifier" : "88F6108424AFB74900FE02BC",
+        "name" : "7DTestsModelTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:ThisWeek.xcodeproj",
+        "identifier" : "88E8FA4C24B5091500F98997",
+        "name" : "7DUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
