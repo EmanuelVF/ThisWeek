@@ -24,22 +24,23 @@ class _DUITests: XCTestCase {
     }
 
     func testAddOneTask() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         XCTAssertEqual(app.cells.count,1)
     }
     
     func testAddOneTaskandDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        print(localizedString("Delete"))
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
     }
     
     func testAddOneTaskMarkAsDoneandDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         tablesQuery.cells.firstMatch.swipeLeft()
@@ -51,7 +52,7 @@ class _DUITests: XCTestCase {
     }
     
     func testAddOneTaskEditNameAndDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         XCTAssertEqual(app.cells.count,1)
@@ -79,7 +80,7 @@ class _DUITests: XCTestCase {
     
     
     func testAddOneTaskDoneUndoandDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         
@@ -97,7 +98,7 @@ class _DUITests: XCTestCase {
     }
     
     func testAddsReminderAndDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.firstMatch.staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.firstMatch.staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
 
@@ -134,7 +135,7 @@ class _DUITests: XCTestCase {
     }
     
     func testAddsDateAndDeleteIt() throws {
-        let addbuttonFirstRow = app.tables["Empty list"].otherElements.element(boundBy: 7).staticTexts["⊕"]
+        let addbuttonFirstRow = app.tables.firstMatch.otherElements.element(boundBy: 7).staticTexts["⊕"]
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
 
@@ -173,4 +174,9 @@ class _DUITests: XCTestCase {
         XCTAssertEqual(app.cells.count,0)
         
     }
+}
+
+func localizedString(_ key: String) -> String {
+    let result = NSLocalizedString(key, bundle: Bundle(for: _DUITests.self), comment: "")
+    return result
 }
