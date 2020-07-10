@@ -2,9 +2,21 @@
   "configurations" : [
     {
       "id" : "50DD72C6-C6D4-4089-80D9-86032336E409",
-      "name" : "Configuration 1",
+      "name" : "English",
       "options" : {
-
+        "areLocalizationScreenshotsEnabled" : true,
+        "language" : "en",
+        "region" : "US",
+        "uiTestingScreenshotsLifetime" : "deleteOnSuccess"
+      }
+    },
+    {
+      "id" : "239D6AB2-E050-4901-B8C4-8C601D4AF7A9",
+      "name" : "Configuration 2",
+      "options" : {
+        "areLocalizationScreenshotsEnabled" : true,
+        "language" : "es",
+        "region" : "AR"
       }
     }
   ],
