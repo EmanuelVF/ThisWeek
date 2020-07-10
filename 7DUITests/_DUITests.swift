@@ -44,10 +44,10 @@ class _DUITests: XCTestCase {
         addbuttonFirstRow.tap()
         let tablesQuery = app.tables
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Done"].tap()
+        tablesQuery.buttons[localizedString("Done")].tap()
         XCTAssertEqual(app.cells.count,1)
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
     }
     
@@ -58,11 +58,11 @@ class _DUITests: XCTestCase {
         XCTAssertEqual(app.cells.count,1)
         
         let textFieldm = app.tables.cells.children(matching: .textField).element
-        let clearButton =  tablesQuery/*@START_MENU_TOKEN@*/.textFields.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[1]]@END_MENU_TOKEN@*/
+        let clearButton =  tablesQuery.textFields.buttons[localizedString("Clear text")]
         let rKey = app.keys["R"]
         let uKey = app.keys["u"]
         let nKey = app.keys["n"]
-        let DoneKey = app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards",".buttons[\"done\"]",".buttons[\"Done\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        let DoneKey = app.buttons["Done"]
         
         textFieldm.doubleTap()
         
@@ -74,7 +74,7 @@ class _DUITests: XCTestCase {
         DoneKey.tap()
     
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
     }
     
@@ -85,15 +85,15 @@ class _DUITests: XCTestCase {
         let tablesQuery = app.tables
         
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Done"].tap()
+        tablesQuery.buttons[localizedString("Done")].tap()
         XCTAssertEqual(app.cells.count,1)
         
         tablesQuery.cells.firstMatch.swipeRight()
-        tablesQuery.buttons["Undo"].tap()
+        tablesQuery.buttons[localizedString("Undo")].tap()
         XCTAssertEqual(app.cells.count,1)
         
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
     }
     
@@ -106,22 +106,37 @@ class _DUITests: XCTestCase {
 
         let ReminderButton = tablesQuery.children(matching: .cell).element(boundBy: 0).buttons["⏲"]
         let datePickersQuery = app.datePickers
-        let setButton = app/*@START_MENU_TOKEN@*/.staticTexts["Set"]/*[[".buttons[\"Set\"].staticTexts[\"Set\"]",".staticTexts[\"Set\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let deleteReminderButton = app/*@START_MENU_TOKEN@*/.staticTexts["Delete reminder"]/*[[".buttons[\"Delete reminder\"].staticTexts[\"Delete reminder\"]",".staticTexts[\"Delete reminder\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let cancelReminderButton = app/*@START_MENU_TOKEN@*/.staticTexts["Cancel"]/*[[".buttons[\"Cancel\"].staticTexts[\"Cancel\"]",".staticTexts[\"Cancel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let setButton = app.staticTexts[localizedString("Set")]
+        let deleteReminderButton = app.staticTexts[localizedString("Delete reminder")]
+        let cancelReminderButton = app.staticTexts[localizedString("Cancel")]
         
-        ReminderButton.tap()
-        datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "1")
-        datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "10")
-        datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "AM")
-        setButton.tap()
+        if(Locale.current.identifier == "en_US"){
+            ReminderButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "1")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "10")
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "AM")
+            setButton.tap()
 
-        ReminderButton.tap()
-        datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "2")
-        datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "15")
-        datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "AM")
-        setButton.tap()
+            ReminderButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "2")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "15")
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "AM")
+            setButton.tap()
+        }else if (Locale.current.identifier == "es_AR"){
+            ReminderButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "01")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "10")
+            setButton.tap()
 
+            ReminderButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "02")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "15")
+            setButton.tap()
+            
+        }else{
+            XCTAssertThrowsError("Locale not considered")
+        }
+    
         ReminderButton.tap()
         cancelReminderButton.tap()
 
@@ -129,7 +144,7 @@ class _DUITests: XCTestCase {
         deleteReminderButton.tap()
 
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
         
     }
@@ -143,25 +158,44 @@ class _DUITests: XCTestCase {
         
         let DateButton = tablesQuery.children(matching: .cell).element(boundBy: 0).buttons["🗓"]
         let datePickersQuery = app.datePickers
-        let setButton = app/*@START_MENU_TOKEN@*/.staticTexts["Set"]/*[[".buttons[\"Set\"].staticTexts[\"Set\"]",".staticTexts[\"Set\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let deleteDateButton = app.staticTexts["Delete date"]
-        let cancelDateButton = app/*@START_MENU_TOKEN@*/.staticTexts["Cancel"]/*[[".buttons[\"Cancel\"].staticTexts[\"Cancel\"]",".staticTexts[\"Cancel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let editDateButton = app.staticTexts["Edit"]
-        let chooseDateButton = app.staticTexts["Choose"]
-
-        DateButton.tap()
-        datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
-        datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "January")
-        datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "1")
+        let setButton = app.staticTexts[localizedString("Set")]
+        let deleteDateButton = app.staticTexts[localizedString("Delete date")]
+        let cancelDateButton = app.staticTexts[localizedString("Cancel")]
+        let editDateButton = app.staticTexts[localizedString("Edit")]
+        let chooseDateButton = app.staticTexts[localizedString("Choose")]
         
-        setButton.tap()
+        if(Locale.current.identifier == "en_US"){
+            DateButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "January")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "1")
+            
+            setButton.tap()
 
-        DateButton.tap()
-        editDateButton.tap()
-        datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "February")
-        datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "23")
-        datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
-        chooseDateButton.tap()
+            DateButton.tap()
+            editDateButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "February")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "23")
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
+            chooseDateButton.tap()
+        }else if(Locale.current.identifier == "es_AR"){
+            DateButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "enero")
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "1")
+            
+            setButton.tap()
+
+            DateButton.tap()
+            editDateButton.tap()
+            datePickersQuery.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "febrero")
+            datePickersQuery.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "23")
+            datePickersQuery.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2050")
+            chooseDateButton.tap()
+            
+        }else{
+            XCTAssertThrowsError("Locale not considered")
+        }
 
         DateButton.tap()
         cancelDateButton.tap()
@@ -170,7 +204,7 @@ class _DUITests: XCTestCase {
         deleteDateButton.tap()
 
         tablesQuery.cells.firstMatch.swipeLeft()
-        tablesQuery.buttons["Delete"].tap()
+        tablesQuery.buttons[localizedString("Delete")].tap()
         XCTAssertEqual(app.cells.count,0)
         
     }

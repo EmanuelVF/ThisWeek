@@ -1,78 +1,81 @@
 /* No comment provided by engineer. */
-"Acept" = "Aceptar";
+"Acept" = "Acept";
 
 /* No comment provided by engineer. */
-"As the day changed, your uncomplete tasks were moved to the last section." = "Como el día cambió, las tareas incompletas se movieron a la última sección";
+"As the day changed, your uncomplete tasks were moved to the last section." = "As the day changed, your uncomplete tasks were moved to the last section.";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancelar";
+"Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
-"Changes were made to your planning" = "Se realizaron cambios a tu planificación.";
+"Changes were made to your planning" = "Changes were made to your planning";
 
 /* No comment provided by engineer. */
-"Choose" = "Elegir";
+"Choose" = "Choose";
 
 /* No comment provided by engineer. */
-"Create reminders" = "Crear recordatorios";
+"Create reminders" = "Create reminders";
 
 /* No comment provided by engineer. */
-"Decline" = "Declinar";
+"Decline" = "Decline";
 
 /* No comment provided by engineer. */
-"Delete date" = "Eliminar fecha";
+"Delete date" = "Delete date";
 
 /* No comment provided by engineer. */
-"Delete reminder" = "Eliminar recordatorio";
+"Delete reminder" = "Delete reminder";
 
 /* No comment provided by engineer. */
-"Done" = "Hecho";
+"Done" = Done;
 
 /* No comment provided by engineer. */
-"Edit" = "Editar";
+"Edit" = "Edit";
 
 /* No comment provided by engineer. */
-"en_US" = "es_AR";
+"en_US" = "en_US";
 
 /* No comment provided by engineer. */
-"Get started!" = "Empecemos !";
+"Get started!" = "Get started!";
 
 /* No comment provided by engineer. */
-"Later" = "Más tarde";
+"Later" = "Later";
 
 /* No comment provided by engineer. */
-"New task" = "Nueva tarea";
+"New task" = "New task";
 
 /* No comment provided by engineer. */
-"Outline the future" = "Definir el futuro";
+"Outline the future" = "Outline the future";
 
 /* No comment provided by engineer. */
-"Pick the reminder time:" = "Elegir el horario de la tarea:";
+"Pick the reminder time:" = "Pick the reminder time:";
 
 /* No comment provided by engineer. */
-"Pick the task date:" = "Elegir la fecha de la tarea:";
+"Pick the task date:" = "Pick the task date:";
 
 /* No comment provided by engineer. */
-"Plan your week" = "Planear la semana";
+"Plan your week" = "Plan your week";
 
 /* No comment provided by engineer. */
-"Remember to complete this action" = "Recuerda completar esta tarea:";
+"Remember to complete this action" = "Remember to complete this action";
 
 /* No comment provided by engineer. */
-"Set" = "Establecer";
+"Set" = "Set";
 
 /* No comment provided by engineer. */
-"Task assigned to the day" = "Tarea asiganda al día:";
+"Task assigned to the day" = "Task assigned to the day";
 
 /* No comment provided by engineer. */
-"Undo" = "Deshacer";
+"Undo" = "Undo";
 
 /* No comment provided by engineer. */
-"Welcome to This Week !" = "Bienvenido a This Week!";
+"Welcome to This Week !" = "Welcome to This Week !";
 
 /* No comment provided by engineer. */
-"With this app, you could:" = "Con esta app, vas a poder:";
+"With this app, you could:" = "With this app, you could:";
 
 /* No comment provided by engineer. */
 "Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Clear text" = "Clear text";
 
