@@ -40,59 +40,61 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Fetch Weather Data
         dataManager.weatherDataForLocation(latitude: WeatherConfiguration.Defaults.Latitude, longitude: WeatherConfiguration.Defaults.Longitude) { (response, error) in
-            self.weekWeather.removeAll()
-            for index in stride(from: 0, to: response!.daily.count-1, by: 1){
-                switch(response!.daily[index].weather.first!.main){
-                case "Thunderstorm" :
-                    self.weekWeather.append("⛈")
-                
-                case "Drizzle" :
-                    self.weekWeather.append("🌧")
-                
-                case "Rain" :
-                    self.weekWeather.append("⛈")
+            if response != nil {
+                self.weekWeather.removeAll()
+                for index in stride(from: 0, to: response!.daily.count-1, by: 1){
+                    switch(response!.daily[index].weather.first!.main){
+                    case "Thunderstorm" :
+                        self.weekWeather.append("⛈")
                     
-                case "Snow" :
-                    self.weekWeather.append("❄️")
+                    case "Drizzle" :
+                        self.weekWeather.append("🌧")
                     
-                case "Mist" :
-                    self.weekWeather.append("🌫")
+                    case "Rain" :
+                        self.weekWeather.append("⛈")
                         
-                case "Smoke" :
-                    self.weekWeather.append("🌫")
+                    case "Snow" :
+                        self.weekWeather.append("❄️")
                         
-                case "Haze" :
-                    self.weekWeather.append("🌫")
-                    
-                case "Sand" :
-                    self.weekWeather.append("🌫")
+                    case "Mist" :
+                        self.weekWeather.append("🌫")
+                            
+                    case "Smoke" :
+                        self.weekWeather.append("🌫")
+                            
+                    case "Haze" :
+                        self.weekWeather.append("🌫")
                         
-                case "Fog" :
-                    self.weekWeather.append("🌫")
+                    case "Sand" :
+                        self.weekWeather.append("🌫")
+                            
+                    case "Fog" :
+                        self.weekWeather.append("🌫")
+                            
+                    case "Dust" :
+                        self.weekWeather.append("🌫")
+                            
+                    case "Ash":
+                        self.weekWeather.append("🌫")
+                            
+                    case "Squall" :
+                        self.weekWeather.append("🌧")
+                            
+                    case "Tornado" :
+                        self.weekWeather.append("🌪")
                         
-                case "Dust" :
-                    self.weekWeather.append("🌫")
-                        
-                case "Ash":
-                    self.weekWeather.append("🌫")
-                        
-                case "Squall" :
-                    self.weekWeather.append("🌧")
-                        
-                case "Tornado" :
-                    self.weekWeather.append("🌪")
-                    
-                case "Clear" :
-                    self.weekWeather.append("☀️")
-                        
-                case "Clouds" :
-                    self.weekWeather.append("⛅️")
+                    case "Clear" :
+                        self.weekWeather.append("☀️")
+                            
+                    case "Clouds" :
+                        self.weekWeather.append("⛅️")
 
-                default :
-                    break
+                    default :
+                        break
+                    }
                 }
+                self.weekWeather.append("")
             }
-            self.weekWeather.append("")
         }
     }
     
