@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880EB49424BE27AF0048D113 /* WeatherConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB49324BE27AF0048D113 /* WeatherConfiguration.swift */; };
+		880EB49624BE29D40048D113 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB49524BE29D40048D113 /* WeatherDataManager.swift */; };
+		880EB49824BE3E480048D113 /* WeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880EB49724BE3E480048D113 /* WeatherClass.swift */; };
 		881186EC2498090300481D36 /* ThisWeek logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 881186EB2498090300481D36 /* ThisWeek logo.png */; };
 		882BFE7B248A870A00DC5F03 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 882BFE7A248A870A00DC5F03 /* CloudKit.framework */; };
 		8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838D27F247D6E5400A45448 /* ThisWeek.swift */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		880EB49324BE27AF0048D113 /* WeatherConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfiguration.swift; sourceTree = SOURCE_ROOT; };
+		880EB49524BE29D40048D113 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
+		880EB49724BE3E480048D113 /* WeatherClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClass.swift; sourceTree = "<group>"; };
 		881186EB2498090300481D36 /* ThisWeek logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThisWeek logo.png"; sourceTree = "<group>"; };
 		882BFE7A248A870A00DC5F03 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8838D27F247D6E5400A45448 /* ThisWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeek.swift; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				8838D283247D704D00A45448 /* Activity.swift */,
 				8854C76F24898A9E000FDE58 /* CloudThisWeekViewController.swift */,
 				8854C76D24898649000FDE58 /* CloudKitExtension.swift */,
+				880EB49324BE27AF0048D113 /* WeatherConfiguration.swift */,
+				880EB49524BE29D40048D113 /* WeatherDataManager.swift */,
+				880EB49724BE3E480048D113 /* WeatherClass.swift */,
 				8874DBD6247D6B9300B51EE0 /* Info.plist */,
 				883D396724928E09008B1CAB /* Localizable.strings */,
 				883D396424928E09008B1CAB /* InfoPlist.strings */,
@@ -342,11 +351,14 @@
 				8874DBCD247D6B9000B51EE0 /* ThisWeekViewController.swift in Sources */,
 				884E2CEB248047E200B8EDC4 /* SetReminderViewController.swift in Sources */,
 				8838D286247DBADB00A45448 /* SectionTableViewCell.swift in Sources */,
+				880EB49824BE3E480048D113 /* WeatherClass.swift in Sources */,
+				880EB49424BE27AF0048D113 /* WeatherConfiguration.swift in Sources */,
 				886B62D524883391006A2E9A /* SetDateViewController.swift in Sources */,
 				8838D280247D6E5400A45448 /* ThisWeek.swift in Sources */,
 				8874DBC9247D6B9000B51EE0 /* AppDelegate.swift in Sources */,
 				8854C76E24898649000FDE58 /* CloudKitExtension.swift in Sources */,
 				8854C77024898A9E000FDE58 /* CloudThisWeekViewController.swift in Sources */,
+				880EB49624BE29D40048D113 /* WeatherDataManager.swift in Sources */,
 				887CEBC4247EC9AF001047FE /* UndoneActionTableViewCell.swift in Sources */,
 				8838D282247D6F7600A45448 /* Day.swift in Sources */,
 				88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */,

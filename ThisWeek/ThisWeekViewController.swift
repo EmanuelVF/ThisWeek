@@ -14,6 +14,15 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
 //    MARK: - Model
     var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
 
+    private let dataManager = WeatherDataManager(baseURL: WeatherAPI.authenticatedBaseURL)
+    private var weekWeather = [String](){
+        didSet{
+            DispatchQueue.main.async {
+                self.weekTableView.reloadData()
+            }
+        }
+    }
+//    private var forecastWeather = WeatherClass()
 //    MARK: - ViewController Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +37,63 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         weekTableView.reloadData()
+        
+        // Fetch Weather Data
+        dataManager.weatherDataForLocation(latitude: WeatherConfiguration.Defaults.Latitude, longitude: WeatherConfiguration.Defaults.Longitude) { (response, error) in
+            self.weekWeather.removeAll()
+            for index in stride(from: 0, to: response!.daily.count-1, by: 1){
+                switch(response!.daily[index].weather.first!.main){
+                case "Thunderstorm" :
+                    self.weekWeather.append("⛈")
+                
+                case "Drizzle" :
+                    self.weekWeather.append("🌧")
+                
+                case "Rain" :
+                    self.weekWeather.append("⛈")
+                    
+                case "Snow" :
+                    self.weekWeather.append("❄️")
+                    
+                case "Mist" :
+                    self.weekWeather.append("🌫")
+                        
+                case "Smoke" :
+                    self.weekWeather.append("🌫")
+                        
+                case "Haze" :
+                    self.weekWeather.append("🌫")
+                    
+                case "Sand" :
+                    self.weekWeather.append("🌫")
+                        
+                case "Fog" :
+                    self.weekWeather.append("🌫")
+                        
+                case "Dust" :
+                    self.weekWeather.append("🌫")
+                        
+                case "Ash":
+                    self.weekWeather.append("🌫")
+                        
+                case "Squall" :
+                    self.weekWeather.append("🌧")
+                        
+                case "Tornado" :
+                    self.weekWeather.append("🌪")
+                    
+                case "Clear" :
+                    self.weekWeather.append("☀️")
+                        
+                case "Clouds" :
+                    self.weekWeather.append("⛅️")
+
+                default :
+                    break
+                }
+            }
+            self.weekWeather.append("")
+        }
     }
     
     private func loadLogo(){
@@ -37,7 +103,7 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.titleView = imageView
     }
     
-    private var keyboardWillShowObserver : NSObjectProtocol?
+    //private var keyboardWillShowObserver : NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -351,7 +417,12 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerCell = tableView.dequeueReusableCell(withIdentifier: Defaults.cellIDSection) as? SectionTableViewCell{
-            headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: Defaults.preferredHeaderHeight * Defaults.headerTextSizeFactor)
+            if weekWeather.count == ThisWeek.Defaults.numberOfDays{
+                headerCell.titleLabel.attributedText = titleAttributedString(weekWeather[section] + thisWeek.days[section].getDate()!, fontsize: Defaults.preferredHeaderHeight * Defaults.headerTextSizeFactor)
+            }else{
+                headerCell.titleLabel.attributedText = titleAttributedString(thisWeek.days[section].getDate()!, fontsize: Defaults.preferredHeaderHeight * Defaults.headerTextSizeFactor)
+            }
+            
             headerCell.delegate = self
             return headerCell
         }else{
