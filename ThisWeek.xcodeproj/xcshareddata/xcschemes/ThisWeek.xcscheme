@@ -31,7 +31,7 @@
       localizableStringsDataGatheringEnabled = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:FastTests.xctestplan"
+            reference = "container:ThisWeek/New Group/FastTests.xctestplan"
             default = "YES">
          </TestPlanReference>
          <TestPlanReference
