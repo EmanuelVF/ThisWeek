@@ -389,11 +389,23 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     func addOneTask(_ sender: SectionTableViewCell) {
         
         let text = sender.titleLabel.text
-        for index in thisWeek.days.indices{
-            if thisWeek.days[index].getDate()! == text!{
-                thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarmID: nil, alarmTime: nil, futureDay: nil), at: index)
-                thisWeek.days[index].sortDay()
-                weekTableView.reloadData()
+        
+        if weekWeather.count == ThisWeek.Defaults.numberOfDays{
+            for index in thisWeek.days.indices{
+                if weekWeather[index] + thisWeek.days[index].getDate()! == text!{
+                    thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarmID: nil, alarmTime: nil, futureDay: nil), at: index)
+                    thisWeek.days[index].sortDay()
+                    weekTableView.reloadData()
+                }
+            }
+            
+        }else{
+            for index in thisWeek.days.indices{
+                if thisWeek.days[index].getDate()! == text!{
+                    thisWeek.addToDo(activity: Activity(name: ThisWeek.Defaults.newTaskText, hasAReminder: false, completed: false, alarmID: nil, alarmTime: nil, futureDay: nil), at: index)
+                    thisWeek.days[index].sortDay()
+                    weekTableView.reloadData()
+                }
             }
         }
     }
