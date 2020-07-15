@@ -59,8 +59,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //private var keyboardWillShowObserver : NSObjectProtocol?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
@@ -72,14 +70,10 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         addNotificationsObserver()
-//        thisWeek.refresh(basedOn: thisWeek.days.first!.getLongDate()!,numberOfDays: ThisWeek.Defaults.numberOfDays)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //TODO: Delete This
-//        print("User defaults: Onboarding = false")
-//        UserDefaults.standard.set(false, forKey: "OnboardingDone")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -734,7 +728,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
         getWeatherForecast(latitude : locValue.latitude, longitude: locValue.longitude)
     }
 }
