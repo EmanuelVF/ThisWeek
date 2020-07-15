@@ -13,7 +13,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded 
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         // Do any additional setup after loading the view.
     }
         
