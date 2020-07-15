@@ -8,21 +8,27 @@
 
 import UIKit
 import UserNotifications
+import CoreLocation
 
-class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate  {
+class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SectionTableViewCellDelegate, SetReminderViewControllerDelegate, SetDateViewControllerDelegate, UndoneActionTableViewCellDelegate, CLLocationManagerDelegate  {
     
-//    MARK: - Model
+//    MARK: - Model & vars
     var thisWeek = ThisWeek(startingWith: Date(), numberOfDays: ThisWeek.Defaults.numberOfDays)
 
     private let dataManager = WeatherDataManager(baseURL: WeatherAPI.authenticatedBaseURL)
     private var weekWeather = [String](){
         didSet{
-            DispatchQueue.main.async {
-                self.weekTableView.reloadData()
+            if weekWeather.count == ThisWeek.Defaults.numberOfDays{
+                DispatchQueue.main.async {
+                    self.weekTableView.reloadData()
+                    self.locationManager.stopUpdatingLocation()
+                }
             }
         }
     }
-//    private var forecastWeather = WeatherClass()
+    
+    private let locationManager = CLLocationManager()
+    
 //    MARK: - ViewController Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,65 +43,6 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         weekTableView.reloadData()
-        
-        // Fetch Weather Data
-        dataManager.weatherDataForLocation(latitude: WeatherConfiguration.Defaults.Latitude, longitude: WeatherConfiguration.Defaults.Longitude) { (response, error) in
-            if response != nil {
-                self.weekWeather.removeAll()
-                for index in stride(from: 0, to: response!.daily.count-1, by: 1){
-                    switch(response!.daily[index].weather.first!.main){
-                    case "Thunderstorm" :
-                        self.weekWeather.append("⛈")
-                    
-                    case "Drizzle" :
-                        self.weekWeather.append("🌧")
-                    
-                    case "Rain" :
-                        self.weekWeather.append("⛈")
-                        
-                    case "Snow" :
-                        self.weekWeather.append("❄️")
-                        
-                    case "Mist" :
-                        self.weekWeather.append("🌫")
-                            
-                    case "Smoke" :
-                        self.weekWeather.append("🌫")
-                            
-                    case "Haze" :
-                        self.weekWeather.append("🌫")
-                        
-                    case "Sand" :
-                        self.weekWeather.append("🌫")
-                            
-                    case "Fog" :
-                        self.weekWeather.append("🌫")
-                            
-                    case "Dust" :
-                        self.weekWeather.append("🌫")
-                            
-                    case "Ash":
-                        self.weekWeather.append("🌫")
-                            
-                    case "Squall" :
-                        self.weekWeather.append("🌧")
-                            
-                    case "Tornado" :
-                        self.weekWeather.append("🌪")
-                        
-                    case "Clear" :
-                        self.weekWeather.append("☀️")
-                            
-                    case "Clouds" :
-                        self.weekWeather.append("⛅️")
-
-                    default :
-                        break
-                    }
-                }
-                self.weekWeather.append("")
-            }
-        }
     }
     
     private func loadLogo(){
@@ -103,6 +50,13 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.startUpdatingLocation()
+        }
     }
     
     //private var keyboardWillShowObserver : NSObjectProtocol?
@@ -712,6 +666,76 @@ class ThisWeekViewController: UIViewController, UITableViewDelegate, UITableView
             self.weekTableView.reloadData()
         }
         
+    }
+    
+    private func getWeatherForecast(latitude : Double, longitude: Double){
+
+        // Fetch Weather Data
+               dataManager.weatherDataForLocation(latitude: latitude, longitude: longitude) { (response, error) in
+                   if response != nil {
+                       self.weekWeather.removeAll()
+                       for index in stride(from: 0, to: response!.daily.count-1, by: 1){
+                           switch(response!.daily[index].weather.first!.main){
+                           case "Thunderstorm" :
+                               self.weekWeather.append("⛈")
+                           
+                           case "Drizzle" :
+                               self.weekWeather.append("🌧")
+                           
+                           case "Rain" :
+                               self.weekWeather.append("⛈")
+                               
+                           case "Snow" :
+                               self.weekWeather.append("❄️")
+                               
+                           case "Mist" :
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Smoke" :
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Haze" :
+                               self.weekWeather.append("🌫")
+                               
+                           case "Sand" :
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Fog" :
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Dust" :
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Ash":
+                               self.weekWeather.append("🌫")
+                                   
+                           case "Squall" :
+                               self.weekWeather.append("🌧")
+                                   
+                           case "Tornado" :
+                               self.weekWeather.append("🌪")
+                               
+                           case "Clear" :
+                               self.weekWeather.append("☀️")
+                                   
+                           case "Clouds" :
+                               self.weekWeather.append("⛅️")
+
+                           default :
+                               break
+                           }
+                       }
+                       self.weekWeather.append("")
+                   }
+               }
+    }
+    
+    //    MARK:- CLLocationManagerDelegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        getWeatherForecast(latitude : locValue.latitude, longitude: locValue.longitude)
     }
 }
 
