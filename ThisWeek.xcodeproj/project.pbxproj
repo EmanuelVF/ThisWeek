@@ -32,6 +32,10 @@
 		8898818524B8FF7300E893F7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 883D396424928E09008B1CAB /* InfoPlist.strings */; };
 		88A42AFA24BFA62B00B06914 /* WeatherConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A42AF924BFA62B00B06914 /* WeatherConfiguration.swift */; };
 		88A42B0224BFA77300B06914 /* FastTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 88A42B0124BFA77300B06914 /* FastTests.xctestplan */; };
+		88A42B0C24BFA96600B06914 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A42B0B24BFA96600B06914 /* NotificationCenter.framework */; };
+		88A42B0F24BFA96600B06914 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A42B0E24BFA96600B06914 /* TodayViewController.swift */; };
+		88A42B1224BFA96600B06914 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A42B1024BFA96600B06914 /* MainInterface.storyboard */; };
+		88A42B1624BFA96600B06914 /* SevenDaysExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88A42B0A24BFA96600B06914 /* SevenDaysExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		88E8FA5024B5091500F98997 /* _DUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8FA4F24B5091500F98997 /* _DUITests.swift */; };
 		88ECADBA2486A2F100ED57BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ECADB92486A2F100ED57BA /* OnboardingViewController.swift */; };
 		88EEAEDD24996A5C00630CF7 /* ThisWeekLogo+Title1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88EEAEDC24996A5C00630CF7 /* ThisWeekLogo+Title1.png */; };
@@ -39,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		88A42B1424BFA96600B06914 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8874DBBD247D6B9000B51EE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88A42B0924BFA96600B06914;
+			remoteInfo = SevenDaysExtension;
+		};
 		88E8FA5224B5091500F98997 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8874DBBD247D6B9000B51EE0 /* Project object */;
@@ -54,6 +65,20 @@
 			remoteInfo = ThisWeek;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88A42B1A24BFA96600B06914 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88A42B1624BFA96600B06914 /* SevenDaysExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		880EB49524BE29D40048D113 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
@@ -86,6 +111,11 @@
 		8898818624B8FF7A00E893F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88A42AF924BFA62B00B06914 /* WeatherConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherConfiguration.swift; path = ../WeatherConfiguration.swift; sourceTree = "<group>"; };
 		88A42B0124BFA77300B06914 /* FastTests.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FastTests.xctestplan; path = ../FastTests.xctestplan; sourceTree = "<group>"; };
+		88A42B0A24BFA96600B06914 /* SevenDaysExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SevenDaysExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A42B0B24BFA96600B06914 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		88A42B0E24BFA96600B06914 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		88A42B1124BFA96600B06914 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		88A42B1324BFA96600B06914 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88E8FA4D24B5091500F98997 /* 7DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 7DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E8FA4F24B5091500F98997 /* _DUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DUITests.swift; sourceTree = "<group>"; };
 		88E8FA5124B5091500F98997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +132,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				882BFE7B248A870A00DC5F03 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88A42B0724BFA96600B06914 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A42B0C24BFA96600B06914 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				882BFE7A248A870A00DC5F03 /* CloudKit.framework */,
+				88A42B0B24BFA96600B06914 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +175,7 @@
 				8874DBC7247D6B9000B51EE0 /* ThisWeek */,
 				88F6108624AFB74900FE02BC /* 7DTestsModelTests */,
 				88E8FA4E24B5091500F98997 /* 7DUITests */,
+				88A42B0D24BFA96600B06914 /* SevenDaysExtension */,
 				8874DBC6247D6B9000B51EE0 /* Products */,
 				882BFE79248A870A00DC5F03 /* Frameworks */,
 			);
@@ -147,6 +187,7 @@
 				8874DBC5247D6B9000B51EE0 /* 7D.app */,
 				88F6108524AFB74900FE02BC /* 7DTestsModelTests.xctest */,
 				88E8FA4D24B5091500F98997 /* 7DUITests.xctest */,
+				88A42B0A24BFA96600B06914 /* SevenDaysExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +282,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		88A42B0D24BFA96600B06914 /* SevenDaysExtension */ = {
+			isa = PBXGroup;
+			children = (
+				88A42B0E24BFA96600B06914 /* TodayViewController.swift */,
+				88A42B1024BFA96600B06914 /* MainInterface.storyboard */,
+				88A42B1324BFA96600B06914 /* Info.plist */,
+			);
+			path = SevenDaysExtension;
+			sourceTree = "<group>";
+		};
 		88E8FA4E24B5091500F98997 /* 7DUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,15 +320,34 @@
 				8874DBC1247D6B9000B51EE0 /* Sources */,
 				8874DBC2247D6B9000B51EE0 /* Frameworks */,
 				8874DBC3247D6B9000B51EE0 /* Resources */,
+				88A42B1A24BFA96600B06914 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				88A42B1524BFA96600B06914 /* PBXTargetDependency */,
 			);
 			name = ThisWeek;
 			productName = ThisWeek;
 			productReference = 8874DBC5247D6B9000B51EE0 /* 7D.app */;
 			productType = "com.apple.product-type.application";
+		};
+		88A42B0924BFA96600B06914 /* SevenDaysExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88A42B1724BFA96600B06914 /* Build configuration list for PBXNativeTarget "SevenDaysExtension" */;
+			buildPhases = (
+				88A42B0624BFA96600B06914 /* Sources */,
+				88A42B0724BFA96600B06914 /* Frameworks */,
+				88A42B0824BFA96600B06914 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SevenDaysExtension;
+			productName = SevenDaysExtension;
+			productReference = 88A42B0A24BFA96600B06914 /* SevenDaysExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		88E8FA4C24B5091500F98997 /* 7DUITests */ = {
 			isa = PBXNativeTarget;
@@ -328,6 +398,9 @@
 					8874DBC4247D6B9000B51EE0 = {
 						CreatedOnToolsVersion = 11.5;
 					};
+					88A42B0924BFA96600B06914 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 					88E8FA4C24B5091500F98997 = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 8874DBC4247D6B9000B51EE0;
@@ -355,6 +428,7 @@
 				8874DBC4247D6B9000B51EE0 /* ThisWeek */,
 				88F6108424AFB74900FE02BC /* 7DTestsModelTests */,
 				88E8FA4C24B5091500F98997 /* 7DUITests */,
+				88A42B0924BFA96600B06914 /* SevenDaysExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +446,14 @@
 				883D396924928E09008B1CAB /* Localizable.strings in Resources */,
 				8874DBD0247D6B9000B51EE0 /* Main.storyboard in Resources */,
 				881186EC2498090300481D36 /* ThisWeek logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88A42B0824BFA96600B06914 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A42B1224BFA96600B06914 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +499,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88A42B0624BFA96600B06914 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A42B0F24BFA96600B06914 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88E8FA4924B5091500F98997 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +526,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		88A42B1524BFA96600B06914 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88A42B0924BFA96600B06914 /* SevenDaysExtension */;
+			targetProxy = 88A42B1424BFA96600B06914 /* PBXContainerItemProxy */;
+		};
 		88E8FA5324B5091500F98997 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8874DBC4247D6B9000B51EE0 /* ThisWeek */;
@@ -482,6 +577,14 @@
 				883D396324927D71008B1CAB /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		88A42B1024BFA96600B06914 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A42B1124BFA96600B06914 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -606,6 +709,7 @@
 		8874DBDA247D6B9300B51EE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThisWeek/ThisWeek.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -628,6 +732,7 @@
 		8874DBDB247D6B9300B51EE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThisWeek/ThisWeek.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -642,6 +747,44 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Emanuel.ThisWeek;
 				PRODUCT_NAME = 7D;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		88A42B1824BFA96600B06914 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 325CWX756R;
+				INFOPLIST_FILE = SevenDaysExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Emanuel.ThisWeek.SevenDaysExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88A42B1924BFA96600B06914 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 325CWX756R;
+				INFOPLIST_FILE = SevenDaysExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Emanuel.ThisWeek.SevenDaysExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -742,6 +885,15 @@
 			buildConfigurations = (
 				8874DBDA247D6B9300B51EE0 /* Debug */,
 				8874DBDB247D6B9300B51EE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88A42B1724BFA96600B06914 /* Build configuration list for PBXNativeTarget "SevenDaysExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88A42B1824BFA96600B06914 /* Debug */,
+				88A42B1924BFA96600B06914 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
